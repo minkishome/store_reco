@@ -28,8 +28,10 @@ const Fullpage = () => (
       return (
         <ReactFullpage.Wrapper>
           <div className="section">
+            <Greeting />
+          </div>
+          <div className="section">
             <KakaoSignUp></KakaoSignUp>
-            {/* <Greeting /> */}
           </div>
           <div className="section">
             <Service />

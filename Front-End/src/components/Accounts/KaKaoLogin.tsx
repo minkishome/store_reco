@@ -3,10 +3,11 @@ import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { url } from '../../url';
 import styled from 'styled-components';
+const oauth_redirect_url = 'https://13.125.68.151/oauth'
 declare const window: any;
 class KakaoLogin extends Component<any> {
 	loginWithKakao = () => {
-		window.Kakao.init('048f1536eb1eb083312cde91cbcc3a6c')
+		window.Kakao.init('baa049c9d7b8dc42694041a8b7f71232')
 		window.Kakao.Auth.login({
 			success: (authObj: any) => {
 				// console.log(authObj.access_token);
