@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import { url as _url } from '../../url';
 import axios from 'axios';
+import img from '../images/account_login_btn.png';
 
 declare const window: any;
 interface State {
@@ -31,7 +31,7 @@ class KakaoSignUp extends Component<any, State> {
 
                         try {
                             const isExist = async () => {
-                                console.log('들어왔다')
+                                // console.log('들어왔다')
                                 const ress = await axios({
                                     method: "get",
                                     url: `${_url}/member/isExist/${res.kakao_account.email}`,
@@ -72,7 +72,7 @@ class KakaoSignUp extends Component<any, State> {
     render() {
         return (
             <StGgLogin>
-                <img src='/images/kakao_account_login_btn_medium_narrow.png' alt="" onClick={this.loginWithKakao} />
+                <img src={img} alt="" onClick={this.loginWithKakao} />
             </StGgLogin>
         );
     }
@@ -86,4 +86,4 @@ const StGgLogin = styled.div`
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 `;
-export default withRouter(KakaoSignUp);
+export default KakaoSignUp;

@@ -20,6 +20,7 @@ import StoreDetail from "./components/Store/03StoreDetail";
 
 import History from "./components/UserPage/03History";
 import UserRank from "./components/Pages/Rank/11UserRank";
+import KaKaoSignUp from "./components/Accounts/KaKaoSignUp";
 
 // import ReactDOM from 'react-dom';
 

@@ -79,7 +79,7 @@ class KakaoLogin extends Component<any> {
           pw: _pw
         }
       });
-      console.log(JSON.stringify(res.data, null, 2))
+    //   console.log(JSON.stringify(res.data, null, 2))
       const resData = res.data;
       if (resData.status) {
         sessionStorage.setItem('id', _id);
