@@ -25,6 +25,7 @@
 2. [Git Branch 환경 설정 및 와이어프레임 작업](#Git-Branch-환경-설정-및-와이어프레임-작업)
 3. [서버 배포 및 폴더구조 설계 및 크롤링](#서버-배포-및-폴더구조-설계-및-크롤링)
 4. [프론트 레이아웃 및 DB 모델링](#프론트-레이아웃-및-DB-모델링)
+5. [카카오 로그인](#카카오-로그인)
 
 
 ### `01`
@@ -267,4 +268,8 @@ accounts > models.py 참고
 
 stores > models.py 참고
  현재 store의 하부 내용인 Store_menu, Store_review에 대한 foreignkey 설정이 제대로 구성되지 않아 mysql에 기존의 데이터를 import할 때 오류가 발생하고 있으며 이 부분은 수정되어야 한다.
+
+### `05`
+### 카카오 로그인
+https://blog.naver.com/rkdudwl/221906303255
 
