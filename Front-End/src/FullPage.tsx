@@ -14,6 +14,8 @@ import WishListRank from "./components/Pages/Rank/10WishListRank";
 import SelectStore from "./components/Store/01SelectStore";
 import Recommand from "./components/Store/02Recommand";
 import StoreDetail from "./components/Store/03StoreDetail";
+import KaKaoLogin from "./components/Accounts/KaKaoLogin";
+import KakaoSignUp from "./components/Accounts/KaKaoSignUp";
 
 const Fullpage = () => (
   <ReactFullpage
@@ -27,6 +29,9 @@ const Fullpage = () => (
         <ReactFullpage.Wrapper>
           <div className="section">
             <Greeting />
+          </div>
+          <div className="section">
+            <KakaoSignUp></KakaoSignUp>
           </div>
           <div className="section">
             <Service />
