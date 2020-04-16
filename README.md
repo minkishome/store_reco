@@ -304,3 +304,20 @@ https://blog.naver.com/rkdudwl/221906303255
   - serializers에서 각 model의 serializer를 불러옴
   - rest_fromework.generics를 이용해 CRUD API 함수 생성
 
+
+### `07`
+
+### 협업 필터링 알고리즘
+
+###### 1. item-based CF
+
+- 기존의 DATA를 기반으로 새로운 DATA FRAME을 만든다
+  - 'USER', 'STORE_NAME', 'SCORE', 'CATEGORY_NUM' 으로 분류
+  - category_num 은 임의로 비슷한 문자열을 포함한 음식점 끼리 묶어줌
+- DATAFRAME으로 PIVOT_TABLE을 만들어줌
+- 일단은 index 를 store로 함( 추후, user로 변경예정 )
+- pivot_table의 nan값은 0으로 채워준다.
+  - `final_df = final_df[final_df.category_num != 0]`
+  - 아이템간 유사도는 cosine_similarity를 이용하여 구해줌.
+  - scikit-learn을 이용함
+  - 정리한것을 df로 다시 추출
