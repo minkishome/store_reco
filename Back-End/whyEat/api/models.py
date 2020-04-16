@@ -4,24 +4,11 @@ from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser,
     PermissionsMixin)
 from django.conf import settings
+from rest_framework import serializers
 
-# Create your models here.
 
-# class MyUserManager(BaseUserManager):
-#     def create_user(self, email, nickname, password=None):
-#         if not email:
-#             raise ValueError('Users must have an email address')
- 
-#         user = self.model(
-#             email=MyUserManager.normalize_email(email),
-#             nickname=nickname,
-#         )
- 
-#         user.set_password(password)
-#         user.save(using=self._db)
-#         return user
 class UserManager(BaseUserManager):
-    def create_user(self, email, nickname, password=None):
+    def create_user(self, email, password=None):
         """
         주어진 이메일, 닉네임, 비밀번호 등 개인정보로 User 인스턴스 생성
         """
@@ -30,14 +17,13 @@ class UserManager(BaseUserManager):
 
         user = self.model(
             email=self.normalize_email(email),
-            nickname=nickname,
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, nickname, last_name, first_name, password):
+    def create_superuser(self, email, password):
         """
         주어진 이메일, 닉네임, 비밀번호 등 개인정보로 User 인스턴스 생성
         단, 최상위 사용자이므로 권한을 부여한다. 
@@ -45,12 +31,12 @@ class UserManager(BaseUserManager):
         user = self.create_user(
             email=email,
             password=password,
-            nickname=nickname,
         )
 
         user.is_admin = True
         user.save(using=self._db)
         return user
+        
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True, verbose_name='이메일')
@@ -63,8 +49,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     birth = models.DateTimeField(blank=True, null=True, verbose_name='생일')
 
 
-    is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
+    # is_active = models.BooleanField(default=True)
+    # is_admin = models.BooleanField(default=False)
 
     objects = UserManager()
     USERNAME_FIELD = 'email'
@@ -74,22 +60,22 @@ class User(AbstractBaseUser, PermissionsMixin):
         # The user is identified by their email address
         return self.email
  
-    def get_short_name(self):
-        # The user is identified by their email address
-        return self.email
+    # def get_short_name(self):
+    #     # The user is identified by their email address
+    #     return self.email
  
     def __str__(self):
         return self.email
  
-    def has_perm(self, perm, obj=None):
-        "Does the user have a specific permission?"
-        # Simplest possible answer: Yes, always
-        return True
+    # def has_perm(self, perm, obj=None):
+    #     "Does the user have a specific permission?"
+    #     # Simplest possible answer: Yes, always
+    #     return True
  
-    def has_module_perms(self, app_label):
-        "Does the user have permissions to view the app `app_label`?"
-        # Simplest possible answer: Yes, always
-        return True
+    # def has_module_perms(self, app_label):
+    #     "Does the user have permissions to view the app `app_label`?"
+    #     # Simplest possible answer: Yes, always
+    #     return True
 
 
     

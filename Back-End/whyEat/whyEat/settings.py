@@ -37,11 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts',
-    'stores',
     'rest_framework',
     'rest_framework_swagger',
     'drf_yasg',
+    'api',
     
 ]
 
@@ -88,9 +87,9 @@ WSGI_APPLICATION = 'whyEat.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'example',
+        'NAME': 'mydb',
         'USER': 'root',
-        'PASSWORD': '123123',
+        'PASSWORD': '1234',
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
@@ -101,8 +100,8 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = 'accounts.User'
-
+# AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = 'api.User'
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
