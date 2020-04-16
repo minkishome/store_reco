@@ -26,6 +26,7 @@
 3. [서버 배포 및 폴더구조 설계 및 크롤링](#서버-배포-및-폴더구조-설계-및-크롤링)
 4. [프론트 레이아웃 및 DB 모델링](#프론트-레이아웃-및-DB-모델링)
 5. [카카오 로그인](#카카오-로그인)
+6. [백엔드 API 구성 및 구현](#백엔드-API-구성-및-구현)
 
 
 ### `01`
@@ -272,4 +273,34 @@ stores > models.py 참고
 ### `05`
 ### 카카오 로그인
 https://blog.naver.com/rkdudwl/221906303255
+
+
+### `06`
+### 백엔드 API 구성 및 구현
+
+###### API 정리
+
+- Accounts
+  - 회원가입, 로그인, 로그아웃, 회원정보 입력/수정/ 조회, 히스토리, 랭킹, 다른사람 내역
+
+- Pages
+  - 정보 입력 (한달식비, 오늘식비) 결과 (남은금액, 며칠 남았는지)
+
+- Stores
+  - 카페/음식 카테고리 입력, 결과 이미지/이름, 음식점 상세정보 조회
+
+
+
+###### Back-end flow
+
+- whyEat/urls.py
+  - urlpatterns에서 path를 'api.urls'로 접근
+- api/urls.py
+  - CRUD주소 URL 생성
+  - views.UserView.as_view()와 같이 view 함수로 접근
+- api/serializers.py
+  - models에서 각 model을 불러온 후 통신을 할 수 있게 serializer 생성
+- api/views.py
+  - serializers에서 각 model의 serializer를 불러옴
+  - rest_fromework.generics를 이용해 CRUD API 함수 생성
 
