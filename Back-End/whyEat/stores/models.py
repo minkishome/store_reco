@@ -6,6 +6,7 @@ from django.conf import settings
 import os, csv
 from uuid import uuid4
 from django.utils import timezone
+from django.core.exceptions import ObjectDoesNotExist
 # Create your models here.
 
 # def image_name(instance, filename): #이미지 업로드이름으로 하는것
@@ -20,78 +21,82 @@ from django.utils import timezone
 
 class Store(models.Model):
     objects = models.Manager()
-    store_id = models.IntegerField()
+    store_id = models.IntegerField(primary_key=True)
     store_name = models.CharField(max_length=50)
     store_tel = models.CharField(max_length=20, null=True)
-    store_address = models.CharField(max_length=255)
-    store_latitude = models.DecimalField(max_digits=9, decimal_places=6)
-    store_longitude = models.DecimalField(max_digits=9, decimal_places=6)
+    store_address = models.CharField(max_length=255, null=True)
+    store_latitude = models.DecimalField(max_digits=9, decimal_places=6, null=True)
+    store_longitude = models.DecimalField(max_digits=9, decimal_places=6, null=True)
     store_category = models.CharField(max_length=50,null = True)
     store_image = models.ImageField(null=True)
 
     @classmethod
     def import_store(cls):
-        with open("./stores/fixtures/stores3.csv", newline='') as csvfile:
+        with open("./stores/fixtures/stores122.csv", newline='',encoding='utf-8' ) as csvfile:
             about_stores = csv.reader(csvfile)
-            i = 0
+            next(about_stores)
             for row in about_stores:
-                # print(row)
+                print(row)
                 # print(type(row))
-                Store.objects.create(
-                    store_id = row[1],
-                    store_name = row[2],
-                    store_tel = row[5],
-                    store_address = row[6],
-                    store_latitude = row[7],
-                    store_longitude = row[8],
-                    store_category = row[9]
-                )
-                i += 1
-                if i == 1000:
-                    break
+                
+                try:
+                    Store.objects.create(
+                        store_id = row[1],
+                        store_name = row[2],
+                        store_tel = row[3],
+                        store_address = row[4],
+                        store_latitude = row[5],
+                        store_longitude = row[6],
+                        store_category = row[7]
+                    )
+                except ObjectDoesNotExist:
+                    pass
+
 
 class Store_review(models.Model):
     objects = models.Manager()
-    store_id = models.ForeignKey(Store, on_delete=models.CASCADE)
+    store = models.ForeignKey(Store, on_delete=models.CASCADE)
     user = models.IntegerField(null=False)
     score = models.IntegerField(null=False)
-    content = models.TextField()
+    content = models.TextField(null=True)
 
     @classmethod
     def import_review(cls):
-        with open("./stores/fixtures/reviews3.csv", encoding="utf-8") as csvfile:
+        with open("./stores/fixtures/reviews6.csv",newline='', encoding="utf-8") as csvfile:
             reviews = csv.reader(csvfile)
-            i = 0
+            next(reviews)
             for row in reviews:
-                Store_review.objects.create(
-                    store_id = row[2],
-                    user = row[3],
-                    score = row[4],
-                    content = row[5]
-                )
-                i += 1
-                if i == 11:
-                    break
-
+                print(row)
+                try:
+                    store_id = Store.objects.only('store_id').get(store_id=row[2])
+                    # print(store_id)
+                    Store_review.objects.create(
+                        # store_id = int(row[2]),
+                        store = store_id,
+                        user = row[3],
+                        score = row[4],
+                        content = row[5]
+                    )
+                except ObjectDoesNotExist:
+                    pass
 
 
 class Store_menu(models.Model):
     objects = models.Manager()
-    store_id = models.ForeignKey(Store, on_delete=models.CASCADE)
-    menu_name = models.CharField(max_length=50)
-    menu_price = models.IntegerField(null=True)
+    store = models.ForeignKey(Store, on_delete=models.CASCADE) 
+    menu_name = models.CharField(max_length=50) #max_length를 100으로 변경
+    menu_price = models.DecimalField(max_digits=9, decimal_places=0, null=True)
 
     @classmethod
     def import_menu(cls):
         with open("./stores/fixtures/menus2.csv", encoding="utf-8") as csvfile:
             menus = csv.reader(csvfile)
-            i = 0
             for row in menus:
+                store_id = Store.objects.only('store_id').get(store_id=row[2])
+                print(row)
                 Store_menu.objects.create(
-                    store_id = row[2],
+                    store = store_id,
                     menu_name = row[3],
                     menu_price = row[4]
                 )
-                i += 1
-                if i == 11:
-                    break
+
