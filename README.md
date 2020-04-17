@@ -276,6 +276,28 @@ accounts > models.py 참고
 stores > models.py 참고
  현재 store의 하부 내용인 Store_menu, Store_review에 대한 foreignkey 설정이 제대로 구성되지 않아 mysql에 기존의 데이터를 import할 때 오류가 발생하고 있으며 이 부분은 수정되어야 한다.
 
+###### 03. MYSQL 및 DJANGO 설정
+
+- Django, Mysql 연동
+
+![image-20200417095327705](C:\Users\multicampus\AppData\Roaming\Typora\typora-user-images\image-20200417095327705.png)
+
+다음과 같이 django 의 settings.py의 DATABASES 부분을 mysql과의 연동을 위해 바꿔준다. 이후 migrate를 통해 mysql에 table이 생성된 것을 확인하고 데이터를 넣어준다. 
+
+한글을 import할 경우 encoding 문제로 error가 발생하기에 character-set을 설정해줘야 한다. mysql의 my.ini 파일을 수정하면 기본 설정이 바뀌지만 해당 파일을 수정할 경우 현재 컴퓨터에서 mysql을 정상적으로 실행할 수 없어 mysql 접속 시 계속해서 명령어를 입력함.
+
+```mysql
+set character_set_client = utf8mb4;
+set character_set_results = utf8mb4;
+set character_set_connection = utf8mb4;
+set character_set_database = utf8mb4;
+set character_set_server = utf8mb4;
+alter table tablename default character set utf8;
+```
+
+- DATA import
+  - models.py의 코드와 MySql Workbench라는 프로그램을 활용
+
 ### `05`
 ### 카카오 로그인
 https://blog.naver.com/rkdudwl/221906303255
