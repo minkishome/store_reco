@@ -1,6 +1,7 @@
 # VSCODE / Pycharm
 .vscode/
 .idea/
-
+*/stores/migrations
+__pycache__
 # Virtual ENV
 venv/
