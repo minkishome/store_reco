@@ -7,3 +7,9 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
+
+class HistroySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User_history
+        fields = '__all__'
