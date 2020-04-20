@@ -33,9 +33,13 @@ urlpatterns = [
     url(r'^$', views.UserView.as_view(), name='user'),
     url(r'^user_list/$', views.UserView.as_view(), name='user_list'),
     url(r'^user_create/$', views.UserViewCreate.as_view(), name='user_create'),
-    url(r'^user_list/(?P<no>\d+)/$', views.UserViewDetail.as_view(), name='user_detail'),
-    url(r'^user_list/(?P<no>\d+)/update$', views.UserViewUpdate.as_view(), name='user_update'),
-    url(r'^user_list/(?P<no>\d+)/delete$', views.UserViewDelete.as_view(), name='user_delete'),
+    url(r'^user_list/(?P<id>\d+)/$', views.UserViewDetail.as_view(), name='user_detail'),
+    url(r'^user_list/(?P<id>\d+)/update$', views.UserViewUpdate.as_view(), name='user_update'),
+    url(r'^user_list/(?P<id>\d+)/delete$', views.UserViewDelete.as_view(), name='user_delete'),
+    url(r'^user_history_list/(?P<user_id>\d+)/$', views.HistroyView.as_view(), name='user_history'),
+    url(r'^user_history_create/(?P<user_id>\d+)/$', views.HistroyViewCreate.as_view(), name='user_history_create'),
+    url(r'^user_history_update/(?P<user_id>\d+)/$', views.HistoryViewUpdate.as_view(), name='user_history_update'),
+    url(r'^user_history_delete/(?P<user_id>\d+)/$', views.HistroyViewDelete.as_view(), name='user_history_delete'),
 ]
 
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
