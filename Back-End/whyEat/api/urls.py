@@ -38,8 +38,8 @@ urlpatterns = [
     url(r'^user_list/(?P<id>\d+)/delete$', views.UserViewDelete.as_view(), name='user_delete'),
     url(r'^user_history_list/(?P<user_id>\d+)/$', views.HistroyView.as_view(), name='user_history'),
     url(r'^user_history_create/(?P<user_id>\d+)/$', views.HistroyViewCreate.as_view(), name='user_history_create'),
-    url(r'^user_history_update/(?P<user_id>\d+)/$', views.HistoryViewUpdate.as_view(), name='user_history_update'),
-    url(r'^user_history_delete/(?P<user_id>\d+)/$', views.HistroyViewDelete.as_view(), name='user_history_delete'),
+    url(r'^user_history_list/(?P<user_id>\d+)/(?P<id>\d+)/update$', views.HistoryViewUpdate.as_view(), name='user_history_update'),
+    url(r'^user_history_list/(?P<user_id>\d+)/(?P<id>\d+)/delete$', views.HistroyViewDelete.as_view(), name='user_history_delete'),
 ]
 
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

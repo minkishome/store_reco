@@ -60,20 +60,33 @@ class HistroyViewCreate(CreateAPIView):
     serializer_class = HistroySerializer
 
 
-class HistroyView(RetrieveAPIView):
+class HistroyView(ListAPIView):
     lookup_field = 'user_id'
-    queryset = User_history.objects.filter(user_id=1)
-    print(queryset)
+    queryset = User_history.objects.all()
     serializer_class = HistroySerializer
+    def get_queryset(self):
+        return User_history.objects.filter(user_id=self.kwargs['user_id'])
+
+
+class HistoryViewDetail(RetrieveAPIView):
+    lookup_field = 'id'
+    queryset = User_history.objects.all()
+    serializer_class = HistroySerializer
+    def get_queryset(self):
+        return User_history.objects.filter(id=self.kwargs['id'])
+        
 
 
 class HistoryViewUpdate(UpdateAPIView):
-    lookup_field = 'id'
+    lookup_field = 'user_id'
     queryset = User_history.objects.all()
     serializer_class = HistroySerializer
-
+    def get_queryset(self):
+        return User_history.objects.filter(id=self.kwargs['id'] ,user_id=self.kwargs['user_id'])
 
 class HistroyViewDelete(DestroyAPIView):
-    lookup_field = 'id'
+    lookup_field = 'user_id'
     queryset = User_history.objects.all()
     serializer_class = HistroySerializer
+    def get_queryset(self):
+        return User_history.objects.filter(id=self.kwargs['id'] ,user_id=self.kwargs['user_id'])
