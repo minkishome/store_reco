@@ -36,6 +36,7 @@ urlpatterns = [
     url(r'^user_list/(?P<id>\d+)/$', views.UserViewDetail.as_view(), name='user_detail'),
     url(r'^user_list/(?P<id>\d+)/update$', views.UserViewUpdate.as_view(), name='user_update'),
     url(r'^user_list/(?P<id>\d+)/delete$', views.UserViewDelete.as_view(), name='user_delete'),
+    url(r'^rank_list/$', views.RankView.as_view(), name='rank'),
     url(r'^user_history_list/(?P<user_id>\d+)/$', views.HistroyView.as_view(), name='user_history'),
     url(r'^user_history_create/(?P<user_id>\d+)/$', views.HistroyViewCreate.as_view(), name='user_history_create'),
     url(r'^user_history_list/(?P<user_id>\d+)/(?P<id>\d+)/update$', views.HistoryViewUpdate.as_view(), name='user_history_update'),

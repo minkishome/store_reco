@@ -60,6 +60,12 @@ class HistroyViewCreate(CreateAPIView):
     serializer_class = HistroySerializer
 
 
+class RankView(ListAPIView):
+    lookup_field = 'id'
+    queryset = User_history.objects.all().order_by('total_paid')[:5]
+    serializer_class = HistroySerializer
+    
+
 class HistroyView(ListAPIView):
     lookup_field = 'user_id'
     queryset = User_history.objects.all()
