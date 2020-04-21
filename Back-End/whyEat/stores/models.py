@@ -21,7 +21,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 class Store(models.Model):
     objects = models.Manager()
-    store_id = models.IntegerField(primary_key=True)
+    # store_id = models.IntegerField(primary_key=True)
     store_name = models.CharField(max_length=50)
     store_tel = models.CharField(max_length=20, null=True)
     store_address = models.CharField(max_length=255, null=True)
@@ -51,7 +51,7 @@ class Store(models.Model):
                     )
                 except ObjectDoesNotExist:
                     pass
-
+                    # alter table stores_store convert to character set utf8 collate utf8_unicode_ci;
 
 class Store_review(models.Model):
     objects = models.Manager()
@@ -79,7 +79,7 @@ class Store_review(models.Model):
                     )
                 except ObjectDoesNotExist:
                     pass
-
+            # alter table stores_store_review convert to character set utf8mb4 collate utf8mb4_unicode_ci;
 
 class Store_menu(models.Model):
     objects = models.Manager()
@@ -100,3 +100,4 @@ class Store_menu(models.Model):
                     menu_price = row[4]
                 )
 
+        # alter table stores_store_menu convert to character set utf8mb4 collate utf8mb4_unicode_ci;
