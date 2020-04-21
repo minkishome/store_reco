@@ -5,6 +5,7 @@ from rest_framework.generics import RetrieveAPIView, ListAPIView, UpdateAPIView,
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
+from django.db.models import Sum
 
 # class UserView(viewsets.ModelViewSet):
 #     queryset = User.objects.all()
@@ -70,7 +71,11 @@ class HistroyViewCreate(CreateAPIView):
 
 class RankView(ListAPIView):
     lookup_field = 'id'
-    queryset = User_history.objects.all().order_by('total_paid')[:5]
+    # queryset = User_history.objects.all().order_by('total_paid')[:5]
+    queryset = User_history.objects.extra(
+    select={'fieldsum':'user_lunch + user_dinner + user_breakfast'},
+    order_by=('fieldsum',)
+    )[:5]
     serializer_class = HistroySerializer
     
 
