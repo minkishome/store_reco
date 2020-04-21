@@ -101,7 +101,7 @@ class HistoryViewUpdate(UpdateAPIView):
     queryset = User_history.objects.all()
     serializer_class = HistroySerializer
     def get_queryset(self):
-        return User_history.objects.filter(id=self.kwargs['id'] ,user_id=self.kwargs['user_id'])
+        return User_history.objects.filter(id=self.kwargs['id'], user_id=self.kwargs['user_id'])
 
 class HistroyViewDelete(DestroyAPIView):
     lookup_field = 'user_id'
