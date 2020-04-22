@@ -112,9 +112,14 @@ def sort_stores_by_score(dataframes, n=20, min_reviews=1):
         else:
             n += 1
 
+
     # print(temp_num)
     stores_reviews['category_num'] = temp_num
-    final_df = stores_reviews[['user', 'store_name', 'score', 'category_num']]
+    tmp1 = pd.read_csv('./name_img_price.csv')  
+    nip = pd.DataFrame(tmp1, columns=tmp1.keys())
+    stores_reviews = pd.merge(stores_reviews,nip,on='store_name')
+    print(stores_reviews)
+    final_df = stores_reviews[['user', 'store_name', 'score','store_image','price']]
     final_df = final_df[final_df.category_num != 0]
     user_store_rating = final_df.pivot_table('score',index = 'user', columns='store_name').fillna(0)
     # print(user_store_rating.head())

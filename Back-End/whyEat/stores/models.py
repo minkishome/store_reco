@@ -29,7 +29,7 @@ class Store(models.Model):
     store_longitude = models.DecimalField(max_digits=9, decimal_places=6, null=True)
     store_category = models.CharField(max_length=50,null = True)
     store_image = models.ImageField(null=True)
-
+    
     @classmethod
     def import_store(cls):
         with open("./stores/fixtures/stores122.csv", newline='',encoding='utf-8' ) as csvfile:
