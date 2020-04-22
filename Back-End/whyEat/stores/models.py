@@ -21,24 +21,24 @@ from django.core.exceptions import ObjectDoesNotExist
 
 class Store(models.Model):
     objects = models.Manager()
-    # store_id = models.IntegerField(primary_key=True)
+    store_id = models.IntegerField()
     store_name = models.CharField(max_length=50)
     store_tel = models.CharField(max_length=20, null=True)
     store_address = models.CharField(max_length=255, null=True)
     store_latitude = models.DecimalField(max_digits=9, decimal_places=6, null=True)
     store_longitude = models.DecimalField(max_digits=9, decimal_places=6, null=True)
     store_category = models.CharField(max_length=50,null = True)
-    store_image = models.ImageField(null=True)
+    store_image = models.TextField(null=True, max_length=500)
+    store_price = models.DecimalField(max_digits=9, decimal_places=0, null=True, blank=True)
 
     @classmethod
     def import_store(cls):
-        with open("./stores/fixtures/stores122.csv", newline='',encoding='utf-8' ) as csvfile:
+        with open("./stores/fixtures/store_data.csv", newline='',encoding='utf-8' ) as csvfile:
             about_stores = csv.reader(csvfile)
             next(about_stores)
             for row in about_stores:
                 print(row)
                 # print(type(row))
-                
                 try:
                     Store.objects.create(
                         store_id = row[1],
@@ -47,7 +47,9 @@ class Store(models.Model):
                         store_address = row[4],
                         store_latitude = row[5],
                         store_longitude = row[6],
-                        store_category = row[7]
+                        store_category = row[7],
+                        store_image = row[8],
+
                     )
                 except ObjectDoesNotExist:
                     pass
@@ -84,20 +86,26 @@ class Store_review(models.Model):
 class Store_menu(models.Model):
     objects = models.Manager()
     store = models.ForeignKey(Store, on_delete=models.CASCADE) 
-    menu_name = models.CharField(max_length=50) #max_length를 100으로 변경
+    menu_name = models.CharField(max_length=200, null=True) #max_length를 100으로 변경
     menu_price = models.DecimalField(max_digits=9, decimal_places=0, null=True)
 
     @classmethod
     def import_menu(cls):
-        with open("./stores/fixtures/menus2.csv", encoding="utf-8") as csvfile:
+        with open("./stores/fixtures/seoul_menu_data.csv", encoding="utf-8") as csvfile:
             menus = csv.reader(csvfile)
+            next(menus)
             for row in menus:
-                store_id = Store.objects.only('store_id').get(store_id=row[2])
-                print(row)
-                Store_menu.objects.create(
-                    store = store_id,
-                    menu_name = row[3],
-                    menu_price = row[4]
-                )
-
+                try:
+                    store_id = Store.objects.only('store_id').get(store_id=row[1])
+                    print(store_id)
+                    # print(row)
+                    if row[3] == '':
+                        row[3] = 0.0
+                    Store_menu.objects.create(
+                        store = store_id,
+                        menu_name = row[2],
+                        menu_price = row[3]
+                    )
+                except ObjectDoesNotExist:
+                    pass
         # alter table stores_store_menu convert to character set utf8mb4 collate utf8mb4_unicode_ci;
