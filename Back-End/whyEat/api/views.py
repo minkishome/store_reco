@@ -33,25 +33,32 @@ class MultipleFieldLookupMixin(object):
         return get_object_or_404(queryset, **filter) 
 
 class UserView(ListAPIView):
+    print(User.objects.all())
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
 class UserExistsView(APIView):
-
+    # print('hit')
+    print(1, User.objects.all())
     def get(self, request, *args, **kwargs):
+        pass
+        
+        # print('hit')
+        # print('req', request.json())
         # use this if username is in url kwargs
-        email = self.kwargs.get('email') 
+        # email = self.kwargs.get('email') 
 
-        # use this if username is being sent as a query parameter
-        email = self.request.query_params.get('email')  
+        # # use this if username is being sent as a query parameter
+        # email = self.request.query_params.get('email')
+        
 
-        try:
-            user = User.objects.get(email=email) # retrieve the user using username
-        except User.DoesNotExist:
-            return Response(data={'message':False}) # return false as user does not exist
-        else:
-            return Response(data={'message':True}) # Otherwise, return True
+        # try:
+        #     user = User.objects.get(email=email) # retrieve the user using username
+        # except User.DoesNotExist:
+        #     return Response(data={'message':False}) # return false as user does not exist
+        # else:
+        #     return Response(data={'message':True}) # Otherwise, return True
 
     
 class UserViewCreate(CreateAPIView):
