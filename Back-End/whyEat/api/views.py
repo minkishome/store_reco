@@ -1,6 +1,8 @@
 from rest_framework import viewsets
 from .serializers import UserSerializer, HistroySerializer
 from .models import User, User_history
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from rest_framework.generics import RetrieveAPIView, ListAPIView, UpdateAPIView, DestroyAPIView, CreateAPIView
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -34,10 +36,31 @@ class UserView(ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+
+class UserExistsView(APIView):
+
+    def get(self, request, *args, **kwargs):
+        # use this if username is in url kwargs
+        email = self.kwargs.get('email') 
+
+        # use this if username is being sent as a query parameter
+        email = self.request.query_params.get('email')  
+
+        try:
+            user = User.objects.get(email=email) # retrieve the user using username
+        except User.DoesNotExist:
+            return Response(data={'message':False}) # return false as user does not exist
+        else:
+            return Response(data={'message':True}) # Otherwise, return True
+
     
 class UserViewCreate(CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    # def username_present(self):
+    #     if User.objects.filter(user_email=self.kwargs['user_email']).exists():
+    #         return True
+    #     return False
 
 
 class UserViewDetail(RetrieveAPIView):
