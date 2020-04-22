@@ -38,7 +38,7 @@ class UserManager(BaseUserManager):
         return user
         
 
-class User(AbstractBaseUser, PermissionsMixin):
+class User(AbstractBaseUser):
     email = models.EmailField(unique=True, verbose_name='이메일')
     name = models.CharField(max_length=20, verbose_name='이름')
     nickname = models.CharField(unique=True, max_length=20, verbose_name='닉네임',null=False, blank=False)

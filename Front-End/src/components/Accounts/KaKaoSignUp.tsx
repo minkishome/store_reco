@@ -19,26 +19,92 @@ class KakaoSignUp extends Component<any, State> {
     }
   }
 
+  // responseKaKao = async (res: any) => {
+  //   this.setState({
+  //     data: res
+  //   })
+  //   try {
+  //     const response = await axios({
+  //       method: "post",
+  //       url: `${_url}/user_create`,
+  //       data: {
+  //         id: JSON.stringify(this.state.data.profile.id),
+  //         nickname: JSON.stringify(this.state.data.profile.properties.nickname),
+  //         profile_image: JSON.stringify(this.state.data.profile.properties.profile_image),
+  //         email: JSON.stringify(this.state.data.profile.kakao_account.email),
+  //         age: JSON.stringify(this.state.data.profile.kakao_account.age_range[0])
+  //       },
+  //       // responseType: "json"
+  //     });
+  //     // alert(JSON.stringify(this.state.data))
+  //   }
+  //   catch (err) {
+  //     sessionStorage.clear()
+  //     alert(err);
+  // }
+  // }
+
   responseKaKao = async (res: any) => {
     this.setState({
       data: res
     })
+    const semi_email = JSON.stringify(this.state.data.profile.kakao_account.email)
+    const _email = semi_email.replace(/^"+|"+$/g, '')
+
+    // alert(email)
     try {
       const response = await axios({
-        method: "post",
-        url: `${_url}/user_create`,
-        data: {
-          id: res.kakao_account.email
-        },
+        method: "get",
+        // url: `${_url}/api/user_exist/`,
+        url: `${_url}/api/user_exist/${_email}/`,
         responseType: "json"
       });
-      alert(JSON.stringify(this.state.data))
+      const msg: string = JSON.stringify(response.data.message)
+      if (!msg) {
+        alert('로그인되었습니다')
+      } else {
+        try {
+          const signup_response = await axios({
+            method: "post",
+            url: `${_url}/api/user_create/`,
+            // url: `${_url}/api/user_exist/${email}/`,
+            data: {
+              // password: '1234',
+              // name: 'JSON.stringify(this.state.data.profile.id)',
+              // id: 100,
+              email: _email,
+              name: '노영지',
+              // nickname: JSON.stringify(this.state.data.profile.properties.nickname),
+              nickname: '영수달지',
+              // image: JSON.stringify(this.state.data.profile.properties.profile_image),
+              // age: JSON.stringify(this.state.data.profile.kakao_account.age_range[0])
+            },
+            responseType: "json"
+          });
+          alert(signup_response)
+        }
+        catch (err) {
+          sessionStorage.clear()
+          alert(err);
+        }
+      }
     }
     catch (err) {
       sessionStorage.clear()
       alert(err);
+    }
   }
-  }
+
+  // responseKaKao = (res: any) => {
+  //   this.setState({
+  //     data: res
+  //   })
+  //   // alert(JSON.stringify(this.state.data.profile.id))  // 카카오 고유 id
+  //   // alert(JSON.stringify(this.state.data.profile.properties.nickname))  // 닉네임
+  //   // alert(JSON.stringify(this.state.data.profile.properties.profile_image))  // 프로필 이미지 링크
+  //   // alert(JSON.stringify(this.state.data.profile.kakao_account.email))  // 이메일
+  //   // alert(JSON.stringify(this.state.data.profile.kakao_account.age_range[0]))  // 연령대 (2)
+  // }
 
   responseFail = (err) => {
     alert(err);
@@ -103,22 +169,22 @@ class KakaoSignUp extends Component<any, State> {
   render() {
     return (
       <>
-          <StyledText>
-            <h1>카카오톡 간편 로그인</h1>
-            <h4>로그인 후 더 많은 혜택을 누리세요!</h4>
-            {/* <StKaKaoLogin>
+        <StyledText>
+          <h1>카카오톡 간편 로그인</h1>
+          <h4>로그인 후 더 많은 혜택을 누리세요!</h4>
+          {/* <StKaKaoLogin>
                         <img src={img} alt="a" onClick={this.loginWithKakao} />
                     </StKaKaoLogin> */}
-            <br></br>
-            <KaKaoBtn
-              jsKey={'2b67838751764359be17923f29aa820e'}
-              buttonText="KaKao"
-              onSuccess={this.responseKaKao}
-              onFailure={this.responseFail}
-              getProfile={true}
-            />
+          <br></br>
+          <KaKaoBtn
+            jsKey={'2b67838751764359be17923f29aa820e'}
+            buttonText="KaKao"
+            onSuccess={this.responseKaKao}
+            onFailure={this.responseFail}
+            getProfile={true}
+          />
 
-          </StyledText>
+        </StyledText>
       </>
     );
   }

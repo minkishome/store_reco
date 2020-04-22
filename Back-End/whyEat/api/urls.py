@@ -19,6 +19,7 @@
 # ])
 
 from django.conf.urls import url, include
+from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -32,9 +33,10 @@ urlpatterns = [
     # url(r'^', include(router.urls)),
     # url(r'^$', views.UserView.as_view(), name='user'),
     url(r'^user_list/$', views.UserView.as_view(), name='user_list'),
-    # url(r'^user_exist/(?P<email>\d+)/$', views.UserExistsView.as_view(), name='user_exist'),
-    url(r'^user_exist/$', views.UserExistsView.as_view(), name='user_exist'),
-    url(r'^user_create/$', views.UserViewCreate.as_view(), name='user_create'),
+    # url(r'^user_exist/$', views.UserExistsView.as_view(), name='user_exist'),
+    url(r'^user_exist/(?P<email>[\w.@+-]+)/$', views.UserExistsView.as_view(), name='user_exist'),
+    # url(r'^user_create/$', views.UserViewCreate.as_view(), name='user_create'),
+    path('user_create/', views.signup),
     url(r'^user_list/(?P<id>\d+)/$', views.UserViewDetail.as_view(), name='user_detail'),
     url(r'^user_list/(?P<id>\d+)/update$', views.UserViewUpdate.as_view(), name='user_update'),
     url(r'^user_list/(?P<id>\d+)/delete$', views.UserViewDelete.as_view(), name='user_delete'),
