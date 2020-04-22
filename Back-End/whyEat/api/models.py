@@ -86,6 +86,7 @@ class User_history(models.Model):
     user_breakfast = models.IntegerField(blank=True, null = True)
     user_lunch = models.IntegerField(blank=True, null = True)
     user_dinner = models.IntegerField(blank=True, null = True)
-    total_paid = models.IntegerField(blank=True, null = True)
+    total_paid = models.IntegerField(blank=True, null = True) 
 
+    
     objects = models.Manager
