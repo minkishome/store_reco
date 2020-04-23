@@ -54,13 +54,21 @@ class Store(models.Model):
                 except ObjectDoesNotExist:
                     pass
                     # alter table stores_store convert to character set utf8 collate utf8_unicode_ci;
+# 유저 / 스토어네임 / 스토어이미지/  평점 /  가격 / 스토어아이디 (추가)
+
+# 스토어 아이디  / 위도/경도/ 주소/ 전화번호 / 이미지 /카테고리 
+
+# 스토어아이디 / 메뉴 / 가격 
 
 class Store_review(models.Model):
     objects = models.Manager()
-    store = models.ForeignKey(Store, on_delete=models.CASCADE)
-    user = models.IntegerField(null=False)
+    store_id = models.ForeignKey(Store, on_delete=models.CASCADE,related_name='store_id')
+    store_name = models.CharField(null=True, max_length=50)
+    user_id = models.IntegerField(null=False)
     score = models.IntegerField(null=False)
-    content = models.TextField(null=True)
+    score_mean = models.IntegerField(null=False)
+    rep_price = models.IntegerField(null= True, verbose_name='대표 메뉴 가격')
+    store_image = models.TextField(null=True, max_length=500)
 
     @classmethod
     def import_review(cls):
@@ -74,10 +82,10 @@ class Store_review(models.Model):
                     # print(store_id)
                     Store_review.objects.create(
                         # store_id = int(row[2]),
-                        store = store_id,
+                        store_id = store_id,
                         user = row[3],
                         score = row[4],
-                        content = row[5]
+
                     )
                 except ObjectDoesNotExist:
                     pass
@@ -85,7 +93,7 @@ class Store_review(models.Model):
 
 class Store_menu(models.Model):
     objects = models.Manager()
-    store = models.ForeignKey(Store, on_delete=models.CASCADE) 
+    store = models.ForeignKey(Store, on_delete=models.CASCADE,related_name='menu') 
     menu_name = models.CharField(max_length=200, null=True) #max_length를 100으로 변경
     menu_price = models.DecimalField(max_digits=9, decimal_places=0, null=True)
 

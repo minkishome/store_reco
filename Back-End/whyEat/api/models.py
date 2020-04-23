@@ -48,11 +48,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     kakao_id = models.CharField(unique=True, max_length=30 , verbose_name='UserID')
     email = models.EmailField(unique=True, verbose_name='이메일', null=True)
     nickname = models.CharField(unique=True, max_length=20, verbose_name='닉네임',null=False, blank=False)
-    item = models.CharField(blank=True, null=True, max_length=50, verbose_name='유저 물건')
-    price = models.IntegerField(blank=True, null=True, verbose_name='물건가격')
-    monthly_cost = models.IntegerField(blank=True, null=True, verbose_name='한달 식비')
-    image = models.CharField(blank=True, null=True, max_length=255 , verbose_name='프로필사진')
-    ages = models.IntegerField(blank = True, null = True, verbose_name="나이")
+    item = models.CharField(null=True, max_length=50, verbose_name='유저 물건')
+    price = models.IntegerField(null=True, verbose_name='물건가격')
+    monthly_cost = models.IntegerField(null=True, verbose_name='한달 식비')
+    image = models.CharField(null=True, max_length=255 , verbose_name='프로필사진')
+    ages = models.IntegerField(null = True, verbose_name="나이")
 
 
     # is_active = models.BooleanField(default=True)
@@ -88,10 +88,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class User_history(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='history')
-    payment_date = models.DateTimeField(auto_now_add=True)
-    user_breakfast = models.IntegerField(blank=True, null = True)
-    user_lunch = models.IntegerField(blank=True, null = True)
-    user_dinner = models.IntegerField(blank=True, null = True)
+    payment_date = models.DateTimeField(auto_now_add=True, null=True)
+    user_breakfast = models.IntegerField(blank=True, null = True, default=0)
+    user_lunch = models.IntegerField(blank=True, null = True, default=0)
+    user_dinner = models.IntegerField(blank=True, null = True, default=0)
     total_paid = models.IntegerField(blank=True, null = True)   # 누적 지불금액
     today_saving = models.IntegerField(blank=True, null = True) # 얼마나 아꼈는지를 알려주는 컬럼
     
