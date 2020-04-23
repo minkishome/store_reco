@@ -31,10 +31,7 @@ const Fullpage = () => (
             <Greeting />
           </div>
           <div className="section">
-            <KakaoSignUp></KakaoSignUp>
-          </div>
-          <div className="section">
-            <Service />
+          <Service />
           </div>
           <div className="section">
             <MonthlyInput />
