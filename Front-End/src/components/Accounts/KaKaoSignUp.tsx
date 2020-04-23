@@ -56,7 +56,8 @@ class KakaoSignUp extends Component<any, State> {
       const response = await axios({
         method: "get",
         // url: `${_url}/api/user_exist/`,
-        url: `${_url}/api/user_exist/${_email}/`,
+        // url: `${_url}/api/user_exist/${_email}/`,
+        url: `${_url}/api/user_exist/rlarlarla1@gmail.com/`,
         responseType: "json"
       });
       const msg: string = JSON.stringify(response.data.message)
@@ -66,16 +67,17 @@ class KakaoSignUp extends Component<any, State> {
         try {
           const signup_response = await axios({
             method: "post",
-            url: `${_url}/api/user_create/`,
+            url: `${_url}/api/user_list/`,
             // url: `${_url}/api/user_exist/${email}/`,
             data: {
-              // password: '1234',
+              password: '1234',
               // name: 'JSON.stringify(this.state.data.profile.id)',
               // id: 100,
-              email: _email,
-              name: '노영지',
+              // email: _email,
+              email: 'rlarlarla1@gmail.com',
+              name: '김은수1',
               // nickname: JSON.stringify(this.state.data.profile.properties.nickname),
-              nickname: '영수달지',
+              nickname: '은수달지1',
               // image: JSON.stringify(this.state.data.profile.properties.profile_image),
               // age: JSON.stringify(this.state.data.profile.kakao_account.age_range[0])
             },
