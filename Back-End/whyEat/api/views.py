@@ -109,3 +109,4 @@ class HistroyViewDelete(DestroyAPIView):
     serializer_class = HistroySerializer
     def get_queryset(self):
         return User_history.objects.filter(id=self.kwargs['id'] ,user_id=self.kwargs['user_id'])
+        
