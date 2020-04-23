@@ -33,7 +33,7 @@ urlpatterns = [
     path('user_list/', views.user_list),
     path('user_detail/<int:pk>/', views.user_detail),
     path('history_list/', views.history_list),
-    path('history_detail/<int:pk>/', views.history_detail),
+    path('history_detail/<int:pk>/<int:history_pk>/', views.history_detail),
     # url(r'^', include(router.urls)),
     # url(r'^$', views.UserView.as_view(), name='user'),
     # url(r'^user_list/$', views.UserView.as_view(), name='user_list'),

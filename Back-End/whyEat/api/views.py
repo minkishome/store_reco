@@ -7,6 +7,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
 
+
 # class UserView(viewsets.ModelViewSet):
 #     queryset = User.objects.all()
 #     serializer_class = UserSerializer
@@ -109,21 +110,33 @@ def history_list(request):
 
 
 @api_view(['GET','PUT','DELETE'])
-def history_detail(request, pk):
+def history_detail(request, pk, history_pk):
+    # history = User_history.objects.select_related('user').filter(user=pk)
     user = get_object_or_404(User, pk=pk)
-    print(user)
+    history = User_history.objects.get(pk=history_pk)
     if request.method == 'GET':
-        serializer = HistorySerializer(user)
-        print(serializer.data)
-        return Response(serializer.data)
+        serializer = UserSerializer(user)
+        return Response(serializer.data['history'])
+    # user = get_object_or_404(User, pk=pk)
+    # if request.method == 'GET':
+    #     serializer = UserSerializer(user)
+    #     return Response(serializer.data['history'])
+
+    # user = get_object_or_404(User, pk=pk)
+    # if request.method == 'GET':
+    #     serializer = UserSerializer(user)
+    #     return Response(serializer.data['history'])
+    
     # elif request.method == 'PUT':
-    #     serializer = UserSerializer(user, data=request.data)
+    #     history = User_history.objects.get(pk=history_pk)
+    #     serializer = HistorySerializer(history, data=request.data)
     #     if serializer.is_valid():
     #         serializer.save()
     #         return Response(serializer.data)
     #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     # else:
-    #     user.delete()
+    #     history = get_object_or_404(User_history, pk=history_pk)
+    #     history.delete()
     #     return Response(status=status.HTTP_204_NO_CONTENT)
 
 # class HistroyViewCreate(CreateAPIView):
