@@ -4,12 +4,17 @@ import React, {
   useEffect,
   Component,
 } from "react";
-import { StyledText } from '../style';
+import { StyledText, StyledBtn } from '../style';
 
 const History: FunctionComponent<any> = ({}) => {
   return (
     <>
     <StyledText>
+
+
+
+
+      
       <h1>MY HISTORY</h1>
       <div>
         <h2>날짜</h2>
@@ -34,6 +39,8 @@ const History: FunctionComponent<any> = ({}) => {
 
       <h2>10 %</h2>
       <hr />
+
+      <StyledBtn>돌아가기</StyledBtn>
       </StyledText>
     </>
   );

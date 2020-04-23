@@ -17,6 +17,9 @@ import StoreDetail from "./components/Store/03StoreDetail";
 import KaKaoLogin from "./components/Accounts/KaKaoLogin";
 import KakaoSignUp from "./components/Accounts/KaKaoSignUp";
 
+import Survey from "./components/Accounts/Survey";
+import Success from "./components/UserPage/04Success";
+
 const Fullpage = () => (
   <ReactFullpage
     //fullpage options
@@ -30,8 +33,12 @@ const Fullpage = () => (
           <div className="section">
             <Greeting />
           </div>
+
           <div className="section">
-          <Service />
+            <Service />
+          </div>
+          <div className="section">
+            <Survey />
           </div>
           <div className="section">
             <MonthlyInput />
