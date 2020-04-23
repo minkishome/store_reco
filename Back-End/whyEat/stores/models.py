@@ -83,7 +83,7 @@ class Store_review(models.Model):
 
 class Store_menu(models.Model):
     objects = models.Manager()
-    store = models.ForeignKey(Store, on_delete=models.CASCADE) 
+    store = models.ForeignKey(Store, on_delete=models.CASCADE,related_name='menu') 
     menu_name = models.CharField(max_length=50) #max_length를 100으로 변경
     menu_price = models.DecimalField(max_digits=9, decimal_places=0, null=True)
 

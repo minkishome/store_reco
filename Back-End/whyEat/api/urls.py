@@ -21,9 +21,6 @@
 from django.conf.urls import url, include
 from django.urls import path
 from . import views
-from django.conf import settings
-from django.conf.urls.static import static
-from rest_framework.urlpatterns import format_suffix_patterns
 # from rest_framework import routers
 
 # router = routers.DefaultRouter()
@@ -51,5 +48,4 @@ urlpatterns = [
     # url(r'^user_history_list/(?P<user_id>\d+)/(?P<id>\d+)/delete$', views.HistroyViewDelete.as_view(), name='user_history_delete'),
 ]
 
-urlpatterns = format_suffix_patterns(urlpatterns)
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
