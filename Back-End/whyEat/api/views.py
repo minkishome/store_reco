@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from .serializers import UserSerializer, HistorySerializer
 from .models import User, User_history
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
@@ -7,6 +8,25 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
 
+=======
+from rest_framework import viewsets
+from .serializers import UserSerializer, HistroySerializer, UserCreationSerializer
+from .models import User, User_history
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.generics import RetrieveAPIView, ListAPIView, UpdateAPIView, DestroyAPIView, CreateAPIView
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
+from django.shortcuts import get_object_or_404
+from django.db.models import Sum
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
+
+from django.conf import settings
+from django.contrib.auth import login, logout
+from rest_framework import views, generics, response, permissions, authentication
+from .serializers import UserSerializer
+>>>>>>> ace7afa67e125cbcf281697ddaaf0c174066cddc
 
 # class UserView(viewsets.ModelViewSet):
 #     queryset = User.objects.all()
@@ -22,14 +42,16 @@ class MultipleFieldLookupMixin(object):
     Apply this mixin to any view or viewset to get multiple field filtering
     based on a `lookup_fields` attribute, instead of the default single field filtering.
     """
+
     def get_object(self):
         queryset = self.get_queryset()             # Get the base queryset
         queryset = self.filter_queryset(queryset)  # Apply any filter backends
         filter = {}
         for field in self.lookup_fields:
-            if self.kwargs[field]: # Ignore empty fields.
+            if self.kwargs[field]:  # Ignore empty fields.
                 filter[field] = self.kwargs[field]
-        return get_object_or_404(queryset, **filter) 
+        return get_object_or_404(queryset, **filter)
+
 
 # class UserView(ListAPIView):
 #     queryset = User.objects.all()

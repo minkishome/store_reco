@@ -48,7 +48,7 @@ const ProfileMenu: FunctionComponent<any> = ({}) => {
     setState({ ...state, [anchor]: open });
   };
 
-  const list = (anchor: Anchor) => (
+  const list1 = (anchor: Anchor) => (
     <div
       className={clsx(classes.list, {})}
       role="presentation"
@@ -58,6 +58,20 @@ const ProfileMenu: FunctionComponent<any> = ({}) => {
       <List>
         <ListItem button>회원정보</ListItem>
         <ListItem button>히스토리</ListItem>
+      </List>
+    </div>
+  );
+
+  const list2 = (anchor: Anchor) => (
+    <div
+      className={clsx(classes.list, {})}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <List>
+        <ListItem button>회원가입</ListItem>
+        <ListItem button>로그인</ListItem>
       </List>
     </div>
   );
@@ -75,7 +89,10 @@ const ProfileMenu: FunctionComponent<any> = ({}) => {
               open={state[anchor]}
               onClose={toggleDrawer(anchor, false)}
             >
-              {list(anchor)}
+              {window.sessionStorage.getItem('id') 
+                ? list1(anchor)
+                : list2(anchor)
+              }
             </Drawer>
             {/* </Box> */}
           </React.Fragment>
