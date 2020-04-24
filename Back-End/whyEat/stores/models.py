@@ -21,7 +21,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 class Store(models.Model):
     objects = models.Manager()
-    store_id = models.IntegerField()
+    store_id = models.IntegerField(unique=True)
     store_name = models.CharField(max_length=50)
     store_tel = models.CharField(max_length=20, null=True)
     store_address = models.CharField(max_length=255, null=True)
@@ -60,7 +60,7 @@ class Store(models.Model):
 
 # 스토어아이디 / 메뉴 / 가격 
 
-class Store_review(models.Model):
+class Store_score(models.Model): # Score
     objects = models.Manager()
     store_id = models.ForeignKey(Store, on_delete=models.CASCADE,related_name='review')
     store_name = models.CharField(null=True, max_length=50)
@@ -71,7 +71,7 @@ class Store_review(models.Model):
     store_image = models.TextField(null=True, max_length=500)
 
     @classmethod
-    def import_review(cls):
+    def import_score(cls):
         with open("./stores/fixtures/reviews6.csv",newline='', encoding="utf-8") as csvfile:
             reviews = csv.reader(csvfile)
             next(reviews)
