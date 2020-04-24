@@ -56,13 +56,14 @@ def user_list(request):
 
 
 @api_view(['GET','PUT','DELETE'])
-def user_detail(request, pk):
-    user = get_object_or_404(User, pk=pk)
+def user_detail(request, kakao_id):
+    user = get_object_or_404(User, kakao_id=kakao_id)
     if request.method == 'GET':
         serializer = UserSerializer(user)
         return Response(serializer.data)
     elif request.method == 'PUT':
         serializer = UserSerializer(user, data=request.data)
+        print(request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
