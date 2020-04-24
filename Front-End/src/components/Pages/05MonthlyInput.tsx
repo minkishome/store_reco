@@ -31,25 +31,34 @@ const MonthlyInput = ({}) => {
       [id]: value,
     });
   }
+  const _id = window.sessionStorage.getItem('id')
+  const _nickname = window.sessionStorage.getItem('nickname')
+  const _password = window.sessionStorage.getItem('password')
   console.log(window.sessionStorage.getItem('id'))
-  // console.log(window.sessionStorage.getItem('id'))
   const onSubmit = async () => {
     try {
       // console.log(data)
       // 보내는 Data 를 펼쳤을때 이런 것들이 있다고 정의
-
-      const reqData: ReqData = {
-        ...data,
-        id: window.sessionStorage.getItem('id'),
-        // contents: text.replace(/(\n|\r\n)/g, '<br>')
-      }
       // Validation error cut
       // if (!reqData.title || !reqData.startAt || !reqData.endAt) {
       //   alert("wft");
       //   return;
       // }
 
-      const res = await axios.post(`${_url}/api/history_list`, reqData);
+      const res = await axios({
+        method: "put",
+        url: `${_url}/api/user_detail/${_id}/`,
+        data: {
+          password: _password,
+          kakao_id: _id,
+          nickname: _nickname,
+          monthly_cost: data[''],
+        },
+        // data: {
+        //   user: _id,
+        // },
+        responseType: "json"
+      });
 
       // if (![200, 201, 301].includes(res.status)) {
       //   alert('wtf server');
