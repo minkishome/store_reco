@@ -28,16 +28,16 @@ class MultipleFieldLookupMixin(object):
 
 class UserExistsView(APIView):
   def get(self, request, *args, **kwargs):
-    exist_query = self.kwargs.get('email')
+    exist_query = self.kwargs.get('kakao_id')
     try:
-      User.objects.get(email=exist_query)
+        User.objects.get(kakao_id=exist_query)
     except User.DoesNotExist:
-      print('False')
-      # return false as user does not exist
-      return Response(data={'message': False})
+        print('False')
+        # return false as user does not exist
+        return Response(data={'message': False})
     else:
-      print('True')
-      return Response(data={'message': True})  # Otherwise, return True
+        print('True')
+        return Response(data={'message': True})  # Otherwise, return True
 
 
 
