@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from .serializers import StoreSerializer, StoreReviewSerializer, StoreMenuSerializer
-from .models import Store, Store_review, Store_menu
+from .models import Store, Store_score, Store_menu
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated

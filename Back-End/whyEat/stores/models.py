@@ -62,9 +62,9 @@ class Store(models.Model):
 
 class Store_score(models.Model): # Score
     objects = models.Manager()
-    store_id = models.ForeignKey(Store, on_delete=models.CASCADE,related_name='review')
+    store_id = models.ForeignKey(Store, on_delete=models.CASCADE,related_name='score')
     store_name = models.CharField(null=True, max_length=50)
-    user_id = models.CharField(max_length='50', null=False)
+    user_id = models.CharField(max_length=50, null=False)
     score = models.IntegerField(null=False)
     rep_price = models.IntegerField(null= True, verbose_name='대표 메뉴 가격')
     store_image = models.TextField(null=True, max_length=500)
@@ -79,7 +79,7 @@ class Store_score(models.Model): # Score
                 try:
                     store_id = Store.objects.only('store_id').get(store_id=row[2])
                     # print(store_id)
-                    Store_review.objects.create(
+                    Store_score.objects.create(
                         # store_id = int(row[2]),
                         store_id = store_id,
                         user = row[3],

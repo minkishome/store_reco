@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from .models import Store, Store_review, Store_menu
+from .models import Store, Store_score, Store_menu
 # from django.contrib.auth.models import User
 
 class StoreReviewSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Store_review
+        model = Store_score
         fields = '__all__'
 
 
