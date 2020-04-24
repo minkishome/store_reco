@@ -1,9 +1,9 @@
 from django.conf.urls import url
+from django.urls import path
 from . import views
 
 urlpatterns = [
-    url(r'^store_list/$', views.StoreView.as_view(), name='store_list'),
-    url(r'^store_list/(?P<id>\d+)/$', views.StoreViewDetail.as_view(), name='store_detail'),
-    url(r'^store_list/(?P<store_id>\d+)/menu$', views.StoreMenuView.as_view(), name='store_menu'),
-    url(r'^store_list/(?P<store_id>\d+)/review$', views.StoreReviewView.as_view(), name='store_review'),
+    path('store_list/', views.store_list),
+    path('store_detail/<int:store_pk>/', views.store_detail),
+    path('score_list/', views.score_list),
 ]
