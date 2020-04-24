@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import Store, Store_score, Store_menu
 # from django.contrib.auth.models import User
 
-class StoreReviewSerializer(serializers.ModelSerializer):
+class StoreScoreSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Store_score
