@@ -62,7 +62,7 @@ class Store(models.Model):
 
 class Store_review(models.Model):
     objects = models.Manager()
-    store_id = models.ForeignKey(Store, on_delete=models.CASCADE,related_name='store_id')
+    store_id = models.ForeignKey(Store, on_delete=models.CASCADE,related_name='review')
     store_name = models.CharField(null=True, max_length=50)
     user_id = models.IntegerField(null=False)
     score = models.IntegerField(null=False)
@@ -93,7 +93,7 @@ class Store_review(models.Model):
 
 class Store_menu(models.Model):
     objects = models.Manager()
-    store = models.ForeignKey(Store, on_delete=models.CASCADE,related_name='menu') 
+    store_id = models.ForeignKey(Store, on_delete=models.CASCADE,related_name='menu') 
     menu_name = models.CharField(max_length=200, null=True) #max_length를 100으로 변경
     menu_price = models.DecimalField(max_digits=9, decimal_places=0, null=True)
 
