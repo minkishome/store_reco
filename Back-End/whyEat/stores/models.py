@@ -30,16 +30,22 @@ class Store(models.Model):
     store_category = models.CharField(max_length=50,null = True)
     store_image = models.TextField(null=True, max_length=500)
     store_price = models.DecimalField(max_digits=9, decimal_places=0, null=True, blank=True)
-    score_mean = models.IntegerField(null=True)
+    score_mean = models.DecimalField(max_digits=3, decimal_places=1 ,null=True)
+
+
     @classmethod
     def import_store(cls):
-        with open("./stores/fixtures/store_data.csv", newline='',encoding='utf-8' ) as csvfile:
+        with open("./stores/fixtures/minkishome.csv", newline='',encoding='utf-8' ) as csvfile:
             about_stores = csv.reader(csvfile)
             next(about_stores)
             for row in about_stores:
                 print(row)
                 # print(type(row))
                 try:
+                    if row[9] == '':
+                        row[9] = 0
+                    if row[10] == '':
+                        row[10] = 0
                     Store.objects.create(
                         store_id = row[1],
                         store_name = row[2],
@@ -49,6 +55,8 @@ class Store(models.Model):
                         store_longitude = row[6],
                         store_category = row[7],
                         store_image = row[8],
+                        store_price = row[9],
+                        score_mean = row[10],
 
                     )
                 except ObjectDoesNotExist:
@@ -66,24 +74,30 @@ class Store_score(models.Model): # Score
     store_name = models.CharField(null=True, max_length=50)
     user_id = models.CharField(max_length=50, null=False)
     score = models.IntegerField(null=False)
-    rep_price = models.IntegerField(null= True, verbose_name='대표 메뉴 가격')
+    rep_price = models.DecimalField(max_digits=9, decimal_places=0, null=True, blank=True)
     store_image = models.TextField(null=True, max_length=500)
 
     @classmethod
     def import_score(cls):
-        with open("./stores/fixtures/reviews6.csv",newline='', encoding="utf-8") as csvfile:
+        with open("./stores/fixtures/last_algo_score_data.csv",newline='', encoding="utf-8") as csvfile:
             reviews = csv.reader(csvfile)
             next(reviews)
             for row in reviews:
                 print(row)
                 try:
-                    store_id = Store.objects.only('store_id').get(store_id=row[2])
-                    # print(store_id)
-                    Store_review.objects.create(
+                    store_id = Store.objects.only('store_id').get(store_id=row[1])
+                    if row[4] == '':
+                        row[4] = 0
+                    if row[6] == '':
+                        row[6] = 0
+                    Store_score.objects.create(
                         # store_id = int(row[2]),
                         store_id = store_id,
-                        user = row[3],
+                        store_name = row[2],
+                        user_id = row[3],
                         score = row[4],
+                        rep_price = row[6],
+                        store_image=row[5],
 
                     )
                 except ObjectDoesNotExist:
@@ -109,7 +123,7 @@ class Store_menu(models.Model):
                     if row[3] == '':
                         row[3] = 0.0
                     Store_menu.objects.create(
-                        store = store_id,
+                        store_id = store_id,
                         menu_name = row[2],
                         menu_price = row[3]
                     )
