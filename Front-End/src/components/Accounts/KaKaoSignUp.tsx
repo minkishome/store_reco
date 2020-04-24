@@ -50,10 +50,9 @@ class KakaoSignUp extends Component<any, State> {
     })
     const semi_email = JSON.stringify(this.state.data.profile.kakao_account.email)
     const _email = semi_email.replace(/^"+|"+$/g, '')
-
-    const semi_age = JSON.stringify(this.state.data.profile.kakao_account.age_range[0])
-    const s_age = semi_age.replace(/^"+|"+$/g, '')
-    const _age = parseInt(s_age)
+    // const semi_age = JSON.stringify(this.state.data.profile.kakao_account.age_range[0])
+    // const s_age = semi_age.replace(/^"+|"+$/g, '')
+    // const _age = parseInt(s_age)
 
     try {
       alert(JSON.stringify(this.state.data.profile.id))
@@ -79,7 +78,7 @@ class KakaoSignUp extends Component<any, State> {
               kakao_id: JSON.stringify(this.state.data.profile.id),
               nickname: JSON.stringify(this.state.data.profile.properties.nickname),
               image: JSON.stringify(this.state.data.profile.properties.profile_image),
-              ages: _age,
+              // ages: _age,
             },
             responseType: "json"
           });
