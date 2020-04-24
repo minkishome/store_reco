@@ -21,7 +21,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 class Store(models.Model):
     objects = models.Manager()
-    store_id = models.IntegerField()
+    store_id = models.IntegerField(unique=True)
     store_name = models.CharField(max_length=50)
     store_tel = models.CharField(max_length=20, null=True)
     store_address = models.CharField(max_length=255, null=True)
