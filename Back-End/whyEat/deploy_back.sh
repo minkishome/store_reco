@@ -1,3 +1,4 @@
+#!/bin/sh
 if [ -f "$DB_FILE" ]; then
     rm $DB_FILE
 fi
