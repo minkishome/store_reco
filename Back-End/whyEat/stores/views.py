@@ -26,7 +26,7 @@ def store_list(request):
 
 @api_view(['GET'])
 def store_detail(request, store_pk):
-    store = get_object_or_404(Store, pk=store_pk)
+    store = get_object_or_404(Store, store_id=store_pk)
     if request.method == 'GET':
         serializer = StoreSerializer(store)
         return Response(serializer.data)
