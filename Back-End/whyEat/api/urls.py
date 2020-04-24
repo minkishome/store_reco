@@ -28,7 +28,7 @@ from . import views
 
 urlpatterns = [
     url('api-auth/', include('rest_framework.urls')),
-    url(r'^user_exist/(?P<email>[\w.@+-]+)/$', views.UserExistsView.as_view(), name='user_exist'),
+    url(r'^user_exist/(?P<kakao_id>[\w.@+-]+)/$', views.UserExistsView.as_view(), name='user_exist'),
     path('rank_list/', views.rank_list),
     path('user_list/', views.user_list),
     path('user_detail/<int:pk>/', views.user_detail),

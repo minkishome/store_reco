@@ -51,35 +51,35 @@ class KakaoSignUp extends Component<any, State> {
     const semi_email = JSON.stringify(this.state.data.profile.kakao_account.email)
     const _email = semi_email.replace(/^"+|"+$/g, '')
 
-    // alert(email)
+    const semi_age = JSON.stringify(this.state.data.profile.kakao_account.age_range[0])
+    const s_age = semi_age.replace(/^"+|"+$/g, '')
+    const _age = parseInt(s_age)
+
     try {
+      alert(JSON.stringify(this.state.data.profile.id))
       const response = await axios({
         method: "get",
         // url: `${_url}/api/user_exist/`,
         // url: `${_url}/api/user_exist/${_email}/`,
-        url: `${_url}/api/user_exist/rlarlarla1@gmail.com/`,
+        url: `${_url}/api/user_exist/${JSON.stringify(this.state.data.profile.id)}/`,
         responseType: "json"
       });
       const msg: string = JSON.stringify(response.data.message)
-      if (!msg) {
+
+      if (msg == "true") {
         alert('로그인되었습니다')
       } else {
         try {
           const signup_response = await axios({
             method: "post",
             url: `${_url}/api/user_list/`,
-            // url: `${_url}/api/user_exist/${email}/`,
             data: {
-              password: '1234',
-              // name: 'JSON.stringify(this.state.data.profile.id)',
-              // id: 100,
-              // email: _email,
-              email: 'rlarlarla1@gmail.com',
-              name: '김은수1',
-              // nickname: JSON.stringify(this.state.data.profile.properties.nickname),
-              nickname: '은수달지1',
-              // image: JSON.stringify(this.state.data.profile.properties.profile_image),
-              // age: JSON.stringify(this.state.data.profile.kakao_account.age_range[0])
+              password: 1234,
+              email: _email,
+              kakao_id: JSON.stringify(this.state.data.profile.id),
+              nickname: JSON.stringify(this.state.data.profile.properties.nickname),
+              image: JSON.stringify(this.state.data.profile.properties.profile_image),
+              ages: _age,
             },
             responseType: "json"
           });
