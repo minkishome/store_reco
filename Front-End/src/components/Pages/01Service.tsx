@@ -18,7 +18,7 @@ const Service: FunctionComponent<any> = ({ }) => {
             이용하실 수 있어요</h2>
         <StyledBtn >
           <Link to="/loginPage">
-          회원가입 하러가기
+          회원가입 하기
           </Link>
           </StyledBtn>
         <StyledBtn>그냥 볼래요</StyledBtn>
