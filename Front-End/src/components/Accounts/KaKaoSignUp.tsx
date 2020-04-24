@@ -67,6 +67,7 @@ class KakaoSignUp extends Component<any, State> {
       const msg: string = JSON.stringify(response.data.message)
 
       if (msg == "true") {
+        sessionStorage.setItem('id', JSON.stringify(this.state.data.profile.id));
         alert('로그인되었습니다')
       } else {
         try {
