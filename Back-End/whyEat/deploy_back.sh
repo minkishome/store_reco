@@ -26,4 +26,4 @@ sleep 5
 
 echo "> pgrep -f runserver"
 
-pgerp -f runserver
+pgrep -f runserver
