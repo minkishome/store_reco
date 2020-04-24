@@ -119,7 +119,7 @@ def sort_stores_by_score(dataframes, n=20, min_reviews=1):
     nip = pd.DataFrame(tmp1, columns=tmp1.keys())
     stores_reviews = pd.merge(stores_reviews,nip,on='store_name')
     print(stores_reviews)
-    final_df = stores_reviews[['user', 'store_name', 'score','store_image','price']]
+    final_df = stores_reviews[['user', 'store_name', 'score_mean', 'score','store_image','price', 'store_id']]  # 수경  
     final_df = final_df[final_df.category_num != 0]
     user_store_rating = final_df.pivot_table('score',index = 'user', columns='store_name').fillna(0)
     # print(user_store_rating.head())
