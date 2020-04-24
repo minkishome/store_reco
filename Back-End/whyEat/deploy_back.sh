@@ -9,6 +9,10 @@ else echo "> kill -15 $CURRENT_PID PID 종료"
         sudo kill -15 $CURRENT_PID
         sudo sleep 5
 fi
+if [ -f "$DB_FILE" ]; then
+    rm $DB_FILE
+fi
+python3 manage.py migrate
 
 echo "> Excute Django"
 
@@ -22,4 +26,4 @@ sleep 5
 
 echo "> pgrep -f runserver"
 
-pgrep -f runserver
+pgerp -f runserver
