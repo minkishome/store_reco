@@ -30,7 +30,7 @@ class Store(models.Model):
     store_category = models.CharField(max_length=50,null = True)
     store_image = models.TextField(null=True, max_length=500)
     store_price = models.DecimalField(max_digits=9, decimal_places=0, null=True, blank=True)
-
+    score_mean = models.IntegerField(null=True)
     @classmethod
     def import_store(cls):
         with open("./stores/fixtures/store_data.csv", newline='',encoding='utf-8' ) as csvfile:
@@ -60,18 +60,17 @@ class Store(models.Model):
 
 # 스토어아이디 / 메뉴 / 가격 
 
-class Store_review(models.Model):
+class Store_score(models.Model): # Score
     objects = models.Manager()
     store_id = models.ForeignKey(Store, on_delete=models.CASCADE,related_name='review')
     store_name = models.CharField(null=True, max_length=50)
-    user_id = models.IntegerField(null=False)
+    user_id = models.CharField(max_length='50', null=False)
     score = models.IntegerField(null=False)
-    score_mean = models.IntegerField(null=False)
     rep_price = models.IntegerField(null= True, verbose_name='대표 메뉴 가격')
     store_image = models.TextField(null=True, max_length=500)
 
     @classmethod
-    def import_review(cls):
+    def import_score(cls):
         with open("./stores/fixtures/reviews6.csv",newline='', encoding="utf-8") as csvfile:
             reviews = csv.reader(csvfile)
             next(reviews)
