@@ -17,6 +17,9 @@ import StoreDetail from "./components/Store/03StoreDetail";
 import KaKaoLogin from "./components/Accounts/KaKaoLogin";
 import KakaoSignUp from "./components/Accounts/KaKaoSignUp";
 
+import Survey from "./components/Accounts/Survey";
+import Success from "./components/UserPage/04Success";
+
 const Fullpage = () => (
   <ReactFullpage
     //fullpage options
@@ -24,6 +27,8 @@ const Fullpage = () => (
     scrollingSpeed={1000} /* Options here */
     navigation={true} // 오른쪽 네비게이션바 활성화
     verticalCentered={false} // css 풀린건가..?
+    menu={'#menu'}
+    anchors={['firstPage', 'secondPage', 'thirdPage', 'fourthPage']}
     render={({ state, fullpageApi }) => {
       return (
         <ReactFullpage.Wrapper>
@@ -31,10 +36,10 @@ const Fullpage = () => (
             <Greeting />
           </div>
           <div className="section">
-            <KakaoSignUp></KakaoSignUp>
+            <Service />
           </div>
           <div className="section">
-            <Service />
+            <Survey />
           </div>
           <div className="section">
             <MonthlyInput />

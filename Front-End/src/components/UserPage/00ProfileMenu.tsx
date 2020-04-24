@@ -5,6 +5,7 @@ import React, {
   Component,
 } from "react";
 import { StyledText } from "../style";
+import { Link } from "react-router-dom";
 
 // 사용자 프로필 버튼
 import { Avatar, ListItem } from "@material-ui/core";
@@ -56,8 +57,12 @@ const ProfileMenu: FunctionComponent<any> = ({}) => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        <ListItem button>회원정보</ListItem>
-        <ListItem button>히스토리</ListItem>
+        <ListItem button>
+          <Link to="/information">회원정보</Link>
+        </ListItem>
+        <ListItem button>
+          <Link to="/history">히스토리</Link>
+        </ListItem>
       </List>
     </div>
   );

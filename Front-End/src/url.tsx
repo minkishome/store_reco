@@ -1,2 +1,3 @@
 // 뭐야
-export const url = 'http://localhost:3000';  // 배포 url
+export const url = 'http://127.0.0.1:8000';  // 로컬
+// export const url = 'http://13.125.68.151';  // 배포 url

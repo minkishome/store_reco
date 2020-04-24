@@ -25,6 +25,11 @@
 2. [Git Branch 환경 설정 및 와이어프레임 작업](#Git-Branch-환경-설정-및-와이어프레임-작업)
 3. [서버 배포 및 폴더구조 설계 및 크롤링](#서버-배포-및-폴더구조-설계-및-크롤링)
 4. [프론트 레이아웃 및 DB 모델링](#프론트-레이아웃-및-DB-모델링)
+5. [카카오 로그인](#카카오-로그인)
+6. [백엔드 API 구성 및 구현](#백엔드-API-구성-및-구현)
+7. [협업 필터링 알고리즘](#협업-필터링-알고리즘)
+
+   
 
 
 ### `01`
@@ -268,3 +273,84 @@ accounts > models.py 참고
 stores > models.py 참고
  현재 store의 하부 내용인 Store_menu, Store_review에 대한 foreignkey 설정이 제대로 구성되지 않아 mysql에 기존의 데이터를 import할 때 오류가 발생하고 있으며 이 부분은 수정되어야 한다.
 
+###### 03. MYSQL 및 DJANGO 설정
+
+- Django, Mysql 연동
+
+![image-20200417095327705](C:\Users\multicampus\AppData\Roaming\Typora\typora-user-images\image-20200417095327705.png)
+
+다음과 같이 django 의 settings.py의 DATABASES 부분을 mysql과의 연동을 위해 바꿔준다. 이후 migrate를 통해 mysql에 table이 생성된 것을 확인하고 데이터를 넣어준다. 
+
+한글을 import할 경우 encoding 문제로 error가 발생하기에 character-set을 설정해줘야 한다. mysql의 my.ini 파일을 수정하면 기본 설정이 바뀌지만 해당 파일을 수정할 경우 현재 컴퓨터에서 mysql을 정상적으로 실행할 수 없어 mysql 접속 시 계속해서 명령어를 입력함.
+
+```mysql
+set character_set_client = utf8mb4;
+set character_set_results = utf8mb4;
+set character_set_connection = utf8mb4;
+set character_set_database = utf8mb4;
+set character_set_server = utf8mb4;
+alter table tablename default character set utf8;
+```
+
+- DATA import
+  - models.py의 코드와 MySql Workbench라는 프로그램을 활용
+
+### `05`
+### 카카오 로그인
+https://blog.naver.com/rkdudwl/221906303255
+
+
+### `06`
+### 백엔드 API 구성 및 구현
+
+###### API 정리
+
+- Accounts
+  - 회원가입, 로그인, 로그아웃, 회원정보 입력/수정/ 조회, 히스토리, 랭킹, 다른사람 내역
+
+- Pages
+  - 정보 입력 (한달식비, 오늘식비) 결과 (남은금액, 며칠 남았는지)
+
+- Stores
+  - 카페/음식 카테고리 입력, 결과 이미지/이름, 음식점 상세정보 조회
+
+
+
+###### Back-end flow
+
+- whyEat/urls.py
+  - urlpatterns에서 path를 'api.urls'로 접근
+- api/urls.py
+  - CRUD주소 URL 생성
+  - views.UserView.as_view()와 같이 view 함수로 접근
+- api/serializers.py
+  - models에서 각 model을 불러온 후 통신을 할 수 있게 serializer 생성
+- api/views.py
+  - serializers에서 각 model의 serializer를 불러옴
+  - rest_fromework.generics를 이용해 CRUD API 함수 생성
+
+
+### `07`
+
+### 협업 필터링 알고리즘
+
+###### 0. 데이터 가공 
+
+* 리뷰가 존재하는 서울의 음식점을 기준으로 데이터 가공 
+* 위 데이터를 기반으로 가격 데이터가 존재하는 음식점 선별 
+  *  음식점의 메뉴 중 최상단의 데이터(가격)으로 선정 (단, 0원일 경우 그 다음 데이터로 선정)
+
+
+
+###### 1. item-based CF
+
+- 기존의 DATA를 기반으로 새로운 DATA FRAME을 만든다
+  - 'USER', 'STORE_NAME', 'SCORE', 'CATEGORY_NUM' 으로 분류
+  - category_num 은 임의로 비슷한 문자열을 포함한 음식점 끼리 묶어줌
+- DATAFRAME으로 PIVOT_TABLE을 만들어줌
+- 일단은 index 를 store로 함( 추후, user로 변경예정 )
+- pivot_table의 nan값은 0으로 채워준다.
+  - `final_df = final_df[final_df.category_num != 0]`
+  - 아이템간 유사도는 cosine_similarity를 이용하여 구해줌.
+  - scikit-learn을 이용함
+  - 정리한것을 df로 다시 추출
