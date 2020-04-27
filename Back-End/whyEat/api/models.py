@@ -81,7 +81,7 @@ class UserManager(BaseUserManager):
 #         return user
         
 class User(AbstractBaseUser, PermissionsMixin):
-    kakao_id = models.CharField(unique=True, max_length=30 , verbose_name='UserID')
+    kakao_id = models.CharField(unique=True, max_length=30 , verbose_name='UserID', primary_key=True)
     email = models.EmailField(unique=True, verbose_name='이메일', null=True)
     nickname = models.CharField(unique=True, max_length=20, verbose_name='닉네임',null=False, blank=False)
     item = models.CharField(null=True, max_length=50, verbose_name='유저 물건')
@@ -123,7 +123,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     
 
 class User_history(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='history')
+    kakao = models.ForeignKey(User, on_delete=models.CASCADE, related_name='history')
     payment_date = models.DateTimeField(auto_now_add=True, null=True)
     user_breakfast = models.IntegerField(blank=True, null = True, default=0)
     user_lunch = models.IntegerField(blank=True, null = True, default=0)
