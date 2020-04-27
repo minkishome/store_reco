@@ -27,10 +27,9 @@ class KakaoSignUp extends Component<any, State> {
     })
     const semi_email = JSON.stringify(this.state.data.profile.kakao_account.email)
     const _email = semi_email.replace(/^"+|"+$/g, '')
-
-    const semi_age = JSON.stringify(this.state.data.profile.kakao_account.age_range[0])
-    const s_age = semi_age.replace(/^"+|"+$/g, '')
-    const _age = parseInt(s_age)
+    // const semi_age = JSON.stringify(this.state.data.profile.kakao_account.age_range[0])
+    // const s_age = semi_age.replace(/^"+|"+$/g, '')
+    // const _age = parseInt(s_age)
 
     try {
       const response = await axios({
@@ -56,7 +55,7 @@ class KakaoSignUp extends Component<any, State> {
               kakao_id: JSON.stringify(this.state.data.profile.id),
               nickname: JSON.stringify(this.state.data.profile.properties.nickname),
               image: JSON.stringify(this.state.data.profile.properties.profile_image),
-              ages: _age,
+              // ages: _age,
             },
             responseType: "json"
           });
@@ -90,7 +89,7 @@ class KakaoSignUp extends Component<any, State> {
   //   // alert(JSON.stringify(this.state.data.profile.id))  // 카카오 고유 id
   //   // alert(JSON.stringify(this.state.data.profile.properties.nickname))  // 닉네임
   //   // alert(JSON.stringify(this.state.data.profile.properties.profile_image))  // 프로필 이미지 링크
-  //   // alert(JSON.stringify(this.state.data.profile.kakao_account.email))  // 이메일
+  //   // alert(JSON.stringify(this.state.data.profile.kakao_account.email))  // 이
   //   // alert(JSON.stringify(this.state.data.profile.kakao_account.age_range[0]))  // 연령대 (2)
   // }
 
