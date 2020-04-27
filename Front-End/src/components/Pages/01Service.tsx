@@ -43,7 +43,7 @@ class Service extends Component<any, State> {
       if (msg == "true") {
         window.sessionStorage.setItem('id', JSON.stringify(this.state.data.profile.id));
         alert('로그인되었습니다')
-        window.location.href='http://localhost:3000/#fifthPage';
+        window.location.href='http://13.125.68.151:8081/#fifthPage';
       } else {
         try {
           const signup_response = await axios({
@@ -61,7 +61,7 @@ class Service extends Component<any, State> {
           });
           // 회원가입 -> Survey 연결 부분
           alert('회원가입 되었습니다.')
-          window.location.href='http://localhost:3000/#thirdPage';
+          window.location.href='http://13.125.68.151:8081/#thirdPage';
         }
         catch (err) {
           sessionStorage.clear()
@@ -74,17 +74,6 @@ class Service extends Component<any, State> {
       alert(err);
     }
   }
-
-  // responseKaKao = (res: any) => {
-  //   this.setState({
-  //     data: res
-  //   })
-  //   // alert(JSON.stringify(this.state.data.profile.id))  // 카카오 고유 id
-  //   // alert(JSON.stringify(this.state.data.profile.properties.nickname))  // 닉네임
-  //   // alert(JSON.stringify(this.state.data.profile.properties.profile_image))  // 프로필 이미지 링크
-  //   // alert(JSON.stringify(this.state.data.profile.kakao_account.email))  // 이메일
-  //   // alert(JSON.stringify(this.state.data.profile.kakao_account.age_range[0]))  // 연령대 (2)
-  // }
 
   responseFail = (err) => {
     alert(err);
