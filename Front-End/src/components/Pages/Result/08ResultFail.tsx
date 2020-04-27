@@ -6,7 +6,6 @@ const ResultFail: FunctionComponent<any> = ({ }) => {
   return (
     <>
       <StyledText>
-        <h1>Result Page</h1>
 
         <h3>오늘 하루 식비를<br />
           {money}원<br />
@@ -14,7 +13,6 @@ const ResultFail: FunctionComponent<any> = ({ }) => {
                 먹어서 뭐해요!!<br />
                 남는건 에어팟인데!<br />
         </h3>
-        <StyledTextBtn>다른사람과 비교하러 가기>></StyledTextBtn>
       </StyledText>
     </>
   )

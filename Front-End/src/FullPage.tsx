@@ -20,6 +20,8 @@ import KakaoSignUp from "./components/Accounts/KaKaoSignUp";
 import Survey from "./components/Accounts/Survey";
 import Success from "./components/UserPage/04Success";
 
+import ResultPage from "./components/Pages/Result/ResultPage";
+
 const Fullpage = () => (
   <ReactFullpage
     //fullpage options
@@ -47,11 +49,9 @@ const Fullpage = () => (
             <DailyInput />
           </div>
           <div className="section">
-            <ResultSave />
+            <ResultPage />
           </div>
-          <div className="section">
-            <ResultFail />
-          </div>
+
           <div className="section">
             <Amount />
           </div>
