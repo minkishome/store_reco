@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'api',
     'stores',
     'corsheaders',
-    
+
 ]
 
 REST_FRAMEWORK = {
@@ -112,8 +112,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mydb',
         'USER': 'root',
-        'PASSWORD': '123123',
-        'HOST': 'localhost',
+        'PASSWORD': '1234',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': 'SET sql_mode="STRICT_TRANS_TABLES"',
