@@ -44,7 +44,7 @@ class KakaoSignUp extends Component<any, State> {
       if (msg == "true") {
         window.sessionStorage.setItem('id', JSON.stringify(this.state.data.profile.id));
         alert('로그인되었습니다')
-        window.location.href='http://localhost:3000/#fifthPage';
+        window.location.href='http://13.125.68.151:8081/#fifthPage';
       } else {
         try {
           const signup_response = await axios({
@@ -61,7 +61,9 @@ class KakaoSignUp extends Component<any, State> {
             responseType: "json"
           });
           // 회원가입 -> Survey 연결 부분
-          alert(signup_response)
+          alert('회원가입되었습니다')
+          window.sessionStorage.setItem('id', JSON.stringify(this.state.data.profile.id));
+          window.location.href='http://13.125.68.151:8081/#thirdPage';
           return (
             <StyledBtn data-menuanchor="thirdPage">
             {/* <a href="#thirdPage">계속하기</a> */}
