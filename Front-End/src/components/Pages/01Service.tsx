@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 const Service: FunctionComponent<any> = ({ }) => {
   return (
     <>
-      <StyledText>
+      <StyledText id="myMenu">
 
         <h2>42000건의 빅데이터를 활용해<br />
         여러분의 소비를 비교/분석 해드려요.<br />
@@ -18,10 +18,12 @@ const Service: FunctionComponent<any> = ({ }) => {
             이용하실 수 있어요</h2>
         <StyledBtn >
           <Link to="/loginPage">
-          회원가입 하러가기
+            회원가입 하러가기
           </Link>
-          </StyledBtn>
-        <StyledBtn>그냥 볼래요</StyledBtn>
+        </StyledBtn>
+        <StyledBtn data-menuanchor="thirdPage">
+          <a href="#thirdPage">그냥 볼래요</a>
+        </StyledBtn>
       </StyledText>
     </>
   )

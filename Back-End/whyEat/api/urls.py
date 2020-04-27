@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^user_exist/(?P<kakao_id>[\w.@+-]+)/$', views.UserExistsView.as_view(), name='user_exist'),
     path('rank_list/', views.rank_list),
     path('user_list/', views.user_list),
-    path('user_detail/<int:pk>/', views.user_detail),
+    path('user_detail/<int:kakao_id>/', views.user_detail),
     path('history_list/', views.history_list),
     path('history_detail/<int:history_pk>/', views.history_detail),
     # url(r'^', include(router.urls)),
