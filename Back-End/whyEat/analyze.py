@@ -23,13 +23,13 @@ def sort_stores_by_score(dataframes, n=20, min_reviews=1):
     temp_num = [0] * 40484
     n = 0
 
+    #  여기서 부터 알고
     tmp1 = pd.read_csv('./name_img_price.csv')
     nip = pd.DataFrame(tmp1, columns=tmp1.keys())
     stores_reviews = pd.merge(stores_reviews, nip, on='store_name')
     print(stores_reviews)
     final_df = stores_reviews[['store_id', 'store_name',
                                'user', 'score', 'store_image', 'price', ]]  # 수경
-    final_df = final_df[final_df.category_num != 0]
     user_store_rating = final_df.pivot_table(
         'score', index='user', columns='store_name').fillna(0)
     # print(user_store_rating.head())
