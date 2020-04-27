@@ -32,6 +32,7 @@ class Service extends Component<any, State> {
     const _age = parseInt(s_age)
 
     try {
+      alert('요청보낸당')
       const response = await axios({
         method: "get",
         // url: `${_url}/api/user_exist/`,
@@ -39,6 +40,7 @@ class Service extends Component<any, State> {
         url: `${_url}/api/user_exist/${JSON.stringify(this.state.data.profile.id)}/`,
         responseType: "json"
       });
+      alert('요청보냈당')
       const msg: string = JSON.stringify(response.data.message)
       if (msg == "true") {
         window.sessionStorage.setItem('id', JSON.stringify(this.state.data.profile.id));
