@@ -15,6 +15,7 @@ import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from scipy import linalg
 from scipy.sparse.linalg import svds
+import json
 
 
 @api_view(['GET', 'POST'])
@@ -106,7 +107,10 @@ def store_list(request):
         print(result)
         # print(result.drop_duplicates(['store_name']).head(10))
         print(type(result))
-        return Response(result.to_json(orient='records'), status=200)
+        result = result.to_json(orient='records')
+        result2 = json.loads(result)
+
+        return Response(result2, status=200)
 
         # return Response(serializer.data)
     else:
