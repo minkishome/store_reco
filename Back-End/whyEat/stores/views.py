@@ -24,7 +24,7 @@ def store_list(request):
             'mysql+pymysql://root:1234@localhost/mydb', convert_unicode=True)
         conn = engine.connect()
         final_df = pd.read_sql_table('stores_store_score', conn)
-        print(final_df.head)
+        # print(final_df.head)
         # final_df.rename(columns={'user_id': 'user'}, axis='columns')
         user_store_rating = final_df.pivot_table(
             'score', index='user_id', columns='store_name').fillna(0)
@@ -101,11 +101,12 @@ def store_list(request):
             return recommendations
         result = recommend_stores(df_svd_preds, 10, final_df, final_df, 50)
         result.drop_duplicates(['store_name'])
-        # print(result)
+
         result = result.drop_duplicates(['store_name']).head(10)
+        print(result)
         # print(result.drop_duplicates(['store_name']).head(10))
         print(type(result))
-        return Response(result.to_json(), status=200)
+        return Response(result.to_json(orient='records'), status=200)
 
         # return Response(serializer.data)
     else:
