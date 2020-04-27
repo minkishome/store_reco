@@ -35,12 +35,12 @@ const useStyles = makeStyles((theme: Theme) =>
 const checkDayli = 0;
 
 const Recommand: FunctionComponent<any> = ({}) => {
-  // axios
+  // 알고리즘 음식점 axios
   const getRecommandStore = () => {
     try {
       const response = axios({
         method: "get",
-        url: `${_url}/store_list`,
+        url: `${_url}/store_list/`, // 알고리즘 url
         responseType: "json",
       });
       alert("연결성공");
@@ -48,6 +48,74 @@ const Recommand: FunctionComponent<any> = ({}) => {
       alert(err);
     }
   };
+
+  ////////////////////////////////////////////////////////
+  // 성공실패여부 계산하는 부분
+
+  const _id = window.sessionStorage.getItem("id");
+  const [monthlyCost, setMonthlyCost] = useState(0 as number); // 왜 얘만 Number 하면 안되는걸까?
+
+  // 유저 한달비용 불러오기 axios
+  const getMonthlyCost = () => {
+    console.log("고고");
+    try {
+      const response = axios({
+        method: "get",
+        url: `${_url}/api/user_detail/${_id}/`,
+        responseType: "json",
+      }).then((res) => {
+        setMonthlyCost(res.data.monthly_cost);
+        console.log(monthlyCost);
+        console.log(monthDay);
+      });
+      // alert("연결성공");
+    } catch (err) {
+      alert(err);
+    }
+  };
+
+  // 유저 히스토리에서 하루비용 불러오기 axios
+  const [dailyCost, setDailyCost] = useState(0 as Number);
+
+  const getDailyCost = () => {
+    console.log("하루비용 고고 ");
+    try {
+      const response = axios({
+        method: "get",
+        url: `${_url}/api/history_list/`,
+        responseType: "json",
+      }).then((res) => {
+        setDailyCost(res.data); // 히스토리 data 어떻게 가져오는지 확인하기
+        console.log(dailyCost);
+      });
+    } catch (err) {
+      alert(err);
+    }
+  };
+
+  // 월수 계산하기
+  const date: Date = new Date();
+  // const year: Number = date.getFullYear();
+  // const month: Number = date.getMonth();
+
+  // const monthDay: Number = new Date(year, month, 0).getDate();
+  const monthDay: number = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    0
+  ).getDate();
+
+  const [checkResult, setCheckResult] = useState(true as Boolean); // 성공했으면 true
+
+  const calResult: any = () => {
+    if (monthlyCost / monthDay >= dailyCost) {
+      setCheckResult(true);
+    } else {
+      setCheckResult(false);
+    }
+  };
+
+  //////////////////////////////////////////////////
 
   // 모달 부분
   const classes = useStyles();
@@ -71,6 +139,7 @@ const Recommand: FunctionComponent<any> = ({}) => {
   return (
     <>
       <StyledText>
+        <button onClick={getMonthlyCost}>클릭</button>
         <h3>{checkDayli === 0 ? "내일 맛있게" : "오늘 쓴 금액보다"} </h3>
         <h3>
           {checkDayli === 0

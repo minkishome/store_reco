@@ -6,21 +6,21 @@ import React, {
 } from "react";
 import { StyledText, StyledInput } from "../style";
 import axios from "axios";
-import { url as _url } from '../../url';
+import { url as _url } from "../../url";
 
 // 프로필 메뉴
 // import ProfileMenu from "../UserPage/00ProfileMenu";
 
 const MonthlyInput = ({}) => {
   type ReqData = {
-    contents: string,
-    attendants: string,
-    place: string,
-    title: string,
-    startAt: Date,
-    endAt: Date,
-    id: any,
-};
+    contents: string;
+    attendants: string;
+    place: string;
+    title: string;
+    startAt: Date;
+    endAt: Date;
+    id: any;
+  };
   const [data, setData] = useState({} as ReqData);
   const onChangeInput = (e: any) => {
     const id = e.target.id;
@@ -30,11 +30,11 @@ const MonthlyInput = ({}) => {
       ...data,
       [id]: value,
     });
-  }
-  const _id = window.sessionStorage.getItem('id')
-  const _nickname = window.sessionStorage.getItem('nickname')
-  const _password = window.sessionStorage.getItem('password')
-  console.log(window.sessionStorage.getItem('id'))
+  };
+  const _id = window.sessionStorage.getItem("id");
+  const _nickname = window.sessionStorage.getItem("nickname");
+  const _password = window.sessionStorage.getItem("password");
+  console.log(window.sessionStorage.getItem("id"));
   const onSubmit = async () => {
     try {
       // console.log(data)
@@ -52,13 +52,14 @@ const MonthlyInput = ({}) => {
           password: _password,
           kakao_id: _id,
           nickname: _nickname,
-          monthly_cost: data[''],
+          monthly_cost: data[""],
         },
         // data: {
         //   user: _id,
         // },
-        responseType: "json"
+        responseType: "json",
       });
+      console.log("됐다"); // 수경 수정
 
       // if (![200, 201, 301].includes(res.status)) {
       //   alert('wtf server');
@@ -67,11 +68,10 @@ const MonthlyInput = ({}) => {
       // ;
 
       // close();
-
     } catch (err) {
       alert(err); // WTF?
     }
-  }
+  };
   return (
     <>
       {/* <ProfileMenu /> */}

@@ -24,7 +24,7 @@ const ResultPage: FunctionComponent<any> = ({}) => {
 
   var checkPoint = true; // 성공했으면 true
 
-  const calResult = (checkPoints) => {
+  const calResult = () => {
     if (monthCost / monthDay >= dayCost) {
       checkPoint = true;
     } else {
