@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Route, withRouter } from "react-router-dom";
 import Main from "./Main";
-import KakaoSignUp from "../src/components/Accounts/KaKaoSignUp";
 import Information from "../src/components/UserPage/01Information";
 import PriceResult from "../src/components/UserPage/02PriceResult";
 import "./App.css";
@@ -49,7 +48,6 @@ class App extends Component<any, State> {
     return (
       <div className="app">
         <Route exact path="/" component={Main} />
-        {/* <Route path="/loginPage" component={KakaoSignUp} /> */}
         <Route path="/information" component={Information} />
         <Route path="/history" component={PriceResult} />
       </div>
