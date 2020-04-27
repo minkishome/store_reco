@@ -32,11 +32,9 @@ class App extends Component<any, State> {
   }
   isLogin = (): boolean => {
     const _id = window.sessionStorage.getItem("id");
-    const _jwt = window.sessionStorage.getItem("jwt");
-    if (_id && _jwt) {
+    if (_id) {
       return true;
     }
-    sessionStorage.clear();
     return false;
   };
 
@@ -51,7 +49,7 @@ class App extends Component<any, State> {
     return (
       <div className="app">
         <Route exact path="/" component={Main} />
-        <Route path="/loginPage" component={KakaoSignUp} />
+        {/* <Route path="/loginPage" component={KakaoSignUp} /> */}
         <Route path="/information" component={Information} />
         <Route path="/history" component={PriceResult} />
       </div>

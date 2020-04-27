@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, useMemo } from 'react';
 import styled from 'styled-components';
 import { url as _url } from '../../url';
 import axios from 'axios';
-import img from '../images/kakao_login_btn_medium_narrow.png';
-import { StyledText } from '../style';
+import { StyledText, StyledBtn } from '../style';
 import KaKaoLogin from 'react-kakao-login';
+import { Link } from 'react-router-dom';
+
 
 declare const window: any;
 interface State {
@@ -19,30 +20,6 @@ class KakaoSignUp extends Component<any, State> {
     }
   }
 
-  // responseKaKao = async (res: any) => {
-  //   this.setState({
-  //     data: res
-  //   })
-  //   try {
-  //     const response = await axios({
-  //       method: "post",
-  //       url: `${_url}/user_create`,
-  //       data: {
-  //         id: JSON.stringify(this.state.data.profile.id),
-  //         nickname: JSON.stringify(this.state.data.profile.properties.nickname),
-  //         profile_image: JSON.stringify(this.state.data.profile.properties.profile_image),
-  //         email: JSON.stringify(this.state.data.profile.kakao_account.email),
-  //         age: JSON.stringify(this.state.data.profile.kakao_account.age_range[0])
-  //       },
-  //       // responseType: "json"
-  //     });
-  //     // alert(JSON.stringify(this.state.data))
-  //   }
-  //   catch (err) {
-  //     sessionStorage.clear()
-  //     alert(err);
-  // }
-  // }
 
   responseKaKao = async (res: any) => {
     this.setState({
@@ -56,7 +33,6 @@ class KakaoSignUp extends Component<any, State> {
     const _age = parseInt(s_age)
 
     try {
-      alert(JSON.stringify(this.state.data.profile.id))
       const response = await axios({
         method: "get",
         // url: `${_url}/api/user_exist/`,
@@ -65,10 +41,10 @@ class KakaoSignUp extends Component<any, State> {
         responseType: "json"
       });
       const msg: string = JSON.stringify(response.data.message)
-      alert(msg)
       if (msg == "true") {
-        sessionStorage.setItem('id', JSON.stringify(this.state.data.profile.id));
+        window.sessionStorage.setItem('id', JSON.stringify(this.state.data.profile.id));
         alert('로그인되었습니다')
+        window.location.href='http://localhost:3000/#fifthPage';
       } else {
         try {
           const signup_response = await axios({
@@ -84,7 +60,16 @@ class KakaoSignUp extends Component<any, State> {
             },
             responseType: "json"
           });
+          // 회원가입 -> Survey 연결 부분
           alert(signup_response)
+          return (
+            <StyledBtn data-menuanchor="thirdPage">
+            {/* <a href="#thirdPage">계속하기</a> */}
+            <Link to="/#thirdPage">
+              계속하기
+            </Link>
+          </StyledBtn>
+          )
         }
         catch (err) {
           sessionStorage.clear()
@@ -113,71 +98,18 @@ class KakaoSignUp extends Component<any, State> {
     alert(err);
   }
 
-  // loginWithKakao = () => {
-  //     window.Kakao.init('baa049c9d7b8dc42694041a8b7f71232')
-  //     // KaKao.Auth.cleanup();
-  //     console.log('init')
-  //     window.Kakao.Auth.login({
-  //         success: (authObj: any) => {
-  //             console.log('success')
-  //             console.log(authObj.access_token);
-  //             sessionStorage.setItem('jwt', authObj.access_token);
-  //             window.Kakao.API.request({
-  //                 url: '/v2/user/me',
-  //                 success: (res: any) => {
-  //                     // console.log(JSON.stringify(res));
-  //                     sessionStorage.setItem('id', res.kakao_account.email);
-  //                     sessionStorage.setItem('pw', '1111');
-
-  //                     // try {
-  //                     //     const isExist = async () => {
-  //                     //         // console.log('들어왔다')
-  //                     //         const ress = await axios({
-  //                     //             method: "get",
-  //                     //             url: `${_url}/member/isExist/${res.kakao_account.email}`,
-  //                     //             responseType: "json"
-  //                     //         });
-  //                     //         if (ress.data.state === "SUCCESS") {
-  //                     //             // console.log('성공하면 안되는데 성공했다^^')
-  //                     //             sessionStorage.setItem("id", res.kakao_account.email);
-  //                     //             sessionStorage.setItem("pw", '1111');
-  //                     //             // sessionStorage.setItem('socialToken', res.accessToken);
-  //                     //             this.props.history.push("/moreInfoPage");
-  //                     //         } else if (ress.data.state === "FAIL") {
-  //                     //             // console.log('실패했다^^')
-  //                     //             sessionStorage.clear();
-  //                     //             alert("이미 존재하는 계정 입니다");
-  //                     //         }
-  //                     //         return ress
-  //                     //     }
-  //                     //     isExist().then(() => {
-  //                     //         console.log('결과', this.state.data)
-  //                     //     })
-
-  //                     // } catch (err) {
-  //                     //     sessionStorage.clear()
-  //                     //     alert(err);
-  //                     // }
-  //                 },
-  //                 fail: function (error: any) {
-  //                     alert(JSON.stringify(error));
-  //                 }
-  //             });
-  //         },
-  //         fail: function (err: any) {
-  //             alert("카카오 로그인 실패");
-  //         }
-  //     });
-  // }
   render() {
     return (
       <>
         <StyledText>
           <h1>카카오톡 간편 로그인</h1>
           <h4>로그인 후 더 많은 혜택을 누리세요!</h4>
-          {/* <StKaKaoLogin>
-                        <img src={img} alt="a" onClick={this.loginWithKakao} />
-                    </StKaKaoLogin> */}
+          <StyledBtn data-menuanchor="thirdPage">
+            {/* <a href="#thirdPage">계속하기</a> */}
+            <Link to="/#thirdPage">
+              계속하기
+            </Link>
+          </StyledBtn>
           <br></br>
           <KaKaoBtn
             jsKey={'2b67838751764359be17923f29aa820e'}
