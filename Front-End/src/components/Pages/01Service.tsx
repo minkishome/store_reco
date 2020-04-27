@@ -75,17 +75,6 @@ class Service extends Component<any, State> {
     }
   }
 
-  // responseKaKao = (res: any) => {
-  //   this.setState({
-  //     data: res
-  //   })
-  //   // alert(JSON.stringify(this.state.data.profile.id))  // 카카오 고유 id
-  //   // alert(JSON.stringify(this.state.data.profile.properties.nickname))  // 닉네임
-  //   // alert(JSON.stringify(this.state.data.profile.properties.profile_image))  // 프로필 이미지 링크
-  //   // alert(JSON.stringify(this.state.data.profile.kakao_account.email))  // 이메일
-  //   // alert(JSON.stringify(this.state.data.profile.kakao_account.age_range[0]))  // 연령대 (2)
-  // }
-
   responseFail = (err) => {
     alert(err);
   }
