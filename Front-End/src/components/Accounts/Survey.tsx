@@ -15,7 +15,7 @@ const Survey: FunctionComponent<any> = ({ }) => {
 
   // toggledSelected 값에 따라 setSelectedFood 가 selectedFood 로 바뀜
   useEffect(() => setSelectedFood(selectedFood), [toggleSelected]);
-  console.log('이거', selectedFood)
+  // console.log('이거', selectedFood)
 
   const svFood = [
     ['돈가스', 'https://cdndept.galleria.co.kr/upload/dept/gourmet/au/to/00000000/gourmet-store/hb82139127pr.jpg', false],
