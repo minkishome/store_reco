@@ -28,7 +28,7 @@ const Fullpage = () => (
     navigation={true} // 오른쪽 네비게이션바 활성화
     verticalCentered={false} // css 풀린건가..?
     menu={'#menu'}
-    anchors={['firstPage', 'secondPage', 'thirdPage', 'fourthPage']}
+    anchors={['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'fifthPage']}
     render={({ state, fullpageApi }) => {
       return (
         <ReactFullpage.Wrapper>
