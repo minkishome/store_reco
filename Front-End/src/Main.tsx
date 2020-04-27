@@ -16,7 +16,6 @@ import Information from "./components/UserPage/01Information";
 import PriceResult from "./components/UserPage/02PriceResult";
 import SelectStore from "./components/UserPage/02PriceResult";
 import Recommand from "./components/Store/02Recommand";
-import StoreDetail from "./components/Store/03StoreDetail";
 
 import History from "./components/UserPage/03History";
 import UserRank from "./components/Pages/Rank/11UserRank";

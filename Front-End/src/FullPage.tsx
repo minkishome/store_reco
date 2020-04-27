@@ -13,7 +13,7 @@ import UserRank from "./components/Pages/Rank/11UserRank";
 import WishListRank from "./components/Pages/Rank/10WishListRank";
 import SelectStore from "./components/Store/01SelectStore";
 import Recommand from "./components/Store/02Recommand";
-import StoreDetail from "./components/Store/03StoreDetail";
+// import StoreDetail from "./components/Store/03StoreDetail";
 import KaKaoLogin from "./components/Accounts/KaKaoLogin";
 import KakaoSignUp from "./components/Accounts/KaKaoSignUp";
 
@@ -57,9 +57,6 @@ const Fullpage = () => (
           </div>
           <div className="section">
             <Recommand />
-          </div>
-          <div className="section">
-            <StoreDetail />
           </div>
         </ReactFullpage.Wrapper>
       );
