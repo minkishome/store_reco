@@ -3,6 +3,7 @@
 .idea/
 */api/migrations
 */stores/migrations
+*/__pycache__/
 __pycache__
 # Virtual ENV
 venv/
