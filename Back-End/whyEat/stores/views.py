@@ -69,7 +69,7 @@ def store_list(request):
                 ascending=False)
 
             # 원본 평점 데이터에서 user id 에 해당하는 데이터를 뽑아낸다
-            user_data = ori_ratings_df[ori_ratings_df.user == user_id]
+            user_data = ori_ratings_df[ori_ratings_df.user_id == user_id]
             print(user_data)
             # 위에서 뽑은 user_data와 원본 스토어 데이터를 합친다.
             if not user_data.empty:
@@ -101,10 +101,13 @@ def store_list(request):
             return recommendations
         result = recommend_stores(df_svd_preds, 10, final_df, final_df, 50)
         result.drop_duplicates(['store_name'])
-        print(result)
-        print(result.drop_duplicates(['store_name']).head(10))
+        # print(result)
+        result = result.drop_duplicates(['store_name']).head(10)
+        # print(result.drop_duplicates(['store_name']).head(10))
+        print(type(result))
+        return Response(result.to_json(), status=200)
 
-        return Response(serializer.data)
+        # return Response(serializer.data)
     else:
         serializer = StoreSerializer(data=request.data)
         if serializer.is_valid():
