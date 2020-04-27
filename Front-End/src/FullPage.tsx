@@ -50,6 +50,9 @@ const Fullpage = () => (
             <ResultSave />
           </div>
           <div className="section">
+            <ResultFail />
+          </div>
+          <div className="section">
             <Amount />
           </div>
           <div className="section">
