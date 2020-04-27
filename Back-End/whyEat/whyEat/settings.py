@@ -42,10 +42,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'api',
     'stores',
-<<<<<<< HEAD
-=======
     'corsheaders',
->>>>>>> develop
 
 ]
 
