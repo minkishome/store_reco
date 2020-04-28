@@ -18,7 +18,8 @@ import json
 
 
 @api_view(['GET', 'POST'])
-def store_list(request):
+def store_list(request, kakao_id):
+    user_kakao = kakao_id
     if request.method == 'GET':
         engine = create_engine(
             'mysql+pymysql://root:1234@localhost/mydb', convert_unicode=True)
@@ -99,7 +100,8 @@ def store_list(request):
                     columns={user_row_number: 'Predictions'}).sort_values('Predictions')
 
             return recommendations
-        result = recommend_stores(df_svd_preds, 10, final_df, final_df, 50)
+        result = recommend_stores(
+            df_svd_preds, user_kakao, final_df, final_df, 50)
         result.drop_duplicates(['store_name'])
 
         result = result.drop_duplicates(['store_name']).head(10)
