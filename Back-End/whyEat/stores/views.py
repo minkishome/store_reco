@@ -129,11 +129,68 @@ def store_detail(request, store_pk):
 
 
 @api_view(['GET', 'POST'])
-def score_list(request):
-    if request.method == 'GET':
-        score = Store_score.objects.all()
-        serializer = StoreScoreSerializer(score, many=True)
-        return Response(serializer.data)
+def score_list(request, kakao_id):
+    # print(kakao_id)
+    if request.method == 'POST':
+        for menu in request.data.get('foodList'):
+            if menu == '돈가스':
+                Store_score(store_id=149, store_name='101번지 남산돈까스', user_id=str(kakao_id), score=4, score_mean=3.272727272727273,
+                            store_image='https://img.siksinhot.com/place/1527163945608148.jpg?w=280&h=224&c=Y', rep_price=9800.0).save()
+            elif menu == '떡볶이':
+                Store_score(store_id=102336, store_name='동대문엽기떡복이', user_id=str(kakao_id), score=3, score_mean=2.0,
+                            store_image='https://img.siksinhot.com/place/1482375189974669.jpg?w=280&h=224&c=Y', rep_price=14000.0).save()
+            elif menu == '회':
+                Store_score(store_id=164429, store_name='바다회사랑', user_id=str(kakao_id), score=4, score_mean=4.1,
+                            store_image='https://img.siksinhot.com/place/1541391810672244.jpg?w=280&h=224&c=Y', rep_price=33000.0).save()
+            elif menu == '파스타':
+                Store_score(store_id=8911, store_name='JB파스타', user_id=str(kakao_id), score=4, score_mean=4.125,
+                            store_image='https://img.siksinhot.com/place/1453447715291386.jpg?w=280&h=224&c=Y', rep_price=7000.0).save()
+            elif menu == '곱창':
+                Store_score(store_id=32688, store_name='곱창고', user_id=str(kakao_id), score=3.8, score_mean=3.7142857142857135,
+                            store_image='https://img.siksinhot.com/place/1467723323615055.jpg?w=280&h=224&c=Y', rep_price=9900.0).save()
+            elif menu == '김치찌개':
+                Store_score(store_id=174195, store_name='백채김치찌개', user_id=str(kakao_id), score=4, score_mean=3.6,
+                            store_image='https://img.siksinhot.com/place/1453365701387218.jpg?w=280&h=224&c=Y', rep_price=6000.0).save()
+            elif menu == '피자':
+                Store_score(store_id=92286, store_name='더피자보이즈', user_id=str(kakao_id), score=4, score_mean=4.25,
+                            store_image='https://img.siksinhot.com/place/1493849832298133.jpg?w=280&h=224&c=Y', rep_price=20000.0).save()
+            elif menu == '치킨':
+                Store_score(store_id=6308, store_name='BHC치킨', user_id=str(kakao_id), score=4, score_mean=4.5,
+                            store_image='https://img.siksinhot.com/place/1491962216167189.jpg?w=280&h=224&c=Y', rep_price=18000.0).save()
+            elif menu == '삼겹살':
+                Store_score(store_id=181510, store_name='복돈이부추삼겹살', user_id=str(kakao_id), score=4, score_mean=3.0,
+                            store_image='https://img.siksinhot.com/place/1352711131503121.jpg?w=280&h=224&c=Y', rep_price=8000.0).save()
+            elif menu == '중식':
+                Store_score(store_id=358978, store_name='중식당 청담', user_id=str(kakao_id), score=4, score_mean=3.7,
+                            store_image='https://img.siksinhot.com/place/1524802449166359.jpg?w=280&h=224&c=Y', rep_price=80000.0).save()
+            elif menu == '초밥':
+                Store_score(store_id=279485, store_name='여우골초밥', user_id=str(kakao_id), score=4, score_mean=3.2857142857142856,
+                            store_image='https://img.siksinhot.com/place/1355377152041942.jpg?w=280&h=224&c=Y', rep_price=190000.0).save()
+            elif menu == '카페':
+                Store_score(store_id=149007, store_name='모로코코 카페', user_id=str(kakao_id), score=4, score_mean=4.0,
+                            store_image='https://img.siksinhot.com/place/1530514777768078.JPG?w=280&h=224&c=Y', rep_price=6000.0).save()
+            elif menu == '스테이크':
+                Store_score(store_id=96709, store_name='도쿄스테이크', user_id=str(kakao_id), score=4, score_mean=3.0,
+                            store_image='https://img.siksinhot.com/place/1458715775334731.jpg?w=280&h=224&c=Y', rep_price=15900.0).save()
+            elif menu == '순대국':
+                Store_score(store_id=219024, store_name='서일순대국', user_id=str(kakao_id), score=4, score_mean=4.6,
+                            store_image='https://img.siksinhot.com/place/1554005706686147.jpg?w=280&h=224&c=Y', rep_price=28000.0).save()
+            elif menu == '칼국수':
+                Store_score(store_id=145459, store_name='명동칼국수', user_id=str(kakao_id), score=4, score_mean=4.2,
+                            store_image='https://img.siksinhot.com/place/1454618251130187.jpg?w=280&h=224&c=Y', rep_price=0).save()
+            elif menu == '에머이':
+                Store_score(store_id=276703, store_name='에머이', user_id=str(kakao_id), score=4, score_mean=3.75,
+                            store_image='https://img.siksinhot.com/place/1503503387595591.jpg?w=280&h=224&c=Y', rep_price=0).save()
+            elif menu == '햄버거':
+                Store_score(store_id=139181, store_name='맥도날드', user_id=str(kakao_id), score=4, score_mean=3.8,
+                            store_image='https://img.siksinhot.com/place/1534502476259865.jpg?w=280&h=224&c=Y', rep_price=4900.0).save()
+            elif menu == '족발':
+                Store_score(store_id=14596, store_name='가장맛있는족발', user_id=str(kakao_id), score=4, score_mean=4.5,
+                            store_image='https://img.siksinhot.com/place/1446556288345142.jpg?w=280&h=224&c=Y', rep_price=0).save()
+        # print(request.data.get('foodList')[0])
+        # score = Store_score.objects.all()
+        # serializer = StoreScoreSerializer(score, many=True)
+        return Response(status=200)
     else:
         serializer = StoreScoreSerializer(data=request.data)
         if serializer.is_valid():
