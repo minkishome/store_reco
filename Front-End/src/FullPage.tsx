@@ -16,6 +16,7 @@ import StoreDetail from "./components/Store/03StoreDetail";
 import Survey from "./components/Accounts/Survey";
 import Success from "./components/UserPage/04Success";
 
+
 const Fullpage = () => (
   <ReactFullpage
     //fullpage options
@@ -27,7 +28,7 @@ const Fullpage = () => (
     anchors={['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'fifthPage']}
     render={({ state, fullpageApi }) => {
       return (
-        <ReactFullpage.Wrapper>
+        <ReactFullpage.Wrapper >
           <div className="section">
             <Greeting />
           </div>

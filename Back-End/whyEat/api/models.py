@@ -41,44 +41,6 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    # def get_by_natural_key(self, username):
-    #     return self.get(**{'{}__iexact'.format(self.model.USERNAME_FIELD): username})
-
-    # def create_user(self, email, password, **extra_fields):
-    #     return self._create_user(email, password, False, False, **extra_fields)
-
-    # def create_superuser(self, email, password, **extra_fields):
-    #     return self._create_user(email, password, True, True, **extra_fields)
-
-# class UserManager(BaseUserManager):
-#     def create_user(self, email, password=None):
-#         """
-#         주어진 이메일, 닉네임, 비밀번호 등 개인정보로 User 인스턴스 생성
-#         """
-#         if not email:
-#             raise ValueError(('Users must have an email address'))
-
-#         user = self.model(
-#             email=self.normalize_email(email),
-#         )
-
-#         user.set_password(password)
-#         user.save(using=self._db)
-#         return user
-
-#     def create_superuser(self, email, password):
-#         """
-#         주어진 이메일, 닉네임, 비밀번호 등 개인정보로 User 인스턴스 생성
-#         단, 최상위 사용자이므로 권한을 부여한다. 
-#         """
-#         user = self.create_user(
-#             email=email,
-#             password=password,
-#         )
-
-#         user.is_admin = True
-#         user.save(using=self._db)
-#         return user
         
 class User(AbstractBaseUser, PermissionsMixin):
     kakao_id = models.CharField(unique=True, max_length=30 , verbose_name='UserID', primary_key=True)
@@ -108,23 +70,12 @@ class User(AbstractBaseUser, PermissionsMixin):
  
     def __str__(self):
         return self.kakao_id
- 
-#     # def has_perm(self, perm, obj=None):
-#     #     "Does the user have a specific permission?"
-#     #     # Simplest possible answer: Yes, always
-#     #     return True
- 
-#     # def has_module_perms(self, app_label):
-#     #     "Does the user have permissions to view the app `app_label`?"
-#     #     # Simplest possible answer: Yes, always
-#     #     return True
-
 
     
 
 class User_history(models.Model):
     kakao = models.ForeignKey(User, on_delete=models.CASCADE, related_name='history')
-    payment_date = models.DateTimeField(auto_now_add=True, null=True)
+    payment_date = models.DateField(auto_now_add=True, null=True)
     user_breakfast = models.IntegerField(blank=True, null = True, default=0)
     user_lunch = models.IntegerField(blank=True, null = True, default=0)
     user_dinner = models.IntegerField(blank=True, null = True, default=0)

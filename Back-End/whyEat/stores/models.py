@@ -45,8 +45,6 @@ class Store(models.Model):
             about_stores = csv.reader(csvfile)
             next(about_stores)
             for row in about_stores:
-                print(row)
-                # print(type(row))
                 try:
                     if row[9] == '':
                         row[9] = 0
@@ -93,13 +91,8 @@ class Store_score(models.Model):  # Score
             next(reviews)
             i = 0
             for row in reviews:
-                print(row)
-                i += 1
                 try:
-                    print(row[1])
-                    store_id = Store.objects.only(
-                        'store_id').get(store_id=row[1])
-                    print(store_id)
+                    store_id = Store.objects.only('store_id').get(store_id=row[1])
                     if row[4] == '':
                         row[4] = 0
                     if row[6] == '':
