@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useState, useEffect, Component } from 'react';
 import { StyledText, StyledTextBtn } from '../../style';
 
-const ResultSave: FunctionComponent<any> = ({ }) => {
+const ResultSave: FunctionComponent<any> = ({fullpage_api}: any) => {
     const money: Number = 0;
     return (
         <>
@@ -14,7 +14,7 @@ const ResultSave: FunctionComponent<any> = ({ }) => {
                 먹어서 뭐해요....<br />
                 에어팟 안 살꺼에요?<br />
             </h3>
-            <StyledTextBtn>다른사람과 비교하러 가기>></StyledTextBtn>
+            <StyledTextBtn onClick={() => fullpage_api.moveSlideRight()}>다른사람과 비교하러 가기>></StyledTextBtn>
             <br></br>
             </StyledText>
         </>

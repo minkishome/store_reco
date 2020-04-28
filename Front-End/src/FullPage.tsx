@@ -25,7 +25,7 @@ const Fullpage = () => (
     navigation={true} // 오른쪽 네비게이션바 활성화
     verticalCentered={false} // css 풀린건가..?
     menu={'#menu'}
-    anchors={['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'fifthPage']}
+    anchors={['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'fifthPage', 'sixthPage']}
     render={({ state, fullpageApi }) => {
       return (
         <ReactFullpage.Wrapper >
@@ -45,7 +45,8 @@ const Fullpage = () => (
             <DailyInput />
           </div>
           <div className="section">
-            <ResultSave />
+            <div className="slide"><ResultSave fullpage_api={fullpageApi}/></div>
+            <div className="slide"><UserRank fullpage_api={fullpageApi}/></div>
           </div>
           <div className="section">
             <Amount />
