@@ -33,6 +33,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const checkDayli = 0;
+const _id = window.sessionStorage.getItem("id");
+// const [storeList, setStoreList] = useState([]);
 
 const Recommand: FunctionComponent<any> = ({}) => {
   // 알고리즘 음식점 axios
@@ -40,8 +42,12 @@ const Recommand: FunctionComponent<any> = ({}) => {
     try {
       const response = axios({
         method: "get",
-        url: `${_url}/store_list/`, // 알고리즘 url
+        url: `${_url}/stores/store_list/${_id}/`, // 알고리즘 url
         responseType: "json",
+      }).then((res) => {
+        console.log(res.data);
+        // setStoreList(res.data);
+        // console.log(storeList);
       });
       alert("연결성공");
     } catch (err) {
@@ -139,6 +145,7 @@ const Recommand: FunctionComponent<any> = ({}) => {
   return (
     <>
       <StyledText>
+        <button onClick={getRecommandStore}>알고</button>
         <button onClick={getMonthlyCost}>클릭</button>
         <h3>{checkDayli === 0 ? "내일 맛있게" : "오늘 쓴 금액보다"} </h3>
         <h3>

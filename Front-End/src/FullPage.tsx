@@ -12,9 +12,9 @@ import WishListRank from "./components/Pages/Rank/10WishListRank";
 import SelectStore from "./components/Store/01SelectStore";
 import Recommand from "./components/Store/02Recommand";
 // import StoreDetail from "./components/Store/03StoreDetail";
-import KaKaoLogin from "./components/Accounts/KaKaoLogin";
+// import KaKaoLogin from "./components/Accounts/KaKaoLogin";
 import KakaoSignUp from "./components/Accounts/KaKaoSignUp";
-import StoreDetail from "./components/Store/03StoreDetail";
+// import StoreDetail from "./components/Store/03StoreDetail";
 
 import Survey from "./components/Accounts/Survey";
 import Success from "./components/UserPage/04Success";

@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import { url as _url } from '../../url';
-import axios from 'axios';
-import img from '../images/kakao_login_btn_medium_narrow.png';
-import { StyledText } from '../style';
-import KaKaoLogin from 'react-kakao-login';
+import React, { Component } from "react";
+import styled from "styled-components";
+import { url as _url } from "../../url";
+import axios from "axios";
+import img from "../images/kakao_login_btn_medium_narrow.png";
+import { StyledText } from "../style";
+import KaKaoLogin from "react-kakao-login";
 
 declare const window: any;
 interface State {
@@ -15,8 +15,8 @@ class KakaoSignUp extends Component<any, State> {
   constructor(props: any) {
     super(props);
     this.state = {
-      data: 'kakao'
-    }
+      data: "kakao",
+    };
   }
 
   // responseKaKao = async (res: any) => {
@@ -46,30 +46,40 @@ class KakaoSignUp extends Component<any, State> {
 
   responseKaKao = async (res: any) => {
     this.setState({
-      data: res
-    })
-    const semi_email = JSON.stringify(this.state.data.profile.kakao_account.email)
-    const _email = semi_email.replace(/^"+|"+$/g, '')
+      data: res,
+    });
+    const semi_email = JSON.stringify(
+      this.state.data.profile.kakao_account.email
+    );
+    const _email = semi_email.replace(/^"+|"+$/g, "");
     // const semi_age = JSON.stringify(this.state.data.profile.kakao_account.age_range[0])
     // const s_age = semi_age.replace(/^"+|"+$/g, '')
     // const _age = parseInt(s_age)
 
     try {
-      alert(JSON.stringify(this.state.data.profile.id))
+      alert(JSON.stringify(this.state.data.profile.id));
       const response = await axios({
         method: "get",
         // url: `${_url}/api/user_exist/`,
         // url: `${_url}/api/user_exist/${_email}/`,
-        url: `${_url}/api/user_exist/${JSON.stringify(this.state.data.profile.id)}/`,
-        responseType: "json"
+        url: `${_url}/api/user_exist/${JSON.stringify(
+          this.state.data.profile.id
+        )}/`,
+        responseType: "json",
       });
-      const msg: string = JSON.stringify(response.data.message)
+      const msg: string = JSON.stringify(response.data.message);
 
       if (msg == "true") {
-        sessionStorage.setItem('id', JSON.stringify(this.state.data.profile.id));
-        sessionStorage.setItem('nickname', JSON.stringify(this.state.data.profile.properties.nickname));
-        sessionStorage.setItem('password', '1234');
-        alert('로그인되었습니다')
+        sessionStorage.setItem(
+          "id",
+          JSON.stringify(this.state.data.profile.id)
+        );
+        sessionStorage.setItem(
+          "nickname",
+          JSON.stringify(this.state.data.profile.properties.nickname)
+        );
+        sessionStorage.setItem("password", "1234");
+        alert("로그인되었습니다");
       } else {
         try {
           const signup_response = await axios({
@@ -79,25 +89,27 @@ class KakaoSignUp extends Component<any, State> {
               password: 1234,
               email: _email,
               kakao_id: JSON.stringify(this.state.data.profile.id),
-              nickname: JSON.stringify(this.state.data.profile.properties.nickname),
-              image: JSON.stringify(this.state.data.profile.properties.profile_image),
+              nickname: JSON.stringify(
+                this.state.data.profile.properties.nickname
+              ),
+              image: JSON.stringify(
+                this.state.data.profile.properties.profile_image
+              ),
               // ages: _age,
             },
-            responseType: "json"
+            responseType: "json",
           });
-          alert(signup_response)
-        }
-        catch (err) {
-          sessionStorage.clear()
+          alert(signup_response);
+        } catch (err) {
+          sessionStorage.clear();
           alert(err);
         }
       }
-    }
-    catch (err) {
-      sessionStorage.clear()
+    } catch (err) {
+      sessionStorage.clear();
       alert(err);
     }
-  }
+  };
 
   // responseKaKao = (res: any) => {
   //   this.setState({
@@ -112,7 +124,7 @@ class KakaoSignUp extends Component<any, State> {
 
   responseFail = (err) => {
     alert(err);
-  }
+  };
 
   // loginWithKakao = () => {
   //     window.Kakao.init('baa049c9d7b8dc42694041a8b7f71232')
@@ -181,43 +193,42 @@ class KakaoSignUp extends Component<any, State> {
                     </StKaKaoLogin> */}
           <br></br>
           <KaKaoBtn
-            jsKey={'2b67838751764359be17923f29aa820e'}
+            jsKey={"2b67838751764359be17923f29aa820e"}
             buttonText="KaKao"
             onSuccess={this.responseKaKao}
             onFailure={this.responseFail}
             getProfile={true}
           />
-
         </StyledText>
       </>
     );
   }
 }
 const StKaKaoLogin = styled.div`
-    cursor: pointer;
-    /* border-radius:10px; */
-    /* width: 200px; */
-    /* &:hover{
+  cursor: pointer;
+  /* border-radius:10px; */
+  /* width: 200px; */
+  /* &:hover{
         box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 20px 0 rgba(0, 0, 0, 0.19);
     } */
 `;
 
 const KaKaoBtn = styled(KaKaoLogin)`
-    padding: 0;
-    width: 190px;
-    height: 44px;
-    line-height: 44px;
-    color: #783c00;
-    background-color: #FFEB00;
-    border: 1px solid transparent;
-    border-radius: 3px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    cursor: pointer;
-    &:hover{
-        box-shadow: 0 0px 15px 0 rgba(0, 0, 0, 0.2)
-    }
-`
+  padding: 0;
+  width: 190px;
+  height: 44px;
+  line-height: 44px;
+  color: #783c00;
+  background-color: #ffeb00;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0 0px 15px 0 rgba(0, 0, 0, 0.2);
+  }
+`;
 
 export default KakaoSignUp;
