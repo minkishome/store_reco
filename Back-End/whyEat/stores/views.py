@@ -12,14 +12,14 @@ import pandas as pd
 import shutil
 import sys
 import numpy as np
-from sklearn.metrics.pairwise import cosine_similarity
 from scipy import linalg
 from scipy.sparse.linalg import svds
 import json
 
 
 @api_view(['GET', 'POST'])
-def store_list(request):
+def store_list(request, kakao_id):
+    user_kakao = kakao_id
     if request.method == 'GET':
         engine = create_engine(
             'mysql+pymysql://root:1234@localhost/mydb', convert_unicode=True)
@@ -59,48 +59,60 @@ def store_list(request):
             np.dot(U, sigma), Vt) + user_ratings_mean.reshape(-1, 1)
         df_svd_preds = pd.DataFrame(
             svd_user_predicted_ratings, columns=user_store_rating.columns)
-        print(df_svd_preds)
+        # print(df_svd_preds)
 
         def recommend_stores(df_svd_preds, user_id, ori_stores_df, ori_ratings_df, num_recommendations=5):
-            # 현재는 index로 적용 되어있는거라 -1 해줘야함
-            user_row_number = user_id-1
+            print('here check')
+            isempty = ori_stores_df[ori_stores_df['user_id'].str.contains(
+                str(user_id), na=False)].empty
 
-            # 최종적으로 만든 df_svd_preds 에서 사용자 index에 따라 스토어 데이터 정렬
-            sorted_user_predictions = df_svd_preds.iloc[user_row_number].sort_values(
-                ascending=False)
+            if not isempty:
+                print('여기는 들어있는거')
+                # 현재는 index로 적용 되어있는거라 -1 해줘야함
+                user_row_number = user_id-1
 
-            # 원본 평점 데이터에서 user id 에 해당하는 데이터를 뽑아낸다
-            user_data = ori_ratings_df[ori_ratings_df.user_id == user_id]
-            print(user_data)
-            # 위에서 뽑은 user_data와 원본 스토어 데이터를 합친다.
-            if not user_data.empty:
-                user_history = user_data.merge(ori_stores_df, on='store_name').sort_values([
-                    'score'], ascending=False)
-                # 원본 스토어 데이터에서 사용자가 평점 남긴 스토어를 제외한 데이터를 추출
-                recommendations = ori_stores_df[~ori_stores_df['store_name'].isin(
-                    user_history['store_name'])]
+                # 최종적으로 만든 df_svd_preds 에서 사용자 index에 따라 스토어 데이터 정렬
+                sorted_user_predictions = df_svd_preds.iloc[user_row_number].sort_values(
+                    ascending=False)
 
-                # 사용자의 스토어 평점이 높은 순으로 정렬된 데이터와 위 추천 합친다
+                # 원본 평점 데이터에서 user id 에 해당하는 데이터를 뽑아낸다
+                user_data = ori_ratings_df[ori_ratings_df.user_id == user_id]
+                print(user_data)
+                # 위에서 뽑은 user_data와 원본 스토어 데이터를 합친다.
+                if not user_data.empty:
+                    user_history = user_data.merge(ori_stores_df, on='store_name').sort_values([
+                        'score'], ascending=False)
+                    # 원본 스토어 데이터에서 사용자가 평점 남긴 스토어를 제외한 데이터를 추출
+                    recommendations = ori_stores_df[~ori_stores_df['store_name'].isin(
+                        user_history['store_name'])]
 
-                recommendations = recommendations.merge(pd.DataFrame(
-                    sorted_user_predictions).reset_index(), on='store_name')
+                    # 사용자의 스토어 평점이 높은 순으로 정렬된 데이터와 위 추천 합친다
 
-                # 컬럼 이름 바꾸고 정렬해서 return
-                recommendations = recommendations.rename(
-                    columns={user_row_number: 'Predictions'}).sort_values('Predictions')
+                    recommendations = recommendations.merge(pd.DataFrame(
+                        sorted_user_predictions).reset_index(), on='store_name')
+
+                    # 컬럼 이름 바꾸고 정렬해서 return
+                    recommendations = recommendations.rename(
+                        columns={user_row_number: 'Predictions'}).sort_values('Predictions')
+                else:
+                    print('여기는 empty')
+                    recommendations = ori_stores_df
+                    # 사용자의 스토어 평점이 높은 순으로 정렬된 데이터와 위 추천 합친다
+
+                    recommendations = recommendations.merge(pd.DataFrame(
+                        sorted_user_predictions).reset_index(), on='store_name')
+
+                    # 컬럼 이름 바꾸고 정렬해서 return
+                    recommendations = recommendations.rename(
+                        columns={user_row_number: 'Predictions'}).sort_values('Predictions')
+
+                return recommendations
             else:
-                recommendations = ori_stores_df
-                # 사용자의 스토어 평점이 높은 순으로 정렬된 데이터와 위 추천 합친다
-
-                recommendations = recommendations.merge(pd.DataFrame(
-                    sorted_user_predictions).reset_index(), on='store_name')
-
-                # 컬럼 이름 바꾸고 정렬해서 return
-                recommendations = recommendations.rename(
-                    columns={user_row_number: 'Predictions'}).sort_values('Predictions')
-
-            return recommendations
-        result = recommend_stores(df_svd_preds, 10, final_df, final_df, 50)
+                ori_stores_df = ori_stores_df.sort_values(
+                    by='score', ascending=False)
+                return ori_stores_df.drop_duplicates(['store_name'])
+        result = recommend_stores(
+            df_svd_preds, user_kakao, final_df, final_df, 50)
         result.drop_duplicates(['store_name'])
 
         result = result.drop_duplicates(['store_name']).head(10)
