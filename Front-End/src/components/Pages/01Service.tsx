@@ -27,9 +27,9 @@ class Service extends Component<any, State> {
     const semi_email = JSON.stringify(this.state.data.profile.kakao_account.email)
     const _email = semi_email.replace(/^"+|"+$/g, '')
 
-    const semi_age = JSON.stringify(this.state.data.profile.kakao_account.age_range[0])
-    const s_age = semi_age.replace(/^"+|"+$/g, '')
-    const _age = parseInt(s_age)
+    // const semi_age = JSON.stringify(this.state.data.profile.kakao_account.age_range[0])
+    // const s_age = semi_age.replace(/^"+|"+$/g, '')
+    // const _age = parseInt(s_age)
 
     try {
       alert('요청보낸당')
@@ -45,7 +45,7 @@ class Service extends Component<any, State> {
       if (msg == "true") {
         window.sessionStorage.setItem('id', JSON.stringify(this.state.data.profile.id));
         alert('로그인되었습니다')
-        window.location.href='http://13.125.68.151:8081/#fifthPage';
+        // window.location.href='http://13.125.68.151:8081/#fifthPage';
       } else {
         try {
           const signup_response = await axios({
@@ -57,13 +57,13 @@ class Service extends Component<any, State> {
               kakao_id: JSON.stringify(this.state.data.profile.id),
               nickname: JSON.stringify(this.state.data.profile.properties.nickname),
               image: JSON.stringify(this.state.data.profile.properties.profile_image),
-              ages: _age,
+              // ages: _age,
             },
             responseType: "json"
           });
           // 회원가입 -> Survey 연결 부분
           alert('회원가입 되었습니다.')
-          window.location.href='http://13.125.68.151:8081/#thirdPage';
+          // window.location.href='http://13.125.68.151:8081/#thirdPage';
         }
         catch (err) {
           sessionStorage.clear()

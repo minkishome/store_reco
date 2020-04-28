@@ -4,18 +4,35 @@ import axios from "axios";
 import { url as _url } from '../../url';
 
 const DailyInput: FunctionComponent<any> = ({ }) => {
-  const total: Number = 0;
+  var date = new Date(); 
+  var year = date.getFullYear(); 
+  var month = new String(date.getMonth()+1); 
+  var day = new String(date.getDate());
+  
+  // 한자리수일 경우 0을 채워준다. 
+  if(month.length == 1){ 
+    month = "0" + month; 
+  } 
+  if(day.length == 1){ 
+    day = "0" + day; 
+  } 
+  
+  // const changeDate = () => {
+  //   // const breakfast_id = e.target.id;
+  //   setDate(year + "-" + month + "-" + day)
+  // }
+
   const [breakfast, setBreakfast] = useState(0);
   const changeBreakfast = (e: any) => {
     // const breakfast_id = e.target.id;
-    const breakfast_value = e.target.value;
+    const breakfast_value = parseInt(e.target.value);
     setBreakfast(breakfast_value)
   }
 
   const [lunch, setLunch] = useState(0);
   const changeLunch = (e: any) => {
     // const lunch_id = e.target.id;
-    const lunch_value = e.target.value;
+    const lunch_value = parseInt(e.target.value);
     setLunch(lunch_value);
   }
 
@@ -23,35 +40,60 @@ const DailyInput: FunctionComponent<any> = ({ }) => {
   const [dinner, setDinner] = useState(0);
   const changeDinner = (e: any) => {
     // const dinner_id = e.target.id;
-    const dinner_value = e.target.value;
+    const dinner_value = parseInt(e.target.value);
     setDinner(dinner_value);
   }
 
-  const onSubmit = async () => {
-    try {
-      // console.log(data)
-      // 보내는 Data 를 펼쳤을때 이런 것들이 있다고 정의
-      // Validation error cut
-      // if (!reqData.title || !reqData.startAt || !reqData.endAt) {
-      //   alert("wft");
-      //   return;
-      // }
-      const _id = window.sessionStorage.getItem('id')
-      // const _nickname = window.sessionStorage.getItem('nickname')
-      // const _password = window.sessionStorage.getItem('password')
+  const [total, setTotal] = useState(0);
+  const changeTotal = () => {
+    // const breakfast_id = e.target.id;
+    const total_value = breakfast + lunch + dinner
+    setTotal(total_value)
+  }
 
-      const res = await axios({
-        method: "post",
-        url: `${_url}/api/history_list/`,
-        data: {
-          user: 2,
-          user_breakfast: breakfast,
-          user_lunch: lunch,
-          user_dinner: dinner,
-        },
+  const onSubmit = async () => {
+    var flag = 0;
+    var e_id = 0;
+    try {
+      const _id = window.sessionStorage.getItem('id')
+      const response = await axios({
+        method: "get",
+        url: `${_url}/api/user_detail/${_id}/`,
         responseType: "json"
       });
-
+      response.data.history.forEach(element => {
+        if (element.payment_date === year + "-" + month + "-" + day) {
+          e_id = element.id
+          flag = 1;
+        }  
+      })
+      if (flag === 1) {
+          await axios({
+            method: "put",
+            url: `${_url}/api/history_detail/${e_id}/`,
+            data: {
+              kakao: _id,
+              user_breakfast: breakfast,
+              user_lunch: lunch,
+              user_dinner: dinner,
+            },
+            responseType: "json"
+          });
+      } else {
+          const res = await axios({
+            method: "post",
+            url: `${_url}/api/history_list/`,
+            data: {
+              kakao: _id,
+              payment_date: date,
+              user_breakfast: breakfast,
+              user_lunch: lunch,
+              user_dinner: dinner,
+            },
+            
+            responseType: "json"
+          });
+        }
     } catch (err) {
       alert(err); // WTF?
     }
@@ -79,7 +121,7 @@ const DailyInput: FunctionComponent<any> = ({ }) => {
         저녁에 <StyledInput onChange={changeDinner} />
           원 썼어요</h3>
           <button onClick={onSubmit}>추가</button>
-        <h2>총 합: {total}</h2>
+        <h2>총 합: {breakfast+lunch+dinner}</h2>
       </StyledText>
     </>
   )
