@@ -2,8 +2,6 @@ import React from "react";
 import ReactFullpage from "@fullpage/react-fullpage";
 import Greeting from "./components/Pages/00Greeting";
 import Service from "./components/Pages/01Service";
-import Login from "./components/Accounts/03Login";
-import SignUp from "./components/Accounts/04SignUp";
 import MonthlyInput from "./components/Pages/05MonthlyInput";
 import DailyInput from "./components/Pages/06DailyInput";
 import ResultSave from "./components/Pages/Result/07ResultSave";
@@ -14,11 +12,10 @@ import WishListRank from "./components/Pages/Rank/10WishListRank";
 import SelectStore from "./components/Store/01SelectStore";
 import Recommand from "./components/Store/02Recommand";
 import StoreDetail from "./components/Store/03StoreDetail";
-import KaKaoLogin from "./components/Accounts/KaKaoLogin";
-import KakaoSignUp from "./components/Accounts/KaKaoSignUp";
 
 import Survey from "./components/Accounts/Survey";
 import Success from "./components/UserPage/04Success";
+
 
 const Fullpage = () => (
   <ReactFullpage
@@ -28,10 +25,10 @@ const Fullpage = () => (
     navigation={true} // 오른쪽 네비게이션바 활성화
     verticalCentered={false} // css 풀린건가..?
     menu={'#menu'}
-    anchors={['firstPage', 'secondPage', 'thirdPage', 'fourthPage']}
+    anchors={['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'fifthPage']}
     render={({ state, fullpageApi }) => {
       return (
-        <ReactFullpage.Wrapper>
+        <ReactFullpage.Wrapper >
           <div className="section">
             <Greeting />
           </div>
