@@ -30,6 +30,10 @@ import Box from "@material-ui/core/Box";
 import Profile from "./components/UserPage/00ProfileMenu";
 
 const Main: FunctionComponent<any> = ({}) => {
+  const [checkResult, setCheckResult] = useState(true as boolean);
+
+  // useEffect(() => setCheckResult(props_data), )
+
   return (
     <>
       {/* <Grid spacing={3} direction="column" justify="center" alignItems="center">

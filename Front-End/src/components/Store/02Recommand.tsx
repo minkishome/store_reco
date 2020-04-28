@@ -145,14 +145,14 @@ const Recommand: FunctionComponent<any> = ({}) => {
   return (
     <>
       <StyledText>
-        <button onClick={getRecommandStore}>알고</button>
+        {/* <button onClick={getRecommandStore}>알고</button>
         <button onClick={getMonthlyCost}>클릭</button>
         <h3>{checkDayli === 0 ? "내일 맛있게" : "오늘 쓴 금액보다"} </h3>
         <h3>
           {checkDayli === 0
             ? "먹을 수 있는 곳이에요"
             : "저렴하게 먹을 수 있는 곳이에요"}
-        </h3>
+        </h3> */} 
 
         <br />
         <img
