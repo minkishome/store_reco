@@ -7,6 +7,9 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
+import datetime
+from django.db.models import F
+
 
 
 
@@ -106,7 +109,13 @@ def history_detail(request, history_pk):
 
 @api_view(['GET'])
 def rank_list(request):
-    history = User_history.objects.extra(
+    # history = User_history.objects.extra(
+    #     select={'fieldsum':'user_breakfast + user_lunch + user_dinner'},
+    #     order_by=('fieldsum', )
+    # )[:5]
+    now = datetime.datetime.now()
+    nowDate = now.strftime('%Y-%m-%d')
+    history = User_history.objects.all().filter(payment_date=nowDate).extra(
         select={'fieldsum':'user_breakfast + user_lunch + user_dinner'},
         order_by=('fieldsum', )
     )[:5]
