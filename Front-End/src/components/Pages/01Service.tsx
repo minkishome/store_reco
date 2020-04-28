@@ -51,11 +51,10 @@ class Service extends Component<any, State> {
       alert("요청보냈당");
       const msg: string = JSON.stringify(response.data.message);
       if (msg == "true") {
-        window.sessionStorage.setItem(
-          "id", 
-          JSON.stringify(this.state.data.profile.id)
-        );
-        alert("로그인되었습니다");
+        window.sessionStorage.setItem('id', JSON.stringify(this.state.data.profile.id));
+        sessionStorage.setItem('nickname', JSON.stringify(this.state.data.profile.properties.nickname));
+        sessionStorage.setItem('password', '1234');
+        alert('로그인되었습니다')
         // window.location.href='http://13.125.68.151:8081/#fifthPage';
       } else {
         try {

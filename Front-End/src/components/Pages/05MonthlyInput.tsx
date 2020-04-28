@@ -44,8 +44,9 @@ const MonthlyInput = ({}) => {
       //   alert("wft");
       //   return;
       // }
-      // const _nickname = (semi_nickname ? semi_nickname.replace(/^"+|"+$/g, '') : semi_nickname)
-      const _nickname = semi_nickname;
+      const _nickname = semi_nickname
+        ? semi_nickname.replace(/^"+|"+$/g, "")
+        : semi_nickname;
 
       const res = await axios({
         method: "put",
@@ -54,7 +55,7 @@ const MonthlyInput = ({}) => {
           password: _password,
           kakao_id: _id,
           nickname: _nickname,
-          history: data[""],
+          monthly_cost: data[""],
         },
         // data: {
         //   user: _id,
@@ -70,7 +71,7 @@ const MonthlyInput = ({}) => {
 
       // close();
       // fullpageApi.moveSectionDown()
-      window.location.href = `${_url}/api/user_detail/${_id}/`;
+      // window.location.href = `${_url}/api/user_detail/${_id}/`
     } catch (err) {
       alert(err); // WTF?
     }
