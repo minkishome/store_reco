@@ -35,69 +35,66 @@ const MonthlyInput = ({}) => {
   const semi_nickname = window.sessionStorage.getItem("nickname");
   const _password = window.sessionStorage.getItem("password");
   console.log(window.sessionStorage.getItem("id"));
-  if (semi_nickname) {
-    const onSubmit = async () => {
-      try {
-        // console.log(data)
-        // 보내는 Data 를 펼쳤을때 이런 것들이 있다고 정의
-        // Validation error cut
-        // if (!reqData.title || !reqData.startAt || !reqData.endAt) {
-        //   alert("wft");
-        //   return;
-        // }
-        const _nickname = semi_nickname.replace(/^"+|"+$/g, "");
+  const onSubmit = async () => {
+    try {
+      // console.log(data)
+      // 보내는 Data 를 펼쳤을때 이런 것들이 있다고 정의
+      // Validation error cut
+      // if (!reqData.title || !reqData.startAt || !reqData.endAt) {
+      //   alert("wft");
+      //   return;
+      // }
+      // const _nickname = (semi_nickname ? semi_nickname.replace(/^"+|"+$/g, '') : semi_nickname)
+      const _nickname = semi_nickname;
 
-        const res = await axios({
-          method: "put",
-          url: `${_url}/api/user_detail/${_id}/`,
-          data: {
-            password: _password,
-            kakao_id: _id,
-            nickname: _nickname,
-            history: data[""],
-          },
-          // data: {
-          //   user: _id,
-          // },
-          responseType: "json",
-        });
+      const res = await axios({
+        method: "put",
+        url: `${_url}/api/user_detail/${_id}/`,
+        data: {
+          password: _password,
+          kakao_id: _id,
+          nickname: _nickname,
+          history: data[""],
+        },
+        // data: {
+        //   user: _id,
+        // },
+        responseType: "json",
+      });
 
-        // if (![200, 201, 301].includes(res.status)) {
-        //   alert('wtf server');
-        //   return;
-        // }
-        // ;
+      // if (![200, 201, 301].includes(res.status)) {
+      //   alert('wtf server');
+      //   return;
+      // }
+      // ;
 
-        // close();
-        // fullpageApi.moveSectionDown()
-        window.location.href = `${_url}/api/user_detail/${_id}/`;
-      } catch (err) {
-        alert(err); // WTF?
-      }
-    };
-    const Enter_Check = (e) => {
-      if (e.keyCode == 13) {
-        onSubmit(); // 실행할 이벤트
-      }
-    };
-    return (
-      <>
-        <StyledText>
-          <h3>
-            나는 한달 평균 식비를 <br />
-            <StyledInput
-              onChange={onChangeInput}
-              onKeyDown={Enter_Check}
-            ></StyledInput>
-            원 써요
-          </h3>
-          <button onClick={onSubmit}>추가</button>
-        </StyledText>
-      </>
-    );
-  } else {
-    return <></>;
-  }
+      // close();
+      // fullpageApi.moveSectionDown()
+      window.location.href = `${_url}/api/user_detail/${_id}/`;
+    } catch (err) {
+      alert(err); // WTF?
+    }
+  };
+  const Enter_Check = (e) => {
+    if (e.keyCode == 13) {
+      onSubmit(); // 실행할 이벤트
+    }
+  };
+  return (
+    <>
+      <StyledText>
+        <h3>
+          나는 한달 평균 식비를 <br />
+          <StyledInput
+            onChange={onChangeInput}
+            onKeyDown={Enter_Check}
+          ></StyledInput>
+          원 써요
+        </h3>
+        <button onClick={onSubmit}>추가</button>
+      </StyledText>
+    </>
+  );
 };
 
 export default MonthlyInput;
