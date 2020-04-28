@@ -92,7 +92,12 @@ class Store_score(models.Model):  # Score
             i = 0
             for row in reviews:
                 try:
+<<<<<<< HEAD
                     store_id = Store.objects.only('store_id').get(store_id=row[1])
+=======
+                    store_id = Store.objects.only(
+                        'store_id').get(store_id=row[1])
+>>>>>>> 47b199729c2866254d115d4d5c460701d79a385d
                     if row[4] == '':
                         row[4] = 0
                     if row[6] == '':
