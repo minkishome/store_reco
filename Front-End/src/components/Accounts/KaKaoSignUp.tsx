@@ -182,12 +182,14 @@ class KakaoSignUp extends Component<any, State> {
   //         }
   //     });
   // }
-  render() {
+  render(
+  ) {
     return (
       <>
         <StyledText>
           <h1>카카오톡 간편 로그인</h1>
           <h4>로그인 후 더 많은 혜택을 누리세요!</h4>
+          {/* <div>{window.sessionStorage}</div> */}
           {/* <StKaKaoLogin>
                         <img src={img} alt="a" onClick={this.loginWithKakao} />
                     </StKaKaoLogin> */}

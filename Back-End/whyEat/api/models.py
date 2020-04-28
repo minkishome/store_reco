@@ -75,7 +75,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class User_history(models.Model):
     kakao = models.ForeignKey(User, on_delete=models.CASCADE, related_name='history')
-    payment_date = models.DateTimeField(auto_now_add=True, null=True)
+    payment_date = models.DateField(auto_now_add=True, null=True)
     user_breakfast = models.IntegerField(blank=True, null = True, default=0)
     user_lunch = models.IntegerField(blank=True, null = True, default=0)
     user_dinner = models.IntegerField(blank=True, null = True, default=0)

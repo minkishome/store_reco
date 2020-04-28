@@ -33,11 +33,9 @@ class Service extends Component<any, State> {
     );
     const _email = semi_email.replace(/^"+|"+$/g, "");
 
-    const semi_age = JSON.stringify(
-      this.state.data.profile.kakao_account.age_range[0]
-    );
-    const s_age = semi_age.replace(/^"+|"+$/g, "");
-    const _age = parseInt(s_age);
+    // const semi_age = JSON.stringify(this.state.data.profile.kakao_account.age_range[0])
+    // const s_age = semi_age.replace(/^"+|"+$/g, '')
+    // const _age = parseInt(s_age)
 
     try {
       alert("요청보낸당");
@@ -74,7 +72,7 @@ class Service extends Component<any, State> {
               image: JSON.stringify(
                 this.state.data.profile.properties.profile_image
               ),
-              ages: _age,
+              // ages: _age,
             },
             responseType: "json",
           });
