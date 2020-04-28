@@ -115,7 +115,7 @@ def store_list(request, kakao_id):
             df_svd_preds, user_kakao, final_df, final_df, 50)
         result.drop_duplicates(['store_name'])
 
-        result = result.drop_duplicates(['store_name']).head(10)
+        result = result.drop_duplicates(['store_name']).head(5)
         print(result)
         # print(result.drop_duplicates(['store_name']).head(10))
         print(type(result))
