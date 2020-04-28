@@ -12,7 +12,6 @@ import pandas as pd
 import shutil
 import sys
 import numpy as np
-from sklearn.metrics.pairwise import cosine_similarity
 from scipy import linalg
 from scipy.sparse.linalg import svds
 import json

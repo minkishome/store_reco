@@ -83,7 +83,9 @@ class Store_score(models.Model):  # Score
     rep_price = models.DecimalField(
         max_digits=9, decimal_places=0, null=True, blank=True)
     store_image = models.TextField(null=True, max_length=500)
+    score_mean = models.DecimalField(max_digits=3, decimal_places=1, null=True) 
 
+    
     @classmethod
     def import_score(cls):
         with open("./stores/fixtures/last_algo_score_data.csv", newline='', encoding="utf-8") as csvfile:
@@ -93,6 +95,11 @@ class Store_score(models.Model):  # Score
             for row in reviews:
                 try:
                     store_id = Store.objects.only('store_id').get(store_id=row[1])
+                    store_id = Store.objects.only(
+                        'store_id').get(store_id=row[1])
+                    store_id = Store.objects.only('store_id').get(store_id=row[1])
+                    store_id = Store.objects.only(
+                        'store_id').get(store_id=row[1])
                     if row[4] == '':
                         row[4] = 0
                     if row[6] == '':
