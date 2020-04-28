@@ -83,32 +83,34 @@ class Store_score(models.Model):  # Score
     rep_price = models.DecimalField(
         max_digits=9, decimal_places=0, null=True, blank=True)
     store_image = models.TextField(null=True, max_length=500)
+    mean_score = models.DecimalField(max_digits=3, decimal_places=1, null=True)
 
     @classmethod
     def import_score(cls):
-        with open("./stores/fixtures/last_algo_score_data.csv", newline='', encoding="utf-8") as csvfile:
+        with open("./stores/fixtures/정병학.csv", newline='', encoding="utf-8") as csvfile:
             reviews = csv.reader(csvfile)
             next(reviews)
-            i = 0
+
             for row in reviews:
                 try:
-                    store_id = Store.objects.only(
-                        'store_id').get(store_id=row[1])
+                    store_id = Store.objects.only('store_id').get(store_id=row[1])
                     if row[4] == '':
                         row[4] = 0
-                    if row[6] == '':
-                        row[6] = 0
+                    if row[7] == '':
+                        row[7] = 0
+                    if row[5] == 0:
+                        row[5] = 0
                     Store_score.objects.create(
                         # store_id = int(row[2]),
                         store=store_id,
                         store_name=row[2],
                         user_id=row[3],
                         score=row[4],
-                        rep_price=row[6],
-                        store_image=row[5],
+                        mean_score=row[5],
+                        rep_price=row[7],
+                        store_image=row[6],
 
-                    )
-                    sys.exit()
+                )
                 except ObjectDoesNotExist:
                     pass
             # alter table stores_store_review convert to character set utf8mb4 collate utf8mb4_unicode_ci;
