@@ -49,7 +49,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     item = models.CharField(null=True, max_length=50, verbose_name='유저 물건')
     price = models.IntegerField(null=True, verbose_name='물건가격')
     monthly_cost = models.IntegerField(null=True, verbose_name='한달 식비')
-    image = models.CharField(null=True, max_length=255 , verbose_name='프로필사진')
+    profile_image = models.CharField(null=True, max_length=255 , verbose_name='프로필사진')
+    itme_image = models.CharField(null=True, max_length=255, verbose_name='물건 사진')
     ages = models.IntegerField(null = True, verbose_name="나이")
 
 
@@ -75,7 +76,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class User_history(models.Model):
     kakao = models.ForeignKey(User, on_delete=models.CASCADE, related_name='history')
-    payment_date = models.DateTimeField(auto_now_add=True, null=True)
+    payment_date = models.DateField(auto_now_add=True, null=True)
     user_breakfast = models.IntegerField(blank=True, null = True, default=0)
     user_lunch = models.IntegerField(blank=True, null = True, default=0)
     user_dinner = models.IntegerField(blank=True, null = True, default=0)

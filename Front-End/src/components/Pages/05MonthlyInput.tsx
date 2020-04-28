@@ -32,7 +32,7 @@ const MonthlyInput = ({}) => {
     });
   }
   const _id = window.sessionStorage.getItem('id')
-  const _nickname = window.sessionStorage.getItem('nickname')
+  const semi_nickname = window.sessionStorage.getItem('nickname')
   const _password = window.sessionStorage.getItem('password')
   console.log(window.sessionStorage.getItem('id'))
   const onSubmit = async () => {
@@ -44,6 +44,7 @@ const MonthlyInput = ({}) => {
       //   alert("wft");
       //   return;
       // }
+      const _nickname = (semi_nickname ? semi_nickname.replace(/^"+|"+$/g, '') : semi_nickname)
 
       const res = await axios({
         method: "put",
@@ -67,23 +68,29 @@ const MonthlyInput = ({}) => {
       // ;
 
       // close();
-
+      // fullpageApi.moveSectionDown()
+      // window.location.href = `${_url}/api/user_detail/${_id}/`
     } catch (err) {
       alert(err); // WTF?
     }
   }
+  const Enter_Check = (e) => {
+    if(e.keyCode == 13){
+      onSubmit();  // 실행할 이벤트
+    }
+  }
   return (
     <>
-      {/* <ProfileMenu /> */}
       <StyledText>
         <h3>
           나는 한달 평균 식비를 <br />
-          <StyledInput onChange={onChangeInput}></StyledInput>원 써요
+          <StyledInput onChange={onChangeInput} onKeyDown={Enter_Check}></StyledInput>원 써요
         </h3>
         <button onClick={onSubmit}>추가</button>
       </StyledText>
     </>
   );
+
 };
 
 export default MonthlyInput;
