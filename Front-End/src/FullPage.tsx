@@ -4,8 +4,8 @@ import Greeting from "./components/Pages/00Greeting";
 import Service from "./components/Pages/01Service";
 import MonthlyInput from "./components/Pages/05MonthlyInput";
 import DailyInput from "./components/Pages/06DailyInput";
-import ResultSave from "./components/Pages/Result/07ResultSave";
-import ResultFail from "./components/Pages/Result/08ResultFail";
+// import ResultSave from "./components/Pages/Result/ResultSave";
+// import ResultFail from "./components/Pages/Result/ResultFail";
 import Amount from "./components/Pages/09Amount";
 import UserRank from "./components/Pages/Rank/11UserRank";
 import WishListRank from "./components/Pages/Rank/10WishListRank";
@@ -19,7 +19,7 @@ import KakaoSignUp from "./components/Accounts/KaKaoSignUp";
 import Survey from "./components/Accounts/Survey";
 import Success from "./components/UserPage/04Success";
 
-import ResultPage from "./components/Pages/Result/ResultPage";
+import ResultPage from "./components/Pages/Result/07ResultPage";
 
 const Fullpage = () => (
   <ReactFullpage

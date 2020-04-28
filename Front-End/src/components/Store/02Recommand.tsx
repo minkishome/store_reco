@@ -152,7 +152,7 @@ const Recommand: FunctionComponent<any> = ({}) => {
           {checkDayli === 0
             ? "먹을 수 있는 곳이에요"
             : "저렴하게 먹을 수 있는 곳이에요"}
-        </h3> */} 
+        </h3> */}
 
         <br />
         <img
