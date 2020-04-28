@@ -65,7 +65,7 @@ const Survey: FunctionComponent<any> = ({ }) => {
     // try {
     //   const response = await axios({
     //     method: "post",
-    //     url: `${_url}/algo/`,
+    //     url: `${_url}/stores/score_list`,
     //     data: {
     //       kakao_id: _id,
     //       foodList: selectedFood,
@@ -77,7 +77,7 @@ const Survey: FunctionComponent<any> = ({ }) => {
     //   sessionStorage.clear()
     //   alert(err);
     // }
-    alert(`${selectedFood} 요청보냈당`)
+    // alert(`${selectedFood} 요청보냈당`)
   }
 
   return (
