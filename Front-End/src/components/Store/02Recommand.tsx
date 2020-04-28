@@ -40,9 +40,10 @@ const Recommand: FunctionComponent<any> = ({}) => {
   // 알고리즘 음식점 axios
   const getRecommandStore = () => {
     try {
+      console.log(_id);
       const response = axios({
         method: "get",
-        url: `${_url}/stores/store_list/3/`, // 알고리즘 url
+        url: `${_url}/stores/store_list/${_id}/`, // 알고리즘 url
         responseType: "json",
       }).then((res) => {
         console.log(res.data);

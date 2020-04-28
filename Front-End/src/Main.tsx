@@ -16,6 +16,17 @@ import Box from "@material-ui/core/Box";
 import Profile from "./components/UserPage/00ProfileMenu";
 
 const Main: FunctionComponent<any> = ({}) => {
+  
+  // const [monthlyData, setMonthlyData] = useState(0);
+  // const [dailyTotalData, setDailyTotalData] = useState(0);
+  // const changeMonthly = (prop_data) => {
+  //   const monthly_value = prop_data;
+  //   setMonthlyData(monthly_value);
+  // }
+  // useEffect(() => {setMonthlyData(0)}
+  // , [monthlyData]);
+  // console.log(monthlyData, 1111)
+  
   return (
     <>
       {/* <Grid spacing={3} direction="column" justify="center" alignItems="center">
