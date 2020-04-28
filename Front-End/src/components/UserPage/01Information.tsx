@@ -5,8 +5,36 @@ import React, {
   Component,
 } from "react";
 import { StyledText } from '../style';
+import axios from 'axios';
+import { url as _url } from '../../url';
 
-const Information: FunctionComponent<any> = ({}) => {
+const Information: FunctionComponent<any> = () => {
+  const [userInfo, setUserInfo] = useState([] as any);
+
+  // useEffect(
+  //   async () => {
+  //   try {
+  //     const _id = window.sessionStorage.getItem('id');
+  //     const res = await axios.get(`${_url}/api/user_detail/${_id}/`);
+  //     setUserInfo(res.data)
+  //   } catch (err) {
+  //     alert(err);
+  //   }
+  // }, 
+  // [_url])
+
+  // const getUserInfo = () => {
+  //   const _id = window.sessionStorage.getItem('id');
+  //   axios.get(`${_url}/api/user_detail/${_id}/`)
+  //   .then(response => {
+  //     setUserInfo(response.data)
+  //     console.log(userInfo)
+  //   });
+  // };
+
+  // getUserInfo();
+
+
   return (
     <>
     <StyledText>
@@ -16,21 +44,14 @@ const Information: FunctionComponent<any> = ({}) => {
       <h3>E-mail</h3>
       <h3>ssafy@naver.com</h3>
       <h3>이름</h3>
-      <h3>홍수경</h3>
       <h3>닉네임</h3>
-      <h3>뚜경뚜경</h3>
-      <h3>거주지역</h3>
-      <h3>서울 노원구</h3>
       <h3>한달 식비</h3>
-      <h3>100 만원</h3>
 
+      <h2>목표상품</h2>
       <hr />
-      <h2>목표 상품</h2>
-      <hr />
-      <h3>목표 상품</h3>
       <input placeholder="에어팟 프로"></input>
       <h3>가격</h3>
-      <input placeholder="1,000,000"></input>
+      <input placeholder="300,000"></input>
       </StyledText>
     </>
   );
