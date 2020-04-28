@@ -83,7 +83,7 @@ class Store_score(models.Model):  # Score
     rep_price = models.DecimalField(
         max_digits=9, decimal_places=0, null=True, blank=True)
     store_image = models.TextField(null=True, max_length=500)
-    menu_price = models.DecimalField(max_digits=9, decimal_places=0, null=True)
+    score_mean = models.DecimalField(max_digits=3, decimal_places=1, null=True) 
 
     
     @classmethod
@@ -126,7 +126,7 @@ class Store_menu(models.Model):
         Store, to_field='store_id', on_delete=models.CASCADE, related_name='menu')
     menu_name = models.CharField(
         max_length=200, null=True)  # max_length를 100으로 변경
-    
+     menu_price = models.DecimalField(max_digits=9, decimal_places=0, null=True)
 
     @classmethod
     def import_menu(cls):
