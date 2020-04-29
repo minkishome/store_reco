@@ -4,18 +4,22 @@ import Greeting from "./components/Pages/00Greeting";
 import Service from "./components/Pages/01Service";
 import MonthlyInput from "./components/Pages/05MonthlyInput";
 import DailyInput from "./components/Pages/06DailyInput";
-import ResultSave from "./components/Pages/Result/07ResultSave";
-import ResultFail from "./components/Pages/Result/08ResultFail";
+// import ResultSave from "./components/Pages/Result/ResultSave";
+// import ResultFail from "./components/Pages/Result/ResultFail";
 import Amount from "./components/Pages/09Amount";
 import UserRank from "./components/Pages/Rank/11UserRank";
 import WishListRank from "./components/Pages/Rank/10WishListRank";
 import SelectStore from "./components/Store/01SelectStore";
 import Recommand from "./components/Store/02Recommand";
-import StoreDetail from "./components/Store/03StoreDetail";
+// import StoreDetail from "./components/Store/03StoreDetail";
+// import KaKaoLogin from "./components/Accounts/KaKaoLogin";
+import KakaoSignUp from "./components/Accounts/KaKaoSignUp";
+// import StoreDetail from "./components/Store/03StoreDetail";
 
 import Survey from "./components/Accounts/Survey";
 import Success from "./components/UserPage/04Success";
 
+import ResultPage from "./components/Pages/Result/07ResultPage";
 
 const Fullpage = () => (
   <ReactFullpage
@@ -24,11 +28,18 @@ const Fullpage = () => (
     scrollingSpeed={1000} /* Options here */
     navigation={true} // 오른쪽 네비게이션바 활성화
     verticalCentered={false} // css 풀린건가..?
-    menu={'#menu'}
-    anchors={['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'fifthPage']}
+    menu={"#menu"}
+    anchors={[
+      "firstPage",
+      "secondPage",
+      "thirdPage",
+      "fourthPage",
+      "fifthPage",
+      "sixthPage",
+    ]}
     render={({ state, fullpageApi }) => {
       return (
-        <ReactFullpage.Wrapper >
+        <ReactFullpage.Wrapper>
           <div className="section">
             <Greeting />
           </div>
@@ -45,8 +56,14 @@ const Fullpage = () => (
             <DailyInput />
           </div>
           <div className="section">
-            <ResultSave />
+            <div className="slide">
+              <ResultPage fullpage_api={fullpageApi} />
+            </div>
+            <div className="slide">
+              <UserRank fullpage_api={fullpageApi} />
+            </div>
           </div>
+
           <div className="section">
             <Amount />
           </div>
@@ -55,9 +72,6 @@ const Fullpage = () => (
           </div>
           <div className="section">
             <Recommand />
-          </div>
-          <div className="section">
-            <StoreDetail />
           </div>
         </ReactFullpage.Wrapper>
       );
