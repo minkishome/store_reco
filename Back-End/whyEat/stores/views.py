@@ -126,9 +126,17 @@ def store_list(request, kakao_id):
 
                 return recommendations
             else:
-                ori_stores_df = ori_stores_df.sort_values(
-                    by='score', ascending=False)
-                return ori_stores_df.drop_duplicates(['store_name'])
+                recommendations = ori_stores_df
+                # 사용자의 스토어 평점이 높은 순으로 정렬된 데이터와 위 추천 합친다
+
+                recommendations = recommendations.merge(pd.DataFrame(
+                    sorted_user_predictions).reset_index(), on='store_name')
+
+                # 컬럼 이름 바꾸고 정렬해서 return
+                recommendations = recommendations.rename(
+                    columns={user_row_number: 'Predictions'}).sort_values('Predictions')
+
+            return recommendations
         result = recommend_stores(
             df_svd_preds, user_kakao, final_df, final_df, 50)
         result.drop_duplicates(['store_name'])

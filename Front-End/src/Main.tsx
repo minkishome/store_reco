@@ -6,6 +6,20 @@ import React, {
 } from "react";
 import Fullpage from "./FullPage";
 
+import Service from "./components/Pages/01Service";
+import Greeting from "./components/Pages/00Greeting";
+// import SignUp from "./components/Accounts/04SignUp";
+// import Login from "./components/Accounts/03Login";
+import MonthlyInput from "./components/Pages/05MonthlyInput";
+import DailyInput from "./components/Pages/06DailyInput";
+import Information from "./components/UserPage/01Information";
+import PriceResult from "./components/UserPage/02PriceResult";
+import SelectStore from "./components/UserPage/02PriceResult";
+import Recommand from "./components/Store/02Recommand";
+
+import History from "./components/UserPage/03History";
+import UserRank from "./components/Pages/Rank/11UserRank";
+import KaKaoSignUp from "./components/Accounts/KaKaoSignUp";
 
 // import ReactDOM from 'react-dom';
 
@@ -16,17 +30,6 @@ import Box from "@material-ui/core/Box";
 import Profile from "./components/UserPage/00ProfileMenu";
 
 const Main: FunctionComponent<any> = ({}) => {
-  
-  // const [monthlyData, setMonthlyData] = useState(0);
-  // const [dailyTotalData, setDailyTotalData] = useState(0);
-  // const changeMonthly = (prop_data) => {
-  //   const monthly_value = prop_data;
-  //   setMonthlyData(monthly_value);
-  // }
-  // useEffect(() => {setMonthlyData(0)}
-  // , [monthlyData]);
-  // console.log(monthlyData, 1111)
-  
   return (
     <>
       {/* <Grid spacing={3} direction="column" justify="center" alignItems="center">

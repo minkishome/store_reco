@@ -6,7 +6,7 @@ import React, {
 } from "react";
 import { StyledText, StyledInput } from "../style";
 import axios from "axios";
-import { url as _url } from '../../url';
+import { url as _url } from "../../url";
 
 // 프로필 메뉴
 // import ProfileMenu from "../UserPage/00ProfileMenu";
@@ -30,31 +30,34 @@ const MonthlyInput = () => {
           password: _password,
           kakao_id: _id,
           nickname: _nickname,
-          monthly_cost: data[''],
+          monthly_cost: data[""],
         },
         responseType: "json"
       });
     } catch (err) {
       alert(err); // WTF?
     }
-  }
+  };
   const Enter_Check = (e) => {
-    if(e.keyCode == 13){
-      onSubmit();  // 실행할 이벤트
+    if (e.keyCode == 13) {
+      onSubmit(); // 실행할 이벤트
     }
-  }
+  };
   return (
     <>
       <StyledText>
         <h3>
           나는 한달 평균 식비를 <br />
-          <StyledInput onChange={onChangeInput} onKeyDown={Enter_Check}></StyledInput>원 써요
+          <StyledInput
+            onChange={onChangeInput}
+            onKeyDown={Enter_Check}
+          ></StyledInput>
+          원 써요
         </h3>
         <button onClick={onSubmit}>추가</button>
       </StyledText>
     </>
   );
-
 };
 
 export default MonthlyInput;
