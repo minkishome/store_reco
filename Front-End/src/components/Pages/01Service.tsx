@@ -61,7 +61,7 @@ class Service extends Component<any, State> {
         );
         sessionStorage.setItem("password", "1234");
         alert("로그인되었습니다");
-        window.location.href = "http://13.125.68.151:8081/#fifthPage";
+        window.location.href = "http://localhost:3000/#fifthPage";
       } else {
         try {
           const signup_response = await axios({
@@ -71,8 +71,12 @@ class Service extends Component<any, State> {
               password: 1234,
               email: _email,
               kakao_id: JSON.stringify(this.state.data.profile.id),
-              nickname: JSON.stringify(this.state.data.profile.properties.nickname),
-              profile_image: JSON.stringify(this.state.data.profile.properties.profile_image),
+              nickname: JSON.stringify(
+                this.state.data.profile.properties.nickname
+              ),
+              profile_image: JSON.stringify(
+                this.state.data.profile.properties.profile_image
+              ),
               // ages: _age,
             },
             responseType: "json",

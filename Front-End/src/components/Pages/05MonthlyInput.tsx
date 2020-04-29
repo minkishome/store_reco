@@ -16,13 +16,18 @@ const MonthlyInput = () => {
   const onChangeInput = (e: any) => {
     const monthly_data = parseInt(e.target.value);
     setData(monthly_data);
-  }
-  const _id = window.sessionStorage.getItem('id')
-  const semi_nickname = window.sessionStorage.getItem('nickname')
-  const _password = window.sessionStorage.getItem('password')
+  };
+  const _id = window.sessionStorage.getItem("id");
+  const semi_nickname = window.sessionStorage.getItem("nickname");
+  const _password = window.sessionStorage.getItem("password");
   const onSubmit = async () => {
     try {
-      const _nickname = (semi_nickname ? semi_nickname.replace(/^"+|"+$/g, '') : semi_nickname)
+      console.log("여기확인");
+      console.log(_id);
+      const _nickname = semi_nickname
+        ? semi_nickname.replace(/^"+|"+$/g, "")
+        : semi_nickname;
+      console.log(data);
       const res = await axios({
         method: "put",
         url: `${_url}/api/user_detail/${_id}/`,
@@ -30,9 +35,9 @@ const MonthlyInput = () => {
           password: _password,
           kakao_id: _id,
           nickname: _nickname,
-          monthly_cost: data[""],
+          monthly_cost: data,
         },
-        responseType: "json"
+        responseType: "json",
       });
     } catch (err) {
       alert(err); // WTF?
