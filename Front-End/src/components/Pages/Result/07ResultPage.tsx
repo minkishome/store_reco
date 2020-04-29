@@ -72,6 +72,16 @@ const ResultPage: FunctionComponent<any> = ({ fullpage_api }: any) => {
                   res2.data.user_lunch +
                   res2.data.user_dinner
               );
+              axios({
+                method: "put",
+                url: `${_url}/api/history_detail/${e_id}/`,
+                data: {
+                  kakao: _id,
+                  total_paid: dailyCost,
+                  today_saving: money
+                },
+                responseType: "json"
+              })
               // console.log(dailyCost);
             });
           } else {

@@ -74,7 +74,7 @@ class Service extends Component<any, State> {
               nickname: JSON.stringify(
                 this.state.data.profile.properties.nickname
               ),
-              image: JSON.stringify(
+              profile_image: JSON.stringify(
                 this.state.data.profile.properties.profile_image
               ),
               // ages: _age,

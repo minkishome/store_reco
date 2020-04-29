@@ -37,6 +37,7 @@ const UserRank: FunctionComponent<any> = ({fullpage_api}: any) => {
 
   const [priceList, setPriceList] = useState([] as any)
   const [userList, setUserList] = useState([] as any)
+  const [imageList, setImageList] = useState([] as any)
   const [toggle, setToggle] = useState(false)
 
   useEffect(() => onRank(), [])
@@ -46,25 +47,26 @@ const UserRank: FunctionComponent<any> = ({fullpage_api}: any) => {
     .then(response => {
       var temp1 = [] as any
       var temp2 = [] as any
+      var temp3 = [] as any
       response.data.map((e:any, idx:any) => {
         const int_kakao = parseInt(e.kakao)
         const total_price = parseInt(e.user_breakfast) + parseInt(e.user_lunch) + parseInt(e.user_dinner)
         temp1.push(total_price)
         setPriceList(temp1)
-        onNickname(int_kakao, temp2)
+        onNickname(int_kakao, temp2, temp3)
       })
       }
     )}
     
-  const onNickname = (k_id: any, temp2: any) => {
+  const onNickname = (k_id: any, temp2: any, temp3: any) => {
     axios.get(`${_url}/api/user_detail/${k_id}/`)
     .then(response => {
       temp2.push(response.data.nickname)
       setUserList(temp2)
+      temp3.push(response.data.profile_image)
+      setImageList(temp3)
     });
   };
-
-  console.log('결과', priceList, userList)
   
 
 
@@ -76,8 +78,9 @@ const UserRank: FunctionComponent<any> = ({fullpage_api}: any) => {
                 오늘 얼마나<br />
                 아껴 썼을까요?<br />
         </h3>
-        <ul>
+        <ul style={{ listStyleType: "none", padding: 0}}>
       {priceList.map((value, index) => {
+        // return <li key={index}>{index+1}위 <img src={imageList[index]} width="50px" height="50px"/> {userList[index]} {value}원</li>
         return <li key={index}>{index+1}위 {userList[index]} {value}원</li>
       })}
     </ul>
