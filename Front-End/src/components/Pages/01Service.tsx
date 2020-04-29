@@ -58,7 +58,7 @@ class Service extends Component<any, State> {
               email: _email,
               kakao_id: JSON.stringify(this.state.data.profile.id),
               nickname: JSON.stringify(this.state.data.profile.properties.nickname),
-              image: JSON.stringify(this.state.data.profile.properties.profile_image),
+              profile_image: JSON.stringify(this.state.data.profile.properties.profile_image),
               // ages: _age,
             },
             responseType: "json"
