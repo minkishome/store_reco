@@ -55,74 +55,6 @@ const Recommand: FunctionComponent<any> = ({}) => {
     }
   };
 
-  ////////////////////////////////////////////////////////
-  // 성공실패여부 계산하는 부분
-
-  const _id = window.sessionStorage.getItem("id");
-  const [monthlyCost, setMonthlyCost] = useState(0 as number); // 왜 얘만 Number 하면 안되는걸까?
-
-  // 유저 한달비용 불러오기 axios
-  const getMonthlyCost = () => {
-    console.log("고고");
-    try {
-      const response = axios({
-        method: "get",
-        url: `${_url}/api/user_detail/${_id}/`,
-        responseType: "json",
-      }).then((res) => {
-        setMonthlyCost(res.data.monthly_cost);
-        console.log(monthlyCost);
-        console.log(monthDay);
-      });
-      // alert("연결성공");
-    } catch (err) {
-      alert(err);
-    }
-  };
-
-  // 유저 히스토리에서 하루비용 불러오기 axios
-  const [dailyCost, setDailyCost] = useState(0 as Number);
-
-  const getDailyCost = () => {
-    console.log("하루비용 고고 ");
-    try {
-      const response = axios({
-        method: "get",
-        url: `${_url}/api/history_list/`,
-        responseType: "json",
-      }).then((res) => {
-        setDailyCost(res.data); // 히스토리 data 어떻게 가져오는지 확인하기
-        console.log(dailyCost);
-      });
-    } catch (err) {
-      alert(err);
-    }
-  };
-
-  // 월수 계산하기
-  const date: Date = new Date();
-  // const year: Number = date.getFullYear();
-  // const month: Number = date.getMonth();
-
-  // const monthDay: Number = new Date(year, month, 0).getDate();
-  const monthDay: number = new Date(
-    date.getFullYear(),
-    date.getMonth(),
-    0
-  ).getDate();
-
-  const [checkResult, setCheckResult] = useState(true as Boolean); // 성공했으면 true
-
-  const calResult: any = () => {
-    if (monthlyCost / monthDay >= dailyCost) {
-      setCheckResult(true);
-    } else {
-      setCheckResult(false);
-    }
-  };
-
-  //////////////////////////////////////////////////
-
   // 모달 부분
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -145,15 +77,6 @@ const Recommand: FunctionComponent<any> = ({}) => {
   return (
     <>
       <StyledText>
-        {/* <button onClick={getRecommandStore}>알고</button>
-        <button onClick={getMonthlyCost}>클릭</button>
-        <h3>{checkDayli === 0 ? "내일 맛있게" : "오늘 쓴 금액보다"} </h3>
-        <h3>
-          {checkDayli === 0
-            ? "먹을 수 있는 곳이에요"
-            : "저렴하게 먹을 수 있는 곳이에요"}
-        </h3> */}
-
         <br />
         <img
           src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxNzAxMDhfMSAg%2FMDAxNDgzODAyNDIwNzg4.5sRLucgny06iqQ_RBdwnaVtWIVnBvc-Lxsa__Lfc2aMg.-gHlR0au-otgL13tqbKoRoeYvcDl7i_9zp3JslOw_nsg.JPEG.39274520%2FDSC03488.JPG&type=b400"
@@ -162,6 +85,7 @@ const Recommand: FunctionComponent<any> = ({}) => {
         />
         <h4>고갯마루</h4>
         <StyledBtn onClick={handleOpen}>자세히보기</StyledBtn>
+
 
         <Modal
           aria-labelledby="transition-modal-title"

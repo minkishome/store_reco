@@ -37,27 +37,26 @@ const ResultPage: FunctionComponent<any> = ({}) => {
     day = "0" + day;
   }
 
-  // useEffect(() => getMonthlyCost(), [monthlyCost]);
+  useEffect(() => getMonthlyCost(), []);
 
   // 유저 한달비용 불러오기 axios
   const getMonthlyCost = () => {
-    console.log("고고");
     try {
       const response = axios({
         method: "get",
         url: `${_url}/api/user_detail/${_id}/`,
         responseType: "json",
       }).then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setMonthlyCost(res.data.monthly_cost);
-        console.log("한달비용", monthlyCost);
+        // console.log("한달비용", monthlyCost);
         // 하루 비용 계산하기
         res.data.history.forEach((element) => {
           if (element.payment_date === year + "-" + month + "-" + day) {
-            console.log("hit1");
+            // console.log("hit1");
             e_id = element.id;
             flag = 1;
-            console.log(e_id);
+            // console.log(e_id);
           }
           if (flag === 1) {
             axios({
@@ -65,20 +64,18 @@ const ResultPage: FunctionComponent<any> = ({}) => {
               url: `${_url}/api/history_detail/${e_id}/`,
               responseType: "json",
             }).then((res2) => {
-              console.log(res2.data);
+              // console.log(res2.data);
               calMonthDay();
-
               calMoney();
-
               setDailyCost(
                 res2.data.user_breakfast +
                   res2.data.user_lunch +
                   res2.data.user_dinner
               );
-              console.log(dailyCost);
+              // console.log(dailyCost);
             });
           } else {
-            console.log("hit2");
+            // console.log("hit2");
           }
         });
       });
@@ -93,7 +90,7 @@ const ResultPage: FunctionComponent<any> = ({}) => {
   const calMonthDay = () => {
     var days = new Date(day1.getFullYear(), day1.getMonth(), 0).getDate();
     setMonthDay(days);
-    console.log(monthDay);
+    // console.log(monthDay);
   };
 
   // result 성공 실패여부 계산
@@ -107,8 +104,8 @@ const ResultPage: FunctionComponent<any> = ({}) => {
 
   const calMoney = () => {
     const temp = Number(monthlyCost) / monthDay - Number(dailyCost);
-    console.log(Number(monthlyCost), monthDay, Number(dailyCost));
-    console.log(Number(monthlyCost) / monthDay - Number(dailyCost));
+    // console.log(Number(monthlyCost), monthDay, Number(dailyCost));
+    // console.log(Number(monthlyCost) / monthDay - Number(dailyCost));
     if (temp <= 0) {
       setMoney(Math.round(Number(dailyCost) - Number(monthlyCost) / monthDay));
     } else {
