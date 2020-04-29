@@ -23,7 +23,7 @@ class Service extends Component<any, State> {
       data: "kakao",
     };
   }
-
+  
   responseKaKao = async (res: any) => {
     this.setState({
       data: res,
@@ -32,7 +32,7 @@ class Service extends Component<any, State> {
       this.state.data.profile.kakao_account.email
     );
     const _email = semi_email.replace(/^"+|"+$/g, "");
-
+    
     // const semi_age = JSON.stringify(this.state.data.profile.kakao_account.age_range[0])
     // const s_age = semi_age.replace(/^"+|"+$/g, '')
     // const _age = parseInt(s_age)
@@ -61,7 +61,7 @@ class Service extends Component<any, State> {
         );
         sessionStorage.setItem("password", "1234");
         alert("로그인되었습니다");
-        window.location.href = "http://13.125.68.151:8081/#fifthPage";
+        // window.location.href = "http://13.125.68.151:8081/#fifthPage";
       } else {
         try {
           const signup_response = await axios({
