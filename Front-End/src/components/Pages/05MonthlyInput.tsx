@@ -20,7 +20,6 @@ const MonthlyInput = () => {
   const _id = window.sessionStorage.getItem('id')
   const semi_nickname = window.sessionStorage.getItem('nickname')
   const _password = window.sessionStorage.getItem('password')
-  console.log(window.sessionStorage.getItem('id'))
   const onSubmit = async () => {
     try {
       const _nickname = (semi_nickname ? semi_nickname.replace(/^"+|"+$/g, '') : semi_nickname)
