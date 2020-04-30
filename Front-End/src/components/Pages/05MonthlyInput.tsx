@@ -84,14 +84,7 @@ const MonthlyInput = ({}) => {
   return (
     <>
       <StyledText>
-        {/* <h3>
-          나는 한달 평균 식비를 <br />
-          <StyledInput
-            onChange={onChangeInput}
-            onKeyDown={Enter_Check}
-          ></StyledInput>
-          원 써요
-        </h3> */}
+
         <Typography component = 'div'>
           <Box fontSize='3vw'>
           나는 한달 평균 식비를 <br />

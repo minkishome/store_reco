@@ -10,9 +10,6 @@ const SelectStore: FunctionComponent<any> = ({}) => {
   return (
     <>
       <StyledText>
-
-        {/* <br></br> */}
-
         {/* <StyledBtn>카페</StyledBtn>
         <StyledBtn>음식점</StyledBtn> */}
       </StyledText>

@@ -29,23 +29,9 @@ import Box from "@material-ui/core/Box";
 
 import Profile from "./components/UserPage/00ProfileMenu";
 
-const useStlyes = makeStyles(theme => ({
-
-  content:{
-    alignItems:''
-  },
-
-  hambuger: {
-    position:'relative',
-    // right : '20px',
-    // top : '20px',
-    // zIndex:-1,
-  },
-}))
 
 const Main: FunctionComponent<any> = ({}) => {
   const [checkResult, setCheckResult] = useState(true as boolean);
-  const classes = useStlyes();
   // useEffect(() => setCheckResult(props_data), )
 
   return (
@@ -58,21 +44,6 @@ const Main: FunctionComponent<any> = ({}) => {
       </Box>
     </>
 
-  //  <Container >
-  //     {/* <Grid>  */}
-  //     {/* // display="flex" justifyContent="flex-end" m={1} p={1}> */}
-  //     <Grid className={classes.hambuger} >
-  //       <Profile   />
-  //     </Grid>
-  //     {/* </Box> */}
- 
-  //     <Grid> 
-  //     {/* // display="flex" justifyContent="center" alignItems="center"> */}
-  //       <Fullpage/>
-  //     </Grid>
-
-  //   </Container>
-  //   </>
   );
 };
 
