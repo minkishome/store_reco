@@ -5,8 +5,12 @@ import React, {
   Component,
 } from "react";
 import { StyledText, StyledBtn } from "../style";
-import axios from "axios";
-import { url as _url } from "../../url";
+import axios from 'axios';
+import { url as _url } from '../../url';
+import Container from '@material-ui/core/Container';
+import { Typography, Grid  } from "@material-ui/core";
+
+const Survey: FunctionComponent<any> = ({ }) => {
 
 const Survey: FunctionComponent<any> = ({}) => {
   const [selectedFood, setSelectedFood] = useState([] as any);
@@ -117,12 +121,9 @@ const Survey: FunctionComponent<any> = ({}) => {
     };
     return (
       <>
-        <img
-          src={e[1]}
-          width="150px"
-          height="150px"
-          onClick={() => onClickHandler(e)}
-        ></img>
+
+            <img src={e[1]} width="17%" height="auto%" onClick={() => onClickHandler(e)}></img>
+
       </>
     );
   });
@@ -148,14 +149,23 @@ const Survey: FunctionComponent<any> = ({}) => {
 
   return (
     <>
-      <StyledText>
-        <h1>Survey</h1>
-        <h2>좋아하는 음식을 선택해주세요.</h2>
-        {svList}
+    <Container style= {{ 
+      height:'100%'
+    }}>
+      {/* <StyledText> */}
+      {/* <Container style={{height:'25%'}}> */}
+        <Typography style={{fontSize:'3vw'}}>Survey</Typography>
+        <Typography style={{fontSize:'2vw'}}>좋아하는 음식을 선택해주세요.</Typography>
+      {/* </Container> */}
+        <Container  style={{height: '50%', width:'100%', }}>
+          {svList}
+        
         <br></br>
         <p>선택된 음식: {selectedFood}</p>
-        <StyledBtn onClick={() => submitHandler()}>설문완료</StyledBtn>
-      </StyledText>
+        <StyledBtn onClick={submitHandler}>설문완료</StyledBtn>
+        </Container>
+      {/* </StyledText> */}
+      </Container>
     </>
   );
 };
