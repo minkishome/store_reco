@@ -71,18 +71,16 @@ class Service extends Component<any, State> {
             url: `${_url}/api/user_list/`,
             data: {
               password: 1234,
-              // email: _email,
-              kakao_id: "4",
-              nickname: "사보텐",
-              // password: 1234,
-              // email: _email,
-              // kakao_id: JSON.stringify(this.state.data.profile.id),
-              // nickname: JSON.stringify(
-              //   this.state.data.profile.properties.nickname
-              // ),
+              email: _email,
+              kakao_id: JSON.stringify(this.state.data.profile.id),
+              nickname: JSON.stringify(
+                this.state.data.profile.properties.nickname
+              ),
               profile_image: JSON.stringify(
                 this.state.data.profile.properties.profile_image
               ),
+              item: "에어팟",
+              item_image: "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/269056d2-2466-4aff-bd5f-f6c6f908bbe6.jpeg",
               // ages: _age,
             },
             responseType: "json",
