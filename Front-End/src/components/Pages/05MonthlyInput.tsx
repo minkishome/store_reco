@@ -4,7 +4,7 @@ import React, {
   useEffect,
   Component,
 } from "react";
-import { StyledText, StyledInput } from "../style";
+import { StyledText, StyledInput, StyledBtn } from "../style";
 import axios from "axios";
 import { url as _url } from "../../url";
 import {Typography, Box, TextField} from '@material-ui/core';
@@ -77,7 +77,7 @@ const MonthlyInput = ({fullpage_api}) => {
           </TextField>
            원 써요    
     <br/> </h2>
-        <button onClick={onSubmit}>추가</button>
+    <StyledBtn onClick={onSubmit}>추가</StyledBtn>
       </StyledText>
     </>
   );

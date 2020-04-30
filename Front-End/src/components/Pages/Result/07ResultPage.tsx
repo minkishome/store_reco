@@ -26,8 +26,8 @@ const ResultPage: FunctionComponent<any> = ({ fullpage_api }: any) => {
 
   var date = new Date();
   var year = date.getFullYear();
-  var month = new String(date.getUTCMonth() + 1);
-  var day = new String(date.getUTCDate());
+  var month = new String(date.getMonth() + 1);
+  var day = new String(date.getDate());
   var flag = 0;
   var e_id = 0;
 
@@ -39,7 +39,7 @@ const ResultPage: FunctionComponent<any> = ({ fullpage_api }: any) => {
     day = "0" + day;
   }
 
-  useEffect(() => getMonthlyCost(), []);
+  // useEffect(() => getMonthlyCost(), []);
 
   // 유저 한달비용 불러오기 axios
   const getMonthlyCost = () => {
@@ -131,9 +131,8 @@ const ResultPage: FunctionComponent<any> = ({ fullpage_api }: any) => {
           
                 <h1>Result Page</h1>
          <h2>
-          {checkResult === monthlyCost / monthDay >= dailyCost
-            ? "성공"
-            : "실패"}
+          {checkResult === monthlyCost / monthDay >= dailyCost}
+
           </h2>
          <h2> 오늘 하루 식비를
           <br />
@@ -147,7 +146,7 @@ const ResultPage: FunctionComponent<any> = ({ fullpage_api }: any) => {
               <h2>
           {checkResult === monthlyCost / monthDay >= dailyCost
             ? " 먹어서 뭐해요!! 남는건 에어팟인데!"
-            : " 먹어서 뭐해요.... 에어팟 안 살꺼에요?"}
+            : " 먹어서 뭐해요! 마세라티 안 살꺼에요?"}
          </h2>
 
         <StyledTextBtn onClick={() => fullpage_api.moveSlideRight()}>

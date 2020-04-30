@@ -1,8 +1,7 @@
 import React, { FunctionComponent, useState, useEffect, Component } from 'react';
-import { StyledText } from '../../style';
+import { StyledText, StyledBtn } from '../../style';
 import axios from "axios";
 import { url as _url } from '../../../url';
-
 const UserRank: FunctionComponent<any> = ({fullpage_api}: any) => {
   // var price_list = [] as any;
   // var user_list = [] as any;
@@ -86,7 +85,7 @@ const UserRank: FunctionComponent<any> = ({fullpage_api}: any) => {
         // return <li key={index}>{index+1}위 {userList[index]} {value}원</li>
       })}
     </ul>
-        <button onClick={() => {fullpage_api.moveSlideLeft()}}>이전 화면으로 돌아가기 </button>
+        <StyledBtn onClick={() => {fullpage_api.moveSlideLeft()}}>이전 화면으로 돌아가기 </StyledBtn>
       </StyledText>
     </>
   )

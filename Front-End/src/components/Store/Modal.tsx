@@ -43,7 +43,7 @@ const Modal = (params: any) => {
         <h3>평점 : {mean}</h3>
         <h3>주소: {address} </h3>
         <div className="button-wrapDouble">
-          <button onClick={showLink}>더 알아보기</button>
+          <button onClick={() => showLink(name)}>더 알아보기</button>
           <button onClick={close}>닫기</button>
         </div>
         </StyledText>

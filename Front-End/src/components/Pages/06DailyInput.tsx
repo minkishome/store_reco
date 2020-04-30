@@ -8,8 +8,8 @@ import SendIcon from '@material-ui/icons/Send';
 const DailyInput: FunctionComponent<any> = ({ }) => {
   var date = new Date(); 
   var year = date.getFullYear(); 
-  var month = new String(date.getUTCMonth()+1); 
-  var day = new String(date.getUTCDate());
+  var month = new String(date.getMonth()+1); 
+  var day = new String(date.getDate());
   
   // 한자리수일 경우 0을 채워준다. 
   if(month.length == 1){ 
@@ -126,43 +126,52 @@ const DailyInput: FunctionComponent<any> = ({ }) => {
           <button onClick={onSubmit}>추가</button>
         <h2>총 합: {breakfast+lunch+dinner}</h2> */}
       
-          
-           <h2>     나는 오늘 아침에 <TextField id="standard-basic"
-          inputProps={{min: 0, style: { textAlign: 'center' }}}
-          style = {{
-            width:'10rem',
-          
-            
-        }}
-        onChange={changeBreakfast}
-          >
-                 
-                  </TextField>
-                  </h2>
-               <h2> 점심에 <TextField id="standard-basic"
-          inputProps={{min: 0, style: { textAlign: 'center' }}}
-          style = {{
-            width:'10rem',
-          
-            
-        }}
-        onChange={changeLunch}
-          >
-                 
-                  </TextField>
-                  </h2>
-             
-               <h2> 저녁에  <TextField id="standard-basic"
-                            inputProps={{min: 0, style: { textAlign: 'center' }}}
-                            style = {{
-                              width:'10rem',
+         
+           <h2>     나는 오늘 아침에   
+                 <input onChange={changeBreakfast} 
+                    style={{
+                      outline:'0',
+                      borderWidth:'0 0 2px',
+                      borderColor:'gray',
+                      fontSize:'2rem',
+                      textAlign :'center'
+
+                    }}
+                  >  
+                        
                             
-                              
-                          }}
-                          onChange={changeDinner}
-                            >
-                 
-                  </TextField></h2>
+                  </input> </h2>
+                  
+              
+                  <h2> 점심에 
+                 <input onChange={changeLunch} 
+                    style={{
+                      outline:'0',
+                      borderWidth:'0 0 2px',
+                      borderColor:'gray',
+                      fontSize:'2rem',
+                      textAlign :'center'
+
+                    }}
+                  >  
+                        
+                            
+                  </input> </h2>
+             
+               <h2> 저녁에  
+                 <input onChange={changeDinner} 
+                    style={{
+                      outline:'0',
+                      borderWidth:'0 0 2px',
+                      borderColor:'gray',
+                      fontSize:'2rem',
+                      textAlign :'center'
+
+                    }}
+                  >  
+                        
+                            
+                  </input> </h2>
              
                   <Button
                     onClick={onSubmit}

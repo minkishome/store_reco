@@ -47,10 +47,10 @@ const Amount: FunctionComponent<any> = ({ }) => {
          />
         <h3>
         {itemPrice-getArraySum(saveList) > 0 ? 
-        `${itemName} 사기까지 ${itemPrice-getArraySum(saveList)}원 남았습니다.` : 
+        `${itemName} 사기까지 ${itemPrice+getArraySum(saveList)}원 남았습니다.` : 
         `축하합니다!`}
         </h3>
-        <StyledTextBtn><Box fontSize='2vw'>다른 사람은 무엇을 사고 싶어할까요?</Box></StyledTextBtn>
+        {/* <StyledTextBtn><Box fontSize='2vw'>다른 사람은 무엇을 사고 싶어할까요?</Box></StyledTextBtn> */}
         <Typography component = 'div'>
          
 

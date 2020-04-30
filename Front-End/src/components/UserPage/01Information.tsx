@@ -152,7 +152,6 @@ const Information: FunctionComponent<any> = ({ setUserImage }: any) => {
                     placeholder={`${userInfo.item}`} 
                     onChange={itemHandler} 
                     defaultValue={`${userInfo.item}`}
-
                   >
 
                   </TextField></h3>

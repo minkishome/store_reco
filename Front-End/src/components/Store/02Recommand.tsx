@@ -5,12 +5,20 @@ import React, {
   Component,
 } from "react";
 import { StyledText, StyledBtn } from "../style";
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import { makeStyles } from '@material-ui/core/styles';
 
 // axios import
 import { url as _url } from "../../url";
 import axios from "axios";
 import Modal from "./Modal";
-import { Grid } from "@material-ui/core"
+import { Grid } from "@material-ui/core";
+import Typography from '@material-ui/core/Typography';
+
 // materia-ui 모달 import
 // import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 // import Modal from "@material-ui/core/Modal";
@@ -34,6 +42,7 @@ const Recommand: FunctionComponent<any> = ({ }) => {
 
 
   const getRecommandStore = () => {
+    console.log('요청보냄')
     const _id = window.sessionStorage.getItem('id')
     const res = axios({
       method: 'get',
@@ -49,27 +58,58 @@ const Recommand: FunctionComponent<any> = ({ }) => {
         tmp.push([_name, _id, _img])
       });
       setStoreList(tmp)
+      console.log('됨')
     })
   }
+
+  const useStyles = makeStyles({
+    root: {
+      maxWidth: 300,
+    },
+    media: {
+      height: 140,
+    },
+  });
+
+  const classes = useStyles();
 
 
   return (
     <>
       <StyledText>
-        <h1>오늘 쓴 금액과 Survey 바탕으로 맛집을 추천해드릴게요</h1>
+        <h2>오늘 쓴 금액과 Survey 바탕으로 맛집을 추천해드릴게요</h2>
         <br></br>
         {storeList.map((e: any, idx: number) => {
           return (
             <>
-              <div className="box">
-                {e[0]}
-                <img
+              <Card className={classes.root} style={{float: "left", width: "33%"}}>
+                <CardActionArea>
+                  <CardMedia
+                    // @ts-ignore
+                    className={classes.media}
+                    image={e[2]}
+                    title={e[0]}
+                    onClick={() => openModalHandler(e[1])}
+                  >
+                  </CardMedia>
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                    {e[0]}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+              {/* <div>
+              <img
                   src={e[2]}
                   alt=""
                   width="200px"
                   onClick={() => openModalHandler(e[1])}
                 />
-              </div>
+                <div className="card-body">
+                  <h2 className="card-title text-center">{e[0]}</h2>
+                </div>
+              </div> */}
             </>
           )
         })}

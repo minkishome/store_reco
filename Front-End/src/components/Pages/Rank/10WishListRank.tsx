@@ -22,7 +22,7 @@ const UserRank: FunctionComponent<any> = ({ }) => {
                 height="100px"
                  />3위 애플워치<button>변경하기</button></p>
             </ul>
-            <button>이전 화면으로 돌아가기 </button>
+            {/* <styledBtn>이전 화면으로 돌아가기</styledBtn> */}
         </>
     )
 }
