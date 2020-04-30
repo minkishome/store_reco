@@ -12,6 +12,8 @@ import { url as _url } from "../../url";
 
 import { Typography, Container, Grid, Box } from "@material-ui/core";
 
+// import ES from "./es_component";
+
 const PriceResult: FunctionComponent<any> = ({}) => {
   const [saveList, setSaveList] = useState([] as any);
   const [itemPrice, setItemPrice] = useState([] as any);
@@ -69,9 +71,18 @@ const PriceResult: FunctionComponent<any> = ({}) => {
           <StyledText>
             <h1>{itemName} 사기까지</h1>
             <img src={itemImage} width="150" />
+<<<<<<< HEAD
             <h1>{itemPrice + getArraySum(saveList)} 원</h1>
             <h1>남았습니다.</h1>
+=======
+>>>>>>> 9236241461cb4ddf4070b4e2dbb3b0b59ca7206c
 
+            <h1>
+              {/* // @ts-ignore
+              <span>{{ animatedGap }}</span> */}
+              {itemPrice - getArraySum(saveList)} 원
+            </h1>
+            <h1>남았습니다.</h1>
             {/* <h3>히스토리 보기</h3>
         <button onClick={() => setToggle(!toggle)}>▼</button>
         {toggle ? <History /> : <div></div>} */}
@@ -82,6 +93,7 @@ const PriceResult: FunctionComponent<any> = ({}) => {
             >
               돌아가기
             </StyledBtn>
+            {/* <ES /> */}
           </StyledText>
         </Grid>
       </Grid>
