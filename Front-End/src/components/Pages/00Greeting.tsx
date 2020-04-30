@@ -29,7 +29,6 @@ const Greeting: FunctionComponent<any> = ({}) => {
       <StyledText>
         <img src={img} alt="titleImage" max-width="100%" height="auto" />
       </StyledText>
-      <button onClick={send}>가랏!</button>
     </>
   );
 };
