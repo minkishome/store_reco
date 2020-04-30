@@ -63,7 +63,7 @@ const Recommand: FunctionComponent<any> = ({ }) => {
 
   const useStyles = makeStyles({
     root: {
-      maxWidth: 345,
+      maxWidth: 300,
     },
     media: {
       height: 140,
@@ -76,7 +76,7 @@ const Recommand: FunctionComponent<any> = ({ }) => {
   return (
     <>
       <StyledText>
-        <h1>오늘 쓴 금액과 Survey 바탕으로 맛집을 추천해드릴게요</h1>
+        <h2>오늘 쓴 금액과 Survey 바탕으로 맛집을 추천해드릴게요</h2>
         <br></br>
         {storeList.map((e: any, idx: number) => {
           return (
