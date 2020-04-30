@@ -40,7 +40,7 @@ class Service extends Component<any, State> {
 
     try {
       alert("요청보낸당");
-      console.log(this.props.fullpage_api)
+      // console.log(this.props.fullpage_api)
       const response = await axios({
         method: "get",
         // url: `${_url}/api/user_exist/${JSON.stringify(

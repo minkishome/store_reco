@@ -128,7 +128,7 @@ const ResultPage: FunctionComponent<any> = ({ fullpage_api }: any) => {
   return (
     <>
       <StyledText>
-            <Typography>
+            <Typography component = 'div'>
               <Box fontSize='2vw'>
                 Result Page
               </Box>
