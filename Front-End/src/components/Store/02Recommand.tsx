@@ -9,129 +9,81 @@ import { StyledText, StyledBtn } from "../style";
 // axios import
 import { url as _url } from "../../url";
 import axios from "axios";
-
+import Modal from "./Modal";
+import {Grid} from "@material-ui/core"
 // materia-ui 모달 import
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
+// import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+// import Modal from "@material-ui/core/Modal";
+// import Backdrop from "@material-ui/core/Backdrop";
+// import Fade from "@material-ui/core/Fade";
 
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
+const Recommand: FunctionComponent<any> = ({ }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalData, setModalData] = useState({} as any);
+  const [storeList, setStoreList] = useState([] as any);
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    modal: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-    },
-    paper: {
-      backgroundColor: theme.palette.background.paper,
-      border: "2px solid #000",
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-    },
-  })
-);
+  useEffect(() => getRecommandStore(), [isModalOpen]);
 
-const checkDayli = 0;
-const _id = window.sessionStorage.getItem("id");
-// const [storeList, setStoreList] = useState([]);
+  const openModalHandler = (data: any) => {
+    setModalData(data);
+    var t: any = true 
+    setIsModalOpen(t);
+  };
 
-const Recommand: FunctionComponent<any> = ({}) => {
-  // 알고리즘 음식점 axios
+  const closeModalHandler = () => setIsModalOpen(false);
+
+  
   const getRecommandStore = () => {
-    try {
-      console.log(_id);
-      const response = axios({
-        method: "get",
-        url: `${_url}/stores/store_list/${_id}/`, // 알고리즘 url
-        responseType: "json",
-      }).then((res) => {
-        // console.log(res.data);
-        // setStoreList(res.data);
-        // console.log(storeList);
+    const res = axios({
+      method: 'get',
+      url: `${_url}/stores/store_list/12341234/`,
+      responseType: "json"
+    }).then((res) => {
+      var temp = [] as any
+      var tmp = [] as any
+      res.data.map((e: any, idx: Number) => {
+        const _name = e.store_name
+        const _id = e.store_id
+        const _img = e.store_image
+        tmp.push([_name, _id, _img])
       });
-      alert("연결성공");
-    } catch (err) {
-      alert(err);
-    }
-  };
-
-  // 모달 부분
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-
-
-  const handleOpen = () => {
-    setOpen(true);
-    console.log("열려라");
-    // console.log(storeList);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const showLink = () => {
-    window.open(
-      `https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query=고갯마루` // 음식점 이름 수정
-    );
-  };
+      setStoreList(tmp)
+    })
+  }
 
 
   
 
   return (
     <>
-      <StyledText>
-        <br />
-        <img
-          src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxNzAxMDhfMSAg%2FMDAxNDgzODAyNDIwNzg4.5sRLucgny06iqQ_RBdwnaVtWIVnBvc-Lxsa__Lfc2aMg.-gHlR0au-otgL13tqbKoRoeYvcDl7i_9zp3JslOw_nsg.JPEG.39274520%2FDSC03488.JPG&type=b400"
-          alt=""
-          width="200px"
-        />
-        <h4>고갯마루</h4>
-        <StyledBtn onClick={handleOpen}>자세히보기</StyledBtn>
-        
-        <Modal
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          className={classes.modal}
-          open={open}
-          onClose={handleClose}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
-        >
-          <Fade in={open}>
-            <div className={classes.paper}>
-              <h2 id="transition-modal-title">store_name</h2>
-              {/* <p id="transition-modal-description"> */}
-              <div>
-                <img
-                  src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxNzAxMDhfMSAg%2FMDAxNDgzODAyNDIwNzg4.5sRLucgny06iqQ_RBdwnaVtWIVnBvc-Lxsa__Lfc2aMg.-gHlR0au-otgL13tqbKoRoeYvcDl7i_9zp3JslOw_nsg.JPEG.39274520%2FDSC03488.JPG&type=b400"
-                  alt="고갯마루"
-                  width="200"
-                />
-                <br />
-                tel
-                <br />
-                address category score_mean
-                <br />
-                <StyledBtn onClick={showLink}>더 알아보기</StyledBtn>
-              </div>
-
-              {/* </p> */}
+    <StyledText>
+    <h1>오늘 쓴 금액과 Survey 바탕으로 맛집을 추천해드릴게요</h1>
+    <br></br>
+      {storeList.map((e: any, idx: number) => {
+        return (
+          <>
+          <div className="box">
+            {e[0]}
+            <img
+              src={e[2]}
+              alt=""
+              width="200px"
+              onClick={() => openModalHandler(e[1])}
+            />
             </div>
-          </Fade>
-        </Modal>
+          </>
+        )
+      })}
+      {isModalOpen ? (
+        <Modal
+          close={closeModalHandler}
+          data={modalData}
+          openModal={openModalHandler}
+        />
+      ) : null}
       </StyledText>
     </>
-  );
-};
-
+  )
+}
 export default Recommand;
+

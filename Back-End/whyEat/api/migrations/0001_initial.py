@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
                 ('price', models.IntegerField(null=True, verbose_name='물건가격')),
                 ('monthly_cost', models.IntegerField(null=True, verbose_name='한달 식비')),
                 ('profile_image', models.CharField(max_length=255, null=True, verbose_name='프로필사진')),
-                ('itme_image', models.CharField(max_length=255, null=True, verbose_name='물건 사진')),
+                ('item_image', models.CharField(max_length=255, null=True, verbose_name='물건 사진')),
                 ('ages', models.IntegerField(null=True, verbose_name='나이')),
                 ('groups', models.ManyToManyField(blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.', related_name='user_set', related_query_name='user', to='auth.Group', verbose_name='groups')),
                 ('user_permissions', models.ManyToManyField(blank=True, help_text='Specific permissions for this user.', related_name='user_set', related_query_name='user', to='auth.Permission', verbose_name='user permissions')),
