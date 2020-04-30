@@ -26,8 +26,8 @@ const ResultPage: FunctionComponent<any> = ({ fullpage_api }: any) => {
 
   var date = new Date();
   var year = date.getFullYear();
-  var month = new String(date.getUTCMonth() + 1);
-  var day = new String(date.getUTCDate());
+  var month = new String(date.getMonth() + 1);
+  var day = new String(date.getDate());
   var flag = 0;
   var e_id = 0;
 
@@ -67,25 +67,24 @@ const ResultPage: FunctionComponent<any> = ({ fullpage_api }: any) => {
               responseType: "json",
             }).then((res2) => {
               // console.log(res2.data);
+              var temp = res2.data.user_breakfast +
+              res2.data.user_lunch +
+              res2.data.user_dinner
               calMonthDay();
               calMoney();
-              setDailyCost(
-                res2.data.user_breakfast +
-                  res2.data.user_lunch +
-                  res2.data.user_dinner
-              );
-              axios({
-                method: "put",
-                url: `${_url}/api/history_detail/${e_id}/`,
-                data: {
-                  kakao: _id,
-                  total_paid: dailyCost,
-                  today_saving: money
-                },
-                responseType: "json"
-              })
+              setDailyCost(temp);
               // console.log(dailyCost);
             });
+            // axios({
+            //   method: "put",
+            //   url: `${_url}/api/history_detail/${e_id}/`,
+            //   data: {
+            //     kakao: _id,
+            //     total_paid: dailyCost,
+            //     today_saving: money
+            //   },
+            //   responseType: "json"
+            // })
           } else {
             // console.log("hit2");
           }
@@ -95,7 +94,7 @@ const ResultPage: FunctionComponent<any> = ({ fullpage_api }: any) => {
       alert(err);
     }
   };
-  getMonthlyCost();
+  // getMonthlyCost();
 
   // 월수 계산하기
   const day1: Date = new Date();

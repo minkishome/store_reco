@@ -43,10 +43,10 @@ class Service extends Component<any, State> {
       // console.log(this.props.fullpage_api)
       const response = await axios({
         method: "get",
-        // url: `${_url}/api/user_exist/${JSON.stringify(
-        //   this.state.data.profile.id
-        // )}/`,
-        url: `${_url}/api/user_exist/4/`,
+        url: `${_url}/api/user_exist/${JSON.stringify(
+          this.state.data.profile.id
+        )}/`,
+        // url: `${_url}/api/user_exist/4/`,
         responseType: "json",
       });
       alert("이미 회원가입 된 유저입니다.");
@@ -72,14 +72,14 @@ class Service extends Component<any, State> {
             data: {
               password: 1234,
               // email: _email,
-              kakao_id: "4",
-              nickname: "사보텐",
+              // kakao_id: "4",
+              // nickname: "사보텐",
               // password: 1234,
-              // email: _email,
-              // kakao_id: JSON.stringify(this.state.data.profile.id),
-              // nickname: JSON.stringify(
-              //   this.state.data.profile.properties.nickname
-              // ),
+              email: _email,
+              kakao_id: JSON.stringify(this.state.data.profile.id),
+              nickname: JSON.stringify(
+                this.state.data.profile.properties.nickname
+              ),
               profile_image: JSON.stringify(
                 this.state.data.profile.properties.profile_image
               ),

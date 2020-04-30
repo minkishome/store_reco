@@ -9,8 +9,19 @@ import axios from 'axios';
 import { url as _url } from '../../url';
 import Container from '@material-ui/core/Container';
 import { Typography, Grid  } from "@material-ui/core";
+import Paper from '@material-ui/core/Paper';
+import { makeStyles } from '@material-ui/core/styles';
 
-
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+}));
 
 const Survey: FunctionComponent<any> = ({fullpage_api}) => {
   const [selectedFood, setSelectedFood] = useState([] as any);
@@ -105,6 +116,56 @@ const Survey: FunctionComponent<any> = ({fullpage_api}) => {
     ],
   ];
 
+  
+
+  const classes = useStyles();
+
+  function FormRow() {
+    return (
+      <React.Fragment>
+        <Grid container style={{display:'flex', flexDirection:"row"}}>
+    <Paper className={classes.paper}>{svList.slice(0, 6)}</Paper>
+        </Grid>
+        <Grid container style={{display:'flex', flexDirection:"row"}}>
+    <Paper className={classes.paper}>{svList.slice(6, 12)}</Paper>
+        </Grid>
+        <Grid container style={{display:'flex', flexDirection:"row"}}>
+    <Paper className={classes.paper}>{svList.slice(12, 18)}</Paper>
+        </Grid>
+        {/* <Grid item xs={2}>
+    <Paper className={classes.paper}>{svList.slice(9, 12)}</Paper>
+        </Grid>
+        <Grid item xs={2}>
+    <Paper className={classes.paper}>{svList.slice(12, 15)}</Paper>
+        </Grid>
+        <Grid item xs={2}>
+    <Paper className={classes.paper}>{svList.slice(15, 18)}</Paper>
+        </Grid> */}
+      </React.Fragment>
+  //      <React.Fragment>
+  //      <Grid item xs={2}>
+  //  <Paper className={classes.paper}>{svList.slice(0, 3)}</Paper>
+  //      </Grid>
+  //      <Grid item xs={2}>
+  //  <Paper className={classes.paper}>{svList.slice(3, 6)}</Paper>
+  //      </Grid>
+  //      <Grid item xs={2}>
+  //  <Paper className={classes.paper}>{svList.slice(6, 9)}</Paper>
+  //      </Grid>
+  //      <Grid item xs={2}>
+  //  <Paper className={classes.paper}>{svList.slice(9, 12)}</Paper>
+  //      </Grid>
+  //      <Grid item xs={2}>
+  //  <Paper className={classes.paper}>{svList.slice(12, 15)}</Paper>
+  //      </Grid>
+  //      <Grid item xs={2}>
+  //  <Paper className={classes.paper}>{svList.slice(15, 18)}</Paper>
+  //      </Grid>
+  //    </React.Fragment>
+  
+    );
+  }
+
   const svList = svFood.map((e: any) => {
     const onClickHandler = (e: any) => {
       if (selectedFood.find((element) => element === e[0])) {
@@ -139,8 +200,11 @@ const Survey: FunctionComponent<any> = ({fullpage_api}) => {
           > */}
             <a href='#'>
             <img src={e[1]} 
-              width="100%"
-              height="100%" 
+              // width="150rem"
+              // height="150rem"
+              // style={{ maxWidth: 150 ,height: 150}}
+              style = {{width:'16%', height:'100%'}}
+ 
 
              onClick={() => onClickHandler(e)}></img>
              </a>
@@ -185,9 +249,27 @@ const Survey: FunctionComponent<any> = ({fullpage_api}) => {
         style={{  height: '100%', display: 'inline-block' }}
         > */}
 
-        <Grid container style={{
+
+<div className={classes.root}>
+      <Grid container spacing={1}>
+        <Grid container item xs={12} spacing={1}>
+          <FormRow />
+        </Grid>
+        {/* <Grid container item xs={12} spacing={3}>
+          <FormRow />
+        </Grid>
+        <Grid container item xs={12} spacing={3}>
+          <FormRow />
+        </Grid> */}
+      </Grid>
+    </div>
+        {/* <Grid container 
+        justify="center"
+        spacing={5}
+        style={{
           display: 'grid',
-          height:'70%',
+          height:'20%',
+          width: '20%',
           gridTemplateColumns: '33% 33% 33%',
           gridTemplateRows : '15% 15% 15% 15% 15% 15% ',
           // flexDirection:'row',
@@ -195,7 +277,7 @@ const Survey: FunctionComponent<any> = ({fullpage_api}) => {
         }}
          >
           {svList}
-        </Grid>
+        </Grid> */}
 
         <p style ={{
           position:'relative'

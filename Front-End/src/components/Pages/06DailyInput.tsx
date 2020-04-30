@@ -8,8 +8,8 @@ import SendIcon from '@material-ui/icons/Send';
 const DailyInput: FunctionComponent<any> = ({ }) => {
   var date = new Date(); 
   var year = date.getFullYear(); 
-  var month = new String(date.getUTCMonth()+1); 
-  var day = new String(date.getUTCDate());
+  var month = new String(date.getMonth()+1); 
+  var day = new String(date.getDate());
   
   // 한자리수일 경우 0을 채워준다. 
   if(month.length == 1){ 
@@ -23,6 +23,29 @@ const DailyInput: FunctionComponent<any> = ({ }) => {
   //   // const breakfast_id = e.target.id;
   //   setDate(year + "-" + month + "-" + day)
   // }
+
+  const [money, setMoney] = useState(0 as number);
+  const [monthDay, setMonthDay] = useState(0 as number);
+  const [monthlyCost, setMonthlyCost] = useState(0 as number);
+  const [dailyCost, setDailyCost] = useState(0 as number);
+
+  const day1: Date = new Date();
+  const calMonthDay = () => {
+    var days = new Date(day1.getFullYear(), day1.getMonth(), 0).getDate();
+    setMonthDay(days);
+    // console.log(monthDay);
+  };
+
+  const calMoney = () => {
+    const temp = Number(monthlyCost) / monthDay - Number(dailyCost);
+    // console.log(Number(monthlyCost), monthDay, Number(dailyCost));
+    // console.log(Number(monthlyCost) / monthDay - Number(dailyCost));
+    if (temp <= 0) {
+      setMoney(Math.round(Number(dailyCost) - Number(monthlyCost) / monthDay));
+    } else {
+      setMoney(Math.round(Number(monthlyCost) / monthDay - Number(dailyCost)));
+    }
+  };
 
   const [breakfast, setBreakfast] = useState(0);
   const changeBreakfast = (e: any) => {
@@ -62,14 +85,19 @@ const DailyInput: FunctionComponent<any> = ({ }) => {
         method: "get",
         url: `${_url}/api/user_detail/${_id}/`,
         responseType: "json"
-      });
-      response.data.history.forEach(element => {
-        console.log(element.payment_date, year + "-" + month + "-" + day)
-        if (element.payment_date === year + "-" + month + "-" + day) {
-          e_id = element.id
-          flag = 1;
-        }  
-      })
+      }).then((res) => {
+        setMonthlyCost(res.data.monthly_cost)
+        setDailyCost(breakfast+lunch+dinner);
+        calMonthDay();
+        calMoney();
+        res.data.history.forEach(element => {
+          if (element.payment_date === year + "-" + month + "-" + day) {
+            e_id = element.id
+            flag = 1;
+          }  
+        }
+      )})
+      console.log(money, 1111111)
       if (flag === 1) {
           await axios({
             method: "put",
@@ -79,6 +107,8 @@ const DailyInput: FunctionComponent<any> = ({ }) => {
               user_breakfast: breakfast,
               user_lunch: lunch,
               user_dinner: dinner,
+              total_paid: dailyCost,
+              today_saving: money
             },
             responseType: "json"
           });
@@ -92,6 +122,8 @@ const DailyInput: FunctionComponent<any> = ({ }) => {
               user_breakfast: breakfast,
               user_lunch: lunch,
               user_dinner: dinner,
+              total_paid: dailyCost,
+              today_saving: money
             },
             
             responseType: "json"
@@ -134,8 +166,8 @@ const DailyInput: FunctionComponent<any> = ({ }) => {
           
             
         }}
-        onChange={changeBreakfast}
-          >
+        
+          ><input onChange={changeBreakfast} ></input>
                  
                   </TextField>
                   </h2>
