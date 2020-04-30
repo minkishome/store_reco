@@ -3,6 +3,7 @@ import { Route, withRouter } from "react-router-dom";
 import Main from "./Main";
 import Information from "../src/components/UserPage/01Information";
 import PriceResult from "../src/components/UserPage/02PriceResult";
+import History from "../src/components/UserPage/03History";
 import Logout from "../src/components/UserPage/Logout";
 import "./App.css";
 import "./Page.css";
@@ -50,7 +51,8 @@ class App extends Component<any, State> {
       <div className="app">
         <Route exact path="/" component={Main} />
         <Route path="/information" component={Information} />
-        <Route path="/history" component={PriceResult} />
+        <Route path="/history" component={History} />
+        <Route path="/priceresult" component={PriceResult} />
         <Route path="/logout" component={Logout} />
       </div>
     );

@@ -13,15 +13,19 @@ class Imgur extends Component<any> {
   };
 
   EditUserInfo = async () => {
-    // const _id = window.sessionStorage.getItem('id')
-    const _id = "3"
-    const _nickname = "요리사"
+    const _id = window.sessionStorage.getItem('id')
+    // const _id = "3"
+    const semi_nickname = window.sessionStorage.getItem("nickname");
+    const _password = window.sessionStorage.getItem("password");
     try {
+      const _nickname = semi_nickname
+        ? semi_nickname.replace(/^"+|"+$/g, "")
+        : semi_nickname;
       const res = await axios({
         method: "put",
         url: `${_url}/api/user_detail/${_id}/`,
         data: {
-          password: '1234',
+          password: _password,
           nickname: _nickname,
           kakao_id: _id,
           // @ts-ignore

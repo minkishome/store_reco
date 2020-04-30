@@ -96,8 +96,7 @@ const History: FunctionComponent<any> = ({}) => {
             </TableBody>
           </Table>
         </TableContainer>
-
-        <StyledBtn>돌아가기</StyledBtn>
+        <StyledBtn onClick={() => {window.history.back()}}>돌아가기</StyledBtn>
       </StyledText>
     </>
   );

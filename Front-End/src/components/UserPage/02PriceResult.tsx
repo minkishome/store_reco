@@ -4,29 +4,59 @@ import React, {
   useEffect,
   Component,
 } from "react";
-import { StyledText, StyledTextBtn } from "../style";
+import { StyledText, StyledTextBtn, StyledBtn } from "../style";
 import History from "./03History";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { url as _url } from "../../url";
 
 const PriceResult: FunctionComponent<any> = ({}) => {
-  const [toggle, setToggle] = useState(false);
+  const [saveList, setSaveList] = useState([] as any)
+  const [itemPrice, setItemPrice] = useState([] as any)
+  const [itemName, setItemName] = useState('')
+  const [itemImage, setItemImage] = useState('')
+  const _id = window.sessionStorage.getItem('id')
+  useEffect(() => onAmount(), [])
+  const onAmount = () => {
+    axios.get(`${_url}/api/user_detail/${_id}/`)
+    // axios.get(`${_url}/api/user_detail/2`)
+    .then(response => {
+      var temp1 = [] as any
+      var temp2: any = response.data.price
+      var temp3 = response.data.item
+      var temp4 = response.data.item_image
+      setItemPrice(temp2)
+      setItemName(temp3)
+      setItemImage(temp4)
+      response.data.history.map((e:any) => {
+        temp1.push(e.today_saving)
+        setSaveList(temp1)
+      })
+      }
+    )}
+    function getArraySum(a){
+      var total=0;
+      for(var i in a) { 
+          total += a[i];
+      }
+      return total;
+  }
+  console.log(itemImage, 111111111)
   return (
     <>
       <StyledText>
-        <h1>에어팟 프로까지</h1>
+      <StyledBtn onClick={() => {window.history.back()}}>돌아가기</StyledBtn>
+        <h1>{itemName}사기까지</h1>
         <img
-          src="https://lh3.googleusercontent.com/proxy/zVXoulI_Czpq03KDSzQpjUhmy1b_tjnoUjzcnIZWsOe0goX5K0lYZcu0-rlfsDHDkCoSGXmARaqsDlCtbuMKUOYjtahUkb_7Vc0_1o3Xzl4CUK-8uxyy3h722b_5f3v1FQ"
+          src={itemImage}
           width="150"
         />
-        <h1>100 원</h1>
+        <h1>{itemPrice-getArraySum(saveList)} 원</h1>
         <h1>남았습니다.</h1>
-        <br />
-        <StyledTextBtn>다른 사람은 무엇을 사고 싶어할까요?</StyledTextBtn>
-        <br />
 
-        <h3>히스토리 보기</h3>
+        {/* <h3>히스토리 보기</h3>
         <button onClick={() => setToggle(!toggle)}>▼</button>
-        {toggle ? <History /> : <div></div>}
+        {toggle ? <History /> : <div></div>} */}
       </StyledText>
     </>
   );

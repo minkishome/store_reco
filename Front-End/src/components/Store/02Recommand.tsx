@@ -127,11 +127,7 @@ const Recommand: FunctionComponent<any> = ({}) => {
   const handleOpen = () => {
     setOpen(true);
     console.log("열려라");
-<<<<<<< HEAD
-    // console.log(storeList);
-=======
     // getStoreDetail(store_id);
->>>>>>> 2713284b739a469e2f06f083d39329c9f92d202c
   };
 
   const handleClose = () => {
@@ -144,23 +140,6 @@ const Recommand: FunctionComponent<any> = ({}) => {
     );
   };
 
-<<<<<<< HEAD
-
-  
-
-  return (
-    <>
-      <StyledText>
-        <br />
-        <img
-          src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxNzAxMDhfMSAg%2FMDAxNDgzODAyNDIwNzg4.5sRLucgny06iqQ_RBdwnaVtWIVnBvc-Lxsa__Lfc2aMg.-gHlR0au-otgL13tqbKoRoeYvcDl7i_9zp3JslOw_nsg.JPEG.39274520%2FDSC03488.JPG&type=b400"
-          alt=""
-          width="200px"
-        />
-        <h4>고갯마루</h4>
-        <StyledBtn onClick={handleOpen}>자세히보기</StyledBtn>
-        
-=======
   // console.log("storeIDList", storeIdList); // 담김
   // console.log("storeImageList", storeImageList);
   // console.log("storeNameList", storeNameList);
@@ -191,7 +170,6 @@ const Recommand: FunctionComponent<any> = ({}) => {
           );
         })}
 
->>>>>>> 2713284b739a469e2f06f083d39329c9f92d202c
         <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
