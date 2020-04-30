@@ -19,9 +19,8 @@ import { makeStyles, Container, Grid} from '@material-ui/core';
 import Survey from "./components/Accounts/Survey";
 import Success from "./components/UserPage/04Success";
 
-// import ResultPage from "./components/Pages/Result/07ResultPage";
+import ResultPage from "./components/Pages/Result/07ResultPage";
 import Profile from "./components/UserPage/00ProfileMenu";
-import ResultPage from "./components/Pages/Result/ResultPage";
 
 // const useStlyes = makeStyles(theme => ({
 
@@ -107,16 +106,15 @@ const Fullpage = () => (
               </Container>   
           </div>
           <div className="section">
-            <div className="slide">
-              <ResultPage fullpage_api={fullpageApi} />
-            </div>
-            <div className="slide">
-              <UserRank fullpage_api={fullpageApi} />
-            </div>
             
             <Container style={{height: '100%', width:'100%', display:'flex',  flexDirection:'row'}}>
                   <Grid item style={{width:'90%',height:'100%', position:'relative',  top:'20%',textAlign:'center'}} >
-                  <ResultPage />
+                  <div className="slide">
+                    <ResultPage fullpage_api={fullpageApi} />
+                  </div>
+                  <div className="slide">
+                     <UserRank fullpage_api={fullpageApi} />
+                  </div>
                   </Grid>
               
                   <Grid item style={{width:'10%', position:'sticky'}} >

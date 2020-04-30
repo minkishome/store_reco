@@ -10,7 +10,7 @@ import { url as _url } from '../../url';
 import Container from '@material-ui/core/Container';
 import { Typography, Grid  } from "@material-ui/core";
 
-const Survey: FunctionComponent<any> = ({ }) => {
+
 
 const Survey: FunctionComponent<any> = ({}) => {
   const [selectedFood, setSelectedFood] = useState([] as any);
