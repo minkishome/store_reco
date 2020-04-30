@@ -53,9 +53,13 @@ const Recommand: FunctionComponent<any> = ({ }) => {
 
   return (
     <>
+    <StyledText>
+    <h1>오늘 쓴 금액과 Survey 바탕으로 맛집을 추천해드릴게요</h1>
+    <br></br>
       {storeList.map((e: any, idx: number) => {
         return (
           <>
+          <div className="box">
             {e[0]}
             <img
               src={e[2]}
@@ -63,7 +67,7 @@ const Recommand: FunctionComponent<any> = ({ }) => {
               width="200px"
               onClick={() => openModalHandler(e[1])}
             />
-            <br></br>
+            </div>
           </>
         )
       })}
@@ -74,6 +78,7 @@ const Recommand: FunctionComponent<any> = ({ }) => {
           openModal={openModalHandler}
         />
       ) : null}
+      </StyledText>
     </>
   )
 }
