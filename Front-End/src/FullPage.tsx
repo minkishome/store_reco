@@ -58,7 +58,7 @@ const Fullpage = () => (
           <div className="section">
             
             <Container style={{height: '100%', width:'100%', display:'flex',  flexDirection:'row'}}>
-              <Grid item style={{width:'90%',position:'relative',  top:'20%', textAlign:'center'}} >
+              <Grid item style={{width:'90%',position:'relative',  top:'', textAlign:'center'}} >
                 <div className="slide">
                   <Service fullpage_api={fullpageApi}/>
                 </div>
