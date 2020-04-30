@@ -4,9 +4,9 @@ import React, {
   useEffect,
   Component,
 } from "react";
-import { StyledText, StyledBtn } from '../style';
+import { StyledText, StyledBtn } from "../style";
 
-const SelectStore: FunctionComponent<any> = ({ }) => {
+const SelectStore: FunctionComponent<any> = ({}) => {
   return (
     <>
       <StyledText>
@@ -14,9 +14,8 @@ const SelectStore: FunctionComponent<any> = ({ }) => {
         <h1>맛집을 추천해드릴게요</h1>
         <br></br>
 
-        <StyledBtn>카페</StyledBtn>
-        
-        <StyledBtn>음식점</StyledBtn>
+        {/* <StyledBtn>카페</StyledBtn>
+        <StyledBtn>음식점</StyledBtn> */}
       </StyledText>
     </>
   );
