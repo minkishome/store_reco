@@ -59,7 +59,15 @@ const Fullpage = () => (
             
             <Container style={{height: '100%', width:'100%', display:'flex',  flexDirection:'row'}}>
               <Grid item style={{width:'90%',position:'relative',  top:'20%', textAlign:'center'}} >
-              <Service fullpage_api={fullpageApi}/>
+                <div className="slide">
+                  <Service fullpage_api={fullpageApi}/>
+                </div>
+                <div className="slide">
+                  <Survey fullpage_api={fullpageApi}/>
+                </div>
+                <div className="slide">
+                  <MonthlyInput fullpage_api={fullpageApi}/>
+                </div>
               </Grid>
               
               <Grid item style={{width:'10%', position:'sticky'}} >
@@ -69,7 +77,7 @@ const Fullpage = () => (
             
           </div>
           
-          <div className="section">
+          {/* <div className="section">
               <Container style={{height: '100%', width:'100%', display:'flex',  flexDirection:'row'}}>
                   <Grid item style={{width:'90%',height:'100%', textAlign:'center'}} >
                   <Survey />
@@ -79,8 +87,8 @@ const Fullpage = () => (
                 <Profile />
               </Grid>
               </Container>    
-          </div>
-          <div className="section">
+          </div> */}
+          {/* <div className="section">
             
              <Container style={{height: '100%', width:'100%', display:'flex',  flexDirection:'row'}}>
                   <Grid item style={{width:'90%',position:'relative',  top:'20%', textAlign:'center'}} >
@@ -92,12 +100,12 @@ const Fullpage = () => (
                   </Grid>
               </Container>   
           
-          </div>
+          </div> */}
           <div className="section">
             
             <Container style={{height: '100%', width:'100%', display:'flex',  flexDirection:'row'}}>
                   <Grid item style={{width:'90%',position:'relative',  top:'20%', textAlign:'center'}} >
-                  <DailyInput />
+                  <DailyInput fullpage_api={fullpageApi}/>
                   </Grid>
               
                   <Grid item style={{width:'10%', position:'sticky'}} >

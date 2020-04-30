@@ -12,7 +12,7 @@ import { Typography, Grid  } from "@material-ui/core";
 
 
 
-const Survey: FunctionComponent<any> = ({}) => {
+const Survey: FunctionComponent<any> = ({fullpage_api}) => {
   const [selectedFood, setSelectedFood] = useState([] as any);
   const [toggleSelected, setToggleSelected] = useState(false);
 
@@ -145,26 +145,29 @@ const Survey: FunctionComponent<any> = ({}) => {
              </a>
           {/* </Grid> */}
       </>
-    );
+    )
   });
 
   const submitHandler = async () => {
-    alert("요청간당");
-    const _id = window.sessionStorage.getItem("id");
+    (selectedFood.length === 0)
+    ? alert('최소 1개 이상의 음식을 선택해 주세요')
+    : alert(`${selectedFood} 를 선택했습니다`)
+    const _id = window.sessionStorage.getItem('id')
     try {
       const response = await axios({
         method: "post",
         url: `${_url}/stores/score_list/${_id}/`,
         data: {
+          user_id: _id,
           foodList: selectedFood,
         },
-        responseType: "json",
-      });
-      console.log(response);
-    } catch (err) {
+        responseType: "json"
+      })
+      fullpage_api.moveSlideRight()
+    }
+    catch (err) {
       alert(err);
     }
-    alert(`${selectedFood}`);
   };
 
   return (
