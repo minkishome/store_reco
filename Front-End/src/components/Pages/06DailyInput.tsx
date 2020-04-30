@@ -64,6 +64,7 @@ const DailyInput: FunctionComponent<any> = ({ }) => {
         responseType: "json"
       });
       response.data.history.forEach(element => {
+        console.log(element.payment_date, year + "-" + month + "-" + day)
         if (element.payment_date === year + "-" + month + "-" + day) {
           e_id = element.id
           flag = 1;
@@ -81,6 +82,7 @@ const DailyInput: FunctionComponent<any> = ({ }) => {
             },
             responseType: "json"
           });
+          console.log(11111)
       } else {
           const res = await axios({
             method: "post",
@@ -95,6 +97,7 @@ const DailyInput: FunctionComponent<any> = ({ }) => {
             
             responseType: "json"
           });
+          console.log(111222)
         }
     } catch (err) {
       alert(err); // WTF?

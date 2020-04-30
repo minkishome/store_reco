@@ -39,7 +39,7 @@ class Service extends Component<any, State> {
     // const _age = parseInt(s_age)
 
     try {
-      alert("요청보낸당");
+      // alert("요청보낸당");
       // console.log(this.props.fullpage_api)
       const response = await axios({
         method: "get",
@@ -49,7 +49,7 @@ class Service extends Component<any, State> {
         url: `${_url}/api/user_exist/4/`,
         responseType: "json",
       });
-      alert("요청보냈당");
+      alert("이미 회원가입 된 유저입니다.");
       const msg: string = JSON.stringify(response.data.message);
       if (msg == "true") {
         window.sessionStorage.setItem(
