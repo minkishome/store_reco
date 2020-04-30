@@ -69,7 +69,6 @@ const UserRank: FunctionComponent<any> = ({fullpage_api}: any) => {
   };
   
 
-
   return (
     <>
       <StyledText>
