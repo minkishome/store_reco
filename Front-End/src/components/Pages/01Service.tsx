@@ -40,15 +40,13 @@ class Service extends Component<any, State> {
 
     try {
       alert("요청보낸당");
-      console.log(this.props.fullpage_api)
+      // console.log(this.props.fullpage_api)
       const response = await axios({
         method: "get",
-        // url: `${_url}/api/user_exist/`,
-        // url: `${_url}/api/user_exist/${_email}/`,
-        url: `${_url}/api/user_exist/3/`,
         // url: `${_url}/api/user_exist/${JSON.stringify(
         //   this.state.data.profile.id
         // )}/`,
+        url: `${_url}/api/user_exist/4/`,
         responseType: "json",
       });
       alert("요청보냈당");
@@ -74,10 +72,11 @@ class Service extends Component<any, State> {
             data: {
               password: 1234,
               // email: _email,
-              email: 'rlarkqtn@naver.com',
-              kakao_id: "3",
+              kakao_id: "4",
+              nickname: "사보텐",
+              // password: 1234,
+              // email: _email,
               // kakao_id: JSON.stringify(this.state.data.profile.id),
-              nickname: '요리사',
               // nickname: JSON.stringify(
               //   this.state.data.profile.properties.nickname
               // ),
@@ -109,26 +108,20 @@ class Service extends Component<any, State> {
   render() {
     return (
       <>
-        <StyledText id="myMenu">
-          <Typography component='div'>
-            <Box fontSize='3vw'>
-             42000건의 빅데이터를 활용해
-            </Box>
-            <Box fontSize='3vw'>
-            여러분의 소비를 비교/분석 해드려요.
-            </Box>
-            <Box fontSize='3vw'>
-            식비 맞춤형 맛집도 추천해드립니다.
-            </Box>
-            <Box fontSize='3vw'>
-            회원가입을 하면 더 많은 서비스를
-            </Box>
-            <Box fontSize='3vw'>
-            이용하실 수 있어요
-            </Box>
+        <StyledText id="myMenu"
+          style={{
+            position:'relative',
+            top:'10%'
+          }}
+        
+        >
+        <h2>42000건의 빅데이터를 활용해<br/>
+        여러분의 소비를 비교/분석 해드려요.<br/>
+        식비 맞춤형 맛집도 추천해드립니다.<br/>
+        회원가입을 하면 더 많은 서비스를<br/>
+        이용하실 수 있어요<br/>
+        </h2>
 
-
-          </Typography>
           <KaKaoBtn
             jsKey={"2b67838751764359be17923f29aa820e"}
             buttonText="KaKao"

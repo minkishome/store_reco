@@ -13,15 +13,19 @@ class Imgur extends Component<any> {
   };
 
   EditUserInfo = async () => {
-    // const _id = window.sessionStorage.getItem('id')
-    const _id = "3"
-    const _nickname = "요리사"
+    const _id = window.sessionStorage.getItem('id')
+    // const _id = "3"
+    const semi_nickname = window.sessionStorage.getItem("nickname");
+    const _password = window.sessionStorage.getItem("password");
     try {
+      const _nickname = semi_nickname
+        ? semi_nickname.replace(/^"+|"+$/g, "")
+        : semi_nickname;
       const res = await axios({
         method: "put",
         url: `${_url}/api/user_detail/${_id}/`,
         data: {
-          password: '1234',
+          password: _password,
           nickname: _nickname,
           kakao_id: _id,
           // @ts-ignore
@@ -49,7 +53,7 @@ class Imgur extends Component<any> {
     r.setRequestHeader("Authorization", `Client-ID 1001abddfee2596`);
     r.onreadystatechange = function () {
       if (r.status === 200 && r.readyState === 4) {
-        console.log('r', r);
+        // console.log('r', r);
         let res = JSON.parse(r.responseText);
         u = `https://i.imgur.com/${res.data.id}.png`;
         // @ts-ignore
@@ -67,11 +71,11 @@ class Imgur extends Component<any> {
   render() {
     return (
       <div className="App">
-        {(this.props.isEdit === undefined)
+        {(this.props.isEdit === true)
           ?
           <>
             <div className="App-header">
-              <h2>상품 이미지등록하기</h2>
+              <h2>이미지등록하기</h2>
             </div>
             <form>
               <input
@@ -86,7 +90,7 @@ class Imgur extends Component<any> {
           :
           <>
             <div className="App-header">
-              <h2>상품 이미지 미리보기</h2>
+              <h2>나의 목표상품</h2>
             </div>
           </>
         }

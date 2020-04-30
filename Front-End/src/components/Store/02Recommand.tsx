@@ -10,7 +10,7 @@ import { StyledText, StyledBtn } from "../style";
 import { url as _url } from "../../url";
 import axios from "axios";
 import Modal from "./Modal";
-import {Grid} from "@material-ui/core"
+import { Grid } from "@material-ui/core"
 // materia-ui 모달 import
 // import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 // import Modal from "@material-ui/core/Modal";
@@ -26,17 +26,18 @@ const Recommand: FunctionComponent<any> = ({ }) => {
 
   const openModalHandler = (data: any) => {
     setModalData(data);
-    var t: any = true 
+    var t: any = true
     setIsModalOpen(t);
   };
 
   const closeModalHandler = () => setIsModalOpen(false);
 
-  
+
   const getRecommandStore = () => {
+    const _id = window.sessionStorage.getItem('id')
     const res = axios({
       method: 'get',
-      url: `${_url}/stores/store_list/12341234/`,
+      url: `${_url}/stores/store_list/${_id}/`,
       responseType: "json"
     }).then((res) => {
       var temp = [] as any
@@ -52,35 +53,33 @@ const Recommand: FunctionComponent<any> = ({ }) => {
   }
 
 
-  
-
   return (
     <>
-    <StyledText>
-    <h1>오늘 쓴 금액과 Survey 바탕으로 맛집을 추천해드릴게요</h1>
-    <br></br>
-      {storeList.map((e: any, idx: number) => {
-        return (
-          <>
-          <div className="box">
-            {e[0]}
-            <img
-              src={e[2]}
-              alt=""
-              width="200px"
-              onClick={() => openModalHandler(e[1])}
-            />
-            </div>
-          </>
-        )
-      })}
-      {isModalOpen ? (
-        <Modal
-          close={closeModalHandler}
-          data={modalData}
-          openModal={openModalHandler}
-        />
-      ) : null}
+      <StyledText>
+        <h1>오늘 쓴 금액과 Survey 바탕으로 맛집을 추천해드릴게요</h1>
+        <br></br>
+        {storeList.map((e: any, idx: number) => {
+          return (
+            <>
+              <div className="box">
+                {e[0]}
+                <img
+                  src={e[2]}
+                  alt=""
+                  width="200px"
+                  onClick={() => openModalHandler(e[1])}
+                />
+              </div>
+            </>
+          )
+        })}
+        {isModalOpen ? (
+          <Modal
+            close={closeModalHandler}
+            data={modalData}
+            openModal={openModalHandler}
+          />
+        ) : null}
       </StyledText>
     </>
   )
