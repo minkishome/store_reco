@@ -69,7 +69,7 @@ const Information: FunctionComponent<any> = ({ setUserImage }: any) => {
     }
 
     setIsEdit(!isEdit);
-    // console.log(userInfo)
+    console.log(isEdit)
   };
 
   const monthlyCostHandler = (e: any) => {
@@ -86,83 +86,93 @@ const Information: FunctionComponent<any> = ({ setUserImage }: any) => {
 
   return (
     <>
-      {isEdit
-        ?
-        <StyledText>
-          <h1>회원정보 수정</h1>
-          <StyledBtn onClick={() => {window.history.back()}}>돌아가기</StyledBtn>
-          <StyledBtn onClick={() => isEditHandler()}>수정완료</StyledBtn>
-          <hr />
-          <Grid style ={{textAlign:'center'}} >
-          <Imgur isEdit={isEdit} monthlyInput={monthlyInput} item={item} price={price} />
-          <img src={`${userInfo.item_image}`} alt="item_Img"></img>
-          </Grid>
-          <hr />
-          <h3>E-mail</h3>
-          {userInfo.email}
-          <h3>닉네임</h3>
-          {userInfo.nickname}
-          {/* <h1>목표상품</h1> */}
-          <hr />
-          <h3>한달 식비</h3>
-          <input placeholder={`${userInfo.monthly_cost}`} onChange={monthlyCostHandler} defaultValue={`${userInfo.monthly_cost}`}></input>
-          <h3>목표 상품</h3>
-          <input placeholder={`${userInfo.item}`} onChange={itemHandler} defaultValue={`${userInfo.item}`}></input>
-          <h3>가격</h3>
-          <input placeholder={`${userInfo.price}`} onChange={priceHandler} defaultValue={`${userInfo.price}`}></input>
-          <Imgur />
-          <br></br>
-        </StyledText>
-        :
-        <StyledText>
-          <h1>회원정보 조회</h1>
-          <StyledBtn onClick={() => {window.history.back()}}>돌아가기</StyledBtn>
-          <StyledBtn onClick={() => isEditHandler()}>수정하기</StyledBtn>
-          <hr />
-          <Grid style ={{textAlign:'center'}} >
-          <Imgur isEdit={isEdit} monthlyInput={monthlyInput} item={item} price={price} />
-          <img src={`${userInfo.item_image}`} alt="item_Img"></img>
-          </Grid>
-          <hr />
-          <Grid
-            container
-            style={{flexDirection:'row'}}
-          >
-          <h3>E-mail :  </h3>   
-          <h3>&nbsp;&nbsp;&nbsp;{userInfo.email}</h3>
-          </Grid>
-          <Grid
-            container
-            style={{flexDirection:'row'}}
-          >
-          <h3>닉네임 : &nbsp;&nbsp;&nbsp;
+      <Grid container style={{
+        textAlign: "center"
+        // , width:"80%"
+      }}>
+        <Grid item
+          style={{
+            width: '54%', position: "relative",
+            display: "inline-block",
+            textAlign: "center",
+            marginLeft: "23%",
+            marginRight: "23%",
+          }}>
+          {isEdit
+            ?
+            <StyledText>
+              <h1>회원정보 수정</h1>
+              <hr />
+              <Grid style={{ textAlign: 'center' }} >
+                <Imgur isEdit={isEdit} monthlyInput={monthlyInput} item={item} price={price} />
+                <img src={`${userInfo.item_image}`} alt="item_Img" width="30%" height="30%" style={{ borderRadius:"30%"}}></img>
+              </Grid>
+              <h3>E-mail</h3>
+              {userInfo.email}
+              <h3>닉네임</h3>
+              {userInfo.nickname}
+              <h3>한달 식비</h3>
+              <input placeholder={`${userInfo.monthly_cost}`} onChange={monthlyCostHandler} defaultValue={`${userInfo.monthly_cost}`}></input>
+              <h3>목표 상품</h3>
+              <input placeholder={`${userInfo.item}`} onChange={itemHandler} defaultValue={`${userInfo.item}`}></input>
+              <h3>가격</h3>
+              <input placeholder={`${userInfo.price}`} onChange={priceHandler} defaultValue={`${userInfo.price}`}></input>
+              <br></br>
+              <StyledBtn onClick={() => { window.history.back() }}>돌아가기</StyledBtn>
+              <StyledBtn onClick={() => isEditHandler()}>수정완료</StyledBtn>
+            </StyledText>
+            :
+            <StyledText>
+              <h1>회원정보 조회</h1>
+              <hr />
+              <Grid style={{ textAlign: 'center' }} >
+                <Imgur isEdit={isEdit} monthlyInput={monthlyInput} item={item} price={price} />
+                <img src={`${userInfo.item_image}`} alt="item_Img" width="30%" height="30%" style={{ borderRadius:"30%"}}></img>
+              </Grid>
+
+              <Grid
+                container
+                style={{ flexDirection: 'row' }}
+              >
+                <h3>E-mail :  </h3>
+                <h3>&nbsp;&nbsp;&nbsp;{userInfo.email}</h3>
+              </Grid>
+              <Grid
+                container
+                style={{ flexDirection: 'row' }}
+              >
+                <h3>닉네임 : &nbsp;&nbsp;&nbsp;
           {userInfo.nickname} </h3>
-          </Grid>
-          {/* <h1>목표상품</h1> */}
-          <hr />
-          <Grid
-            container
-            style={{flexDirection:'row'}}
-          >
-          <h3>한달 식비 : &nbsp;&nbsp;&nbsp;
+              </Grid>
+              {/* <h1>목표상품</h1> */}
+              <Grid
+                container
+                style={{ flexDirection: 'row' }}
+              >
+                <h3>한달 식비 : &nbsp;&nbsp;&nbsp;
           {userInfo.monthly_cost} </h3> </Grid>
-          <Grid
-            container
-            style={{flexDirection:'row'}}
-          >
-          <h3>목표 상품 : &nbsp;&nbsp;&nbsp;
+              <Grid
+                container
+                style={{ flexDirection: 'row' }}
+              >
+                <h3>목표 상품 : &nbsp;&nbsp;&nbsp;
           {userInfo.item} </h3>
-          </Grid>
-          <Grid
-            container
-            style={{flexDirection:'row'}}
-          >
-          <h3>가격 : &nbsp;&nbsp;&nbsp;
+              </Grid>
+              <Grid
+                container
+                style={{ flexDirection: 'row' }}
+              >
+                <h3>가격 : &nbsp;&nbsp;&nbsp;
           {userInfo.price}</h3>
-          </Grid>
-          <br></br>
-        </StyledText>
-      }
+              </Grid>
+              <br></br>
+              <StyledBtn onClick={() => { window.history.back() }}>돌아가기</StyledBtn>
+              <StyledBtn onClick={() => isEditHandler()}>수정하기</StyledBtn>
+            </StyledText>
+          }
+        </Grid>
+      </Grid>
+      {/* </Container> */}
     </>
   );
 };
@@ -171,5 +181,7 @@ const Text = styled.h3`
   color: red;
   display: inline;
 `;
+
+
 
 export default Information;

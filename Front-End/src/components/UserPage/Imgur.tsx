@@ -71,11 +71,11 @@ class Imgur extends Component<any> {
   render() {
     return (
       <div className="App">
-        {(this.props.isEdit === undefined)
+        {(this.props.isEdit === true)
           ?
           <>
             <div className="App-header">
-              <h2>상품 이미지등록하기</h2>
+              <h2>이미지등록하기</h2>
             </div>
             <form>
               <input
@@ -90,7 +90,7 @@ class Imgur extends Component<any> {
           :
           <>
             <div className="App-header">
-              <h2>상품 이미지 미리보기</h2>
+              <h2>나의 목표상품</h2>
             </div>
           </>
         }
