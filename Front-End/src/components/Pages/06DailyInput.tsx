@@ -8,8 +8,8 @@ import SendIcon from '@material-ui/icons/Send';
 const DailyInput: FunctionComponent<any> = ({ }) => {
   var date = new Date(); 
   var year = date.getFullYear(); 
-  var month = new String(date.getMonth()+1); 
-  var day = new String(date.getDate());
+  var month = new String(date.getUTCMonth()+1); 
+  var day = new String(date.getUTCDate());
   
   // 한자리수일 경우 0을 채워준다. 
   if(month.length == 1){ 
@@ -82,7 +82,6 @@ const DailyInput: FunctionComponent<any> = ({ }) => {
             },
             responseType: "json"
           });
-          console.log(11111)
       } else {
           const res = await axios({
             method: "post",
@@ -97,7 +96,6 @@ const DailyInput: FunctionComponent<any> = ({ }) => {
             
             responseType: "json"
           });
-          console.log(111222)
         }
     } catch (err) {
       alert(err); // WTF?

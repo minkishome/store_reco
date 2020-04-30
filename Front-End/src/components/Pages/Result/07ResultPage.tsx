@@ -26,8 +26,8 @@ const ResultPage: FunctionComponent<any> = ({ fullpage_api }: any) => {
 
   var date = new Date();
   var year = date.getFullYear();
-  var month = new String(date.getMonth() + 1);
-  var day = new String(date.getDate());
+  var month = new String(date.getUTCMonth() + 1);
+  var day = new String(date.getUTCDate());
   var flag = 0;
   var e_id = 0;
 
