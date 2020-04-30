@@ -58,9 +58,9 @@ const Recommand: FunctionComponent<any> = ({}) => {
         responseType: "json",
       }).then((res) => {
         console.log("음식점 데이터", res.data);
-        setStoreDetail(res.data);
-        // temp4.push(res.data);
-        // setStoreDetail(temp4);
+        // setStoreDetail(res.data);
+        temp4.push(res.data);
+        setStoreDetail(temp4);
       });
 
       // temp.push(response.data);
