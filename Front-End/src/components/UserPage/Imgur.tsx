@@ -90,7 +90,6 @@ class Imgur extends Component<any> {
           :
           <>
             <div className="App-header">
-              <h2>나의 목표상품</h2>
             </div>
           </>
         }

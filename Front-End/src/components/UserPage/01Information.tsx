@@ -8,7 +8,7 @@ import { StyledText, StyledInput, StyledBtn } from '../style';
 import axios from 'axios';
 import { url as _url } from '../../url';
 import Imgur from "./Imgur";
-
+import { TextField } from "@material-ui/core"
 import styled from "styled-components";
 
 import { Typography, Container, Grid, Box } from "@material-ui/core";
@@ -105,18 +105,74 @@ const Information: FunctionComponent<any> = ({ setUserImage }: any) => {
               <hr />
               <Grid style={{ textAlign: 'center' }} >
                 <Imgur isEdit={isEdit} monthlyInput={monthlyInput} item={item} price={price} />
-                <img src={`${userInfo.item_image}`} alt="item_Img" width="30%" height="30%" style={{ borderRadius:"30%"}}></img>
+                <img src={`${userInfo.item_image}`} alt="item_Img" width="30%" height="30%" style={{ borderRadius: "30%" }}></img>
               </Grid>
-              <h3>E-mail</h3>
-              {userInfo.email}
-              <h3>닉네임</h3>
-              {userInfo.nickname}
-              <h3>한달 식비</h3>
-              <input placeholder={`${userInfo.monthly_cost}`} onChange={monthlyCostHandler} defaultValue={`${userInfo.monthly_cost}`}></input>
-              <h3>목표 상품</h3>
-              <input placeholder={`${userInfo.item}`} onChange={itemHandler} defaultValue={`${userInfo.item}`}></input>
-              <h3>가격</h3>
-              <input placeholder={`${userInfo.price}`} onChange={priceHandler} defaultValue={`${userInfo.price}`}></input>
+              <Grid
+                container
+                style={{ flexDirection: 'row' }}
+              >
+                <h3>E-mail : </h3>&nbsp;&nbsp;&nbsp;
+              <h3>{userInfo.email}</h3>
+              </Grid>
+              <Grid
+                container
+                style={{ flexDirection: 'row' }}
+              >
+                <h3>닉네임 : &nbsp;&nbsp;&nbsp;
+              {userInfo.nickname}</h3>
+              </Grid>
+              <Grid
+                container
+                style={{ flexDirection: 'row' }}
+              >
+                <h3>한달 식비 : &nbsp;&nbsp;&nbsp;
+              <TextField id="standard-basic"
+                    inputProps={{ min: 0, style: { textAlign: 'center' } }}
+                    style={{
+                      width: '10rem',
+                    }}
+                    placeholder={`${userInfo.monthly_cost}`} 
+                    onChange={monthlyCostHandler} 
+                    defaultValue={`${userInfo.monthly_cost}`}
+
+                  >
+
+                  </TextField></h3>
+              </Grid>
+              <Grid
+                container
+                style={{ flexDirection: 'row' }}
+              >
+                <h3>목표 상품 : &nbsp;&nbsp;&nbsp;
+                <TextField id="standard-basic"
+                    inputProps={{ min: 0, style: { textAlign: 'center' } }}
+                    style={{
+                      width: '10rem',
+                    }}
+                    placeholder={`${userInfo.item}`} 
+                    onChange={itemHandler} 
+                    defaultValue={`${userInfo.item}`}
+
+                  >
+
+                  </TextField></h3>
+              </Grid>
+              <Grid
+                container
+                style={{ flexDirection: 'row' }}
+              >
+                <h3>가격&nbsp;&nbsp;&nbsp;
+                <TextField id="standard-basic"
+                    inputProps={{ min: 0, style: { textAlign: 'center' } }}
+                    style={{
+                      width: '10rem',
+                    }}
+                    placeholder={`${userInfo.price}`} 
+                    onChange={priceHandler} 
+                    defaultValue={`${userInfo.price}`}
+                  >
+                  </TextField></h3>
+              </Grid>
               <br></br>
               <StyledBtn onClick={() => { window.history.back() }}>돌아가기</StyledBtn>
               <StyledBtn onClick={() => isEditHandler()}>수정완료</StyledBtn>
@@ -127,7 +183,7 @@ const Information: FunctionComponent<any> = ({ setUserImage }: any) => {
               <hr />
               <Grid style={{ textAlign: 'center' }} >
                 <Imgur isEdit={isEdit} monthlyInput={monthlyInput} item={item} price={price} />
-                <img src={`${userInfo.item_image}`} alt="item_Img" width="30%" height="30%" style={{ borderRadius:"30%"}}></img>
+                <img src={`${userInfo.item_image}`} alt="item_Img" width="30%" height="30%" style={{ borderRadius: "30%" }}></img>
               </Grid>
 
               <Grid
