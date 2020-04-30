@@ -2,7 +2,7 @@ import React, { FunctionComponent, useState, useEffect, Component } from 'react'
 import { StyledText, StyledInput } from '../style';
 import axios from "axios";
 import { url as _url } from '../../url';
-import {Typography, Box} from '@material-ui/core';
+import {Typography, Box, TextField} from '@material-ui/core';
 
 const DailyInput: FunctionComponent<any> = ({ }) => {
   var date = new Date(); 
@@ -126,21 +126,52 @@ const DailyInput: FunctionComponent<any> = ({ }) => {
       
           <Typography component = 'div'>
               <Box fontSize='3vw'>
-                나는 오늘 아침에 <StyledInput onChange={changeBreakfast}/>
-              </Box>
-              <Box fontSize='3vw'>
-                점심에 <StyledInput onChange={changeLunch} />
-              </Box>
-              <Box fontSize='3vw'>
-                저녁에 <StyledInput onChange={changeDinner} />
+                나는 오늘 아침에 <TextField id="standard-basic"
+          inputProps={{min: 0, style: { textAlign: 'center' }}}
+          style = {{
+            width:'10rem',
+          
+            
+        }}
+        onChange={changeBreakfast}
+          >
                   원 썼어요 
+                  </TextField>
+              </Box>
+              <Box fontSize='3vw'>
+                점심에 <TextField id="standard-basic"
+          inputProps={{min: 0, style: { textAlign: 'center' }}}
+          style = {{
+            width:'10rem',
+          
+            
+        }}
+        onChange={changeLunch}
+          >
+                  원 썼어요 
+                  </TextField>
+              </Box>
+              <Box fontSize='3vw'>
+                저녁에  <TextField id="standard-basic"
+          inputProps={{min: 0, style: { textAlign: 'center' }}}
+          style = {{
+            width:'10rem',
+          
+            
+        }}
+        onChange={changeDinner}
+          >
+                  원 썼어요 
+                  </TextField>
               </Box>
               <Box fontSize='3vw'>
                   <button onClick={onSubmit}>추가</button>
               </Box>
               <Box fontSize='3vw'>
                   총 합: {breakfast+lunch+dinner}
+                  
 
+         
               </Box>
           </Typography>
         </StyledText>
