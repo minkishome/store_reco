@@ -58,37 +58,38 @@ const Survey: FunctionComponent<any> = ({ }) => {
         <img src={e[1]} width="150px" height="150px" onClick={() => onClickHandler(e)}></img>
       </>
     )
-  })
+  });
 
   const submitHandler = async () => {
+    (selectedFood.length === 0)
+    ? alert('최소 1개 이상의 음식을 선택해 주세요')
+    : alert(`${selectedFood} 를 선택했습니다`)
     const _id = window.sessionStorage.getItem('id')
-    // try {
-    //   const response = await axios({
-    //     method: "post",
-    //     url: `${_url}/stores/score_list`,
-    //     data: {
-    //       kakao_id: _id,
-    //       foodList: selectedFood,
-    //     },
-    //     responseType: "json"
-    //   })
-    // }
-    // catch (err) {
-    //   sessionStorage.clear()
-    //   alert(err);
-    // }
-    // alert(`${selectedFood} 요청보냈당`)
-  }
+    try {
+      const response = await axios({
+        method: "post",
+        url: `${_url}/stores/score_list/${_id}/`,
+        data: {
+          user_id: _id,
+          foodList: selectedFood,
+        },
+        responseType: "json"
+      })
+    }
+    catch (err) {
+      alert(err);
+    }
+  };
 
   return (
     <>
-      <StyledText>
+      <StyledText >
         <h1>Survey</h1>
         <h2>좋아하는 음식을 선택해주세요.</h2>
         {svList}
         <br></br>
         <p>선택된 음식: {selectedFood}</p>
-        <StyledBtn onClick={submitHandler}>설문완료</StyledBtn>
+        <StyledBtn onClick={() => submitHandler()}>설문완료</StyledBtn>
       </StyledText>
     </>
   );
