@@ -1,13 +1,42 @@
 import React, { Component } from "react";
-
+import axios from 'axios';
+import { url as _url } from '../../url';
 // import config from "../config.js";
 
-class Imgur extends Component {
-  state = {
-    file: ""
+class Imgur extends Component<any> {
+
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      file: "file",
+    };
   };
 
-
+  EditUserInfo = async () => {
+    // const _id = window.sessionStorage.getItem('id')
+    const _id = "3"
+    const _nickname = "요리사"
+    try {
+      const res = await axios({
+        method: "put",
+        url: `${_url}/api/user_detail/${_id}/`,
+        data: {
+          password: '1234',
+          nickname: _nickname,
+          kakao_id: _id,
+          // @ts-ignore
+          item_image: this.state.file,
+          // monthly_cost: this.props.monthlyInput,
+          // item: this.props.item,
+          // price: this.props.price
+        },
+        responseType: "json",
+      });
+    }
+    catch (err) {
+      alert(err)
+    }
+  }
 
   uploadImage() {
     const r = new XMLHttpRequest();
@@ -15,10 +44,7 @@ class Imgur extends Component {
     // @ts-ignore
     const e = document.getElementsByClassName("input-image")[0].files[0];
     var u;
-
     d.append("image", e);
-    console.log('e', e);
-    console.log('d', d);
     r.open("POST", "https://api.imgur.com/3/image/");
     r.setRequestHeader("Authorization", `Client-ID 1001abddfee2596`);
     r.onreadystatechange = function () {
@@ -26,27 +52,44 @@ class Imgur extends Component {
         console.log('r', r);
         let res = JSON.parse(r.responseText);
         u = `https://i.imgur.com/${res.data.id}.png`;
-        console.log('u', u);
+        // @ts-ignore
+        this.setState({ file: u });
+        // @ts-ignore
+        // console.log('이거', this.state.file)
+        this.EditUserInfo()
       }
-    };
+    }.bind(this);
+    alert(`${e.name} 이/가 업로드 되었습니당`)
     r.send(d);
-  }
+  };
+
+
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <h2>상품 이미지등록하기</h2>
-        </div>
-        <form>
-          <input
-            type="file"
-            className="input-image"
-            onChange={this.uploadImage.bind(this)}
-          />
-        </form>
-        <div id="preview">
-
-        </div>
+        {(this.props.isEdit === undefined)
+          ?
+          <>
+            <div className="App-header">
+              <h2>상품 이미지등록하기</h2>
+            </div>
+            <form>
+              <input
+                type="file"
+                className="input-image"
+                onChange={this.uploadImage.bind(this)}
+                // @ts-ignore
+                placeholder={this.state.file}
+              />
+            </form>
+          </>
+          :
+          <>
+            <div className="App-header">
+              <h2>상품 이미지 미리보기</h2>
+            </div>
+          </>
+        }
       </div>
     );
   }
