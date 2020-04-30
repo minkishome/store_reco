@@ -63,16 +63,10 @@ const PriceResult: FunctionComponent<any> = ({}) => {
             textAlign: "center",
             marginLeft: "23%",
             marginRight: "23%",
+            marginTop: "10%",
           }}
         >
           <StyledText>
-            <StyledBtn
-              onClick={() => {
-                window.history.back();
-              }}
-            >
-              돌아가기
-            </StyledBtn>
             <h1>{itemName}사기까지</h1>
             <img src={itemImage} width="150" />
             <h1>{itemPrice - getArraySum(saveList)} 원</h1>
@@ -81,6 +75,13 @@ const PriceResult: FunctionComponent<any> = ({}) => {
             {/* <h3>히스토리 보기</h3>
         <button onClick={() => setToggle(!toggle)}>▼</button>
         {toggle ? <History /> : <div></div>} */}
+            <StyledBtn
+              onClick={() => {
+                window.history.back();
+              }}
+            >
+              돌아가기
+            </StyledBtn>
           </StyledText>
         </Grid>
       </Grid>
