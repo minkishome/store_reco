@@ -43,13 +43,13 @@ class Service extends Component<any, State> {
       // console.log(this.props.fullpage_api)
       const response = await axios({
         method: "get",
-        // url: `${_url}/api/user_exist/${JSON.stringify(
-        //   this.state.data.profile.id
-        // )}/`,
-        url: `${_url}/api/user_exist/4/`,
+        url: `${_url}/api/user_exist/${JSON.stringify(
+          this.state.data.profile.id
+        )}/`,
+        // url: `${_url}/api/user_exist/4/`,
         responseType: "json",
       });
-      alert("이미 회원가입 된 유저입니다.");
+      alert("회원가입이 정상적으로 처리 되었습니다.");
       const msg: string = JSON.stringify(response.data.message);
       if (msg == "true") {
         window.sessionStorage.setItem(

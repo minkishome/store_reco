@@ -102,7 +102,7 @@ const Fullpage = () => (
                   <Survey fullpage_api={fullpageApi} />
                 </div>
                 <div className="slide">
-                  // @ts-ignore
+                  
                   <MonthlyInput fullpage_api={fullpageApi} />
                 </div>
               </Grid>

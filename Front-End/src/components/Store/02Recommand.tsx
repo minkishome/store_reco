@@ -42,6 +42,7 @@ const Recommand: FunctionComponent<any> = ({ }) => {
 
 
   const getRecommandStore = () => {
+    console.log('요청보냄')
     const _id = window.sessionStorage.getItem('id')
     const res = axios({
       method: 'get',
@@ -88,6 +89,7 @@ const Recommand: FunctionComponent<any> = ({ }) => {
                     className={classes.media}
                     image={e[2]}
                     title={e[0]}
+                    onClick={() => openModalHandler(e[1])}
                   >
                   </CardMedia>
                   <CardContent>
@@ -97,7 +99,8 @@ const Recommand: FunctionComponent<any> = ({ }) => {
                   </CardContent>
                 </CardActionArea>
               </Card>
-              {/* <img
+              {/* <div>
+              <img
                   src={e[2]}
                   alt=""
                   width="200px"
