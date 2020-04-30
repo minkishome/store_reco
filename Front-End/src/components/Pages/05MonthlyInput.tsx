@@ -11,7 +11,7 @@ import {Typography, Box} from '@material-ui/core';
 // 프로필 메뉴
 // import ProfileMenu from "../UserPage/00ProfileMenu";
 
-const MonthlyInput = () => {
+const MonthlyInput = ({fullpage_api}) => {
   const [data, setData] = useState(0);
   const onChangeInput = (e: any) => {
     const monthly_data = parseInt(e.target.value);
@@ -39,6 +39,7 @@ const MonthlyInput = () => {
         },
         responseType: "json",
       });
+      fullpage_api.moveSlideRight()
     } catch (err) {
       alert(err); // WTF?
     }

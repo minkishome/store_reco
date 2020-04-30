@@ -45,9 +45,10 @@ class Service extends Component<any, State> {
         method: "get",
         // url: `${_url}/api/user_exist/`,
         // url: `${_url}/api/user_exist/${_email}/`,
-        url: `${_url}/api/user_exist/${JSON.stringify(
-          this.state.data.profile.id
-        )}/`,
+        url: `${_url}/api/user_exist/3/`,
+        // url: `${_url}/api/user_exist/${JSON.stringify(
+        //   this.state.data.profile.id
+        // )}/`,
         responseType: "json",
       });
       alert("요청보냈당");
@@ -63,7 +64,7 @@ class Service extends Component<any, State> {
         );
         sessionStorage.setItem("password", "1234");
         alert("로그인되었습니다");
-        this.props.fullpage_api.moveTo(5);
+        this.props.fullpage_api.moveSectionDown();
         // window.location.href = "http://13.125.68.151:8081/#fifthPage";
       } else {
         try {
@@ -72,11 +73,14 @@ class Service extends Component<any, State> {
             url: `${_url}/api/user_list/`,
             data: {
               password: 1234,
-              email: _email,
-              kakao_id: JSON.stringify(this.state.data.profile.id),
-              nickname: JSON.stringify(
-                this.state.data.profile.properties.nickname
-              ),
+              // email: _email,
+              email: 'rlarkqtn@naver.com',
+              kakao_id: "3",
+              // kakao_id: JSON.stringify(this.state.data.profile.id),
+              nickname: '요리사',
+              // nickname: JSON.stringify(
+              //   this.state.data.profile.properties.nickname
+              // ),
               profile_image: JSON.stringify(
                 this.state.data.profile.properties.profile_image
               ),
@@ -86,7 +90,7 @@ class Service extends Component<any, State> {
           });
           // 회원가입 -> Survey 연결 부분
           alert("회원가입 되었습니다.");
-          this.props.fullpage_api.moveTo(3);
+          this.props.fullpage_api.moveSlideRight();
           // window.location.href='http://13.125.68.151:8081/#thirdPage';
         } catch (err) {
           sessionStorage.clear();

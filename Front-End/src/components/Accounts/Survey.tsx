@@ -12,7 +12,7 @@ import { Typography, Grid  } from "@material-ui/core";
 
 
 
-const Survey: FunctionComponent<any> = ({}) => {
+const Survey: FunctionComponent<any> = ({fullpage_api}) => {
   const [selectedFood, setSelectedFood] = useState([] as any);
   const [toggleSelected, setToggleSelected] = useState(false);
 
@@ -143,6 +143,7 @@ const Survey: FunctionComponent<any> = ({}) => {
         },
         responseType: "json"
       })
+      fullpage_api.moveSlideRight()
     }
     catch (err) {
       alert(err);
