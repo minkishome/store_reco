@@ -121,9 +121,29 @@ const Survey: FunctionComponent<any> = ({}) => {
     };
     return (
       <>
+          {/* <Grid
+            item md ={4} xs ={4}   
+            style={{
+              // height:'20%',
+              // width:'33%',
+              // position:"relative",
+              // padding:'5%'
 
-            <img src={e[1]} width="17%" height="auto%" onClick={() => onClickHandler(e)}></img>
+              filter :'blur(0px)',
+              transition :'filter 0.3s ease-in',
+              transform : 'scale(1.1)',
+              textAlign : 'center',
+              display:'block'
+            }}
+          > */}
+            <a href='#'>
+            <img src={e[1]} 
+              width="100%"
+              height="100%" 
 
+             onClick={() => onClickHandler(e)}></img>
+             </a>
+          {/* </Grid> */}
       </>
     );
   });
@@ -157,13 +177,27 @@ const Survey: FunctionComponent<any> = ({}) => {
         <Typography style={{fontSize:'3vw'}}>Survey</Typography>
         <Typography style={{fontSize:'2vw'}}>좋아하는 음식을 선택해주세요.</Typography>
       {/* </Container> */}
-        <Container  style={{height: '50%', width:'100%', }}>
+        {/* <Container  
+        style={{  height: '100%', display: 'inline-block' }}
+        > */}
+
+        <Grid container style={{
+          display: 'grid',
+          height:'70%',
+          gridTemplateColumns: '33% 33% 33%',
+          gridTemplateRows : '15% 15% 15% 15% 15% 15% ',
+          // flexDirection:'row',
+          // 
+        }}
+         >
           {svList}
-        
-        <br></br>
-        <p>선택된 음식: {selectedFood}</p>
+        </Grid>
+
+        <p style ={{
+          position:'relative'
+        }}>선택된 음식: {selectedFood}</p>
         <StyledBtn onClick={submitHandler}>설문완료</StyledBtn>
-        </Container>
+        {/* </Container> */}
       {/* </StyledText> */}
       </Container>
     </>
