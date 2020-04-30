@@ -20,7 +20,7 @@ import Recommand from "./components/Store/02Recommand";
 import History from "./components/UserPage/03History";
 import UserRank from "./components/Pages/Rank/11UserRank";
 import KaKaoSignUp from "./components/Accounts/KaKaoSignUp";
-
+import { makeStyles, Container} from '@material-ui/core';
 // import ReactDOM from 'react-dom';
 
 // 그리드
@@ -29,27 +29,50 @@ import Box from "@material-ui/core/Box";
 
 import Profile from "./components/UserPage/00ProfileMenu";
 
+const useStlyes = makeStyles(theme => ({
+
+  content:{
+    alignItems:''
+  },
+
+  hambuger: {
+    position:'relative',
+    // right : '20px',
+    // top : '20px',
+    // zIndex:-1,
+  },
+}))
+
 const Main: FunctionComponent<any> = ({}) => {
   const [checkResult, setCheckResult] = useState(true as boolean);
-
+  const classes = useStlyes();
   // useEffect(() => setCheckResult(props_data), )
 
   return (
     <>
-      {/* <Grid spacing={3} direction="column" justify="center" alignItems="center">
-          <Box alignItems="center" display="flex">
-            <Fullpage />
-            </Box>
-        </Grid>
-      </Grid> */}
-      <Box display="flex" justifyContent="flex-end" m={1} p={1}>
-        <Profile />
-      </Box>
 
-      <Box display="flex" justifyContent="center" alignItems="center">
+      <Box display="flex" justifyContent="flex-end" m={1} p={1}>
+
         <Fullpage />
+
       </Box>
     </>
+
+  //  <Container >
+  //     {/* <Grid>  */}
+  //     {/* // display="flex" justifyContent="flex-end" m={1} p={1}> */}
+  //     <Grid className={classes.hambuger} >
+  //       <Profile   />
+  //     </Grid>
+  //     {/* </Box> */}
+ 
+  //     <Grid> 
+  //     {/* // display="flex" justifyContent="center" alignItems="center"> */}
+  //       <Fullpage/>
+  //     </Grid>
+
+  //   </Container>
+  //   </>
   );
 };
 

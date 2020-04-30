@@ -5,18 +5,28 @@ import React, {
   Component,
 } from "react";
 import { StyledText, StyledBtn } from "../style";
-
+import { Typography, Box, Container,} from '@material-ui/core';
 const SelectStore: FunctionComponent<any> = ({}) => {
   return (
     <>
       <StyledText>
-        <h1>결과를 바탕으로</h1>
-        <h1>맛집을 추천해드릴게요</h1>
-        <br></br>
+
+        {/* <br></br> */}
 
         {/* <StyledBtn>카페</StyledBtn>
         <StyledBtn>음식점</StyledBtn> */}
       </StyledText>
+      <Container style={{ width:'100%', height:'100%'}}>
+        
+        <Typography component = 'div'>
+          <Box fontSize='3vw'>
+              결과를 바탕으로
+            맛집을 추천해드릴게요
+          </Box>
+
+        </Typography>
+        
+        </Container>
     </>
   );
 };
