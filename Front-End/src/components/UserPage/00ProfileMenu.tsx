@@ -20,10 +20,14 @@ import List from "@material-ui/core/List";
 const useStyles = makeStyles({
   list: {
     width: 250,
+    
   },
   fullList: {
     width: "auto",
   },
+  buttons:{
+
+  }
 });
 
 type Anchor = "right";

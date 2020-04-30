@@ -16,6 +16,9 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     modal: {
@@ -46,7 +49,7 @@ const Recommand: FunctionComponent<any> = ({}) => {
         url: `${_url}/stores/store_list/${_id}/`, // 알고리즘 url
         responseType: "json",
       }).then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         // setStoreList(res.data);
         // console.log(storeList);
       });
@@ -60,9 +63,11 @@ const Recommand: FunctionComponent<any> = ({}) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
+
   const handleOpen = () => {
     setOpen(true);
     console.log("열려라");
+    // console.log(storeList);
   };
 
   const handleClose = () => {
@@ -75,6 +80,9 @@ const Recommand: FunctionComponent<any> = ({}) => {
     );
   };
 
+
+  
+
   return (
     <>
       <StyledText>
@@ -86,7 +94,7 @@ const Recommand: FunctionComponent<any> = ({}) => {
         />
         <h4>고갯마루</h4>
         <StyledBtn onClick={handleOpen}>자세히보기</StyledBtn>
-
+        
         <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"

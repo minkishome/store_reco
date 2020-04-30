@@ -9,6 +9,8 @@ import { StyledText, StyledTextBtn } from "../../style";
 // axios import
 import { url as _url } from "../../../url";
 import axios from "axios";
+import {Typography, Box} from '@material-ui/core';
+
 
 const ResultPage: FunctionComponent<any> = ({ fullpage_api }: any) => {
   // 성공실패여부 계산
@@ -126,31 +128,42 @@ const ResultPage: FunctionComponent<any> = ({ fullpage_api }: any) => {
   return (
     <>
       <StyledText>
-        <h1>Result Page</h1>
-        <h3>
+            <Typography>
+              <Box fontSize='2vw'>
+                Result Page
+              </Box>
+            </Typography>
+        <Typography component = 'div'>
+          <Box fontSize='3vw'>
           {checkResult === monthlyCost / monthDay >= dailyCost
             ? "성공"
             : "실패"}
-        </h3>
-        <h3>
+            </Box>
+
+        </Typography>
+        <Typography component = 'div'>
+          <Box fontSize='3vw'>
           오늘 하루 식비를
           <br />
           {money}원<br />
-          <h3>
+          
             {checkResult === monthlyCost / monthDay >= dailyCost
               ? "아끼셨네요"
               : "더 쓰셨다는 사실"}
-          </h3>
+          
           <br />
-        </h3>
-        <h3>
+      
           {checkResult === monthlyCost / monthDay >= dailyCost
             ? " 먹어서 뭐해요!! 남는건 에어팟인데!"
             : " 먹어서 뭐해요.... 에어팟 안 살꺼에요?"}
-        </h3>
+          </Box>
+
+        </Typography>
 
         <StyledTextBtn onClick={() => fullpage_api.moveSlideRight()}>
-          다른사람과 비교하러 가기>>
+            <Box fontSize='2vw'>
+              다른사람과 비교하러 가기>>
+            </Box>
         </StyledTextBtn>
         <br></br>
       </StyledText>

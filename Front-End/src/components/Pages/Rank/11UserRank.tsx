@@ -80,8 +80,8 @@ const UserRank: FunctionComponent<any> = ({fullpage_api}: any) => {
         </h3>
         <ul style={{ listStyleType: "none", padding: 0}}>
       {priceList.map((value, index) => {
-        // return <li key={index}>{index+1}위 <img src={imageList[index]} width="50px" height="50px"/> {userList[index]} {value}원</li>
-        return <li key={index}>{index+1}위 {userList[index]} {value}원</li>
+        return <li key={index}>{index+1}위 <img src={imageList[index]} width="50px" height="50px"/> {userList[index]} {value}원</li>
+        // return <li key={index}>{index+1}위 {userList[index]} {value}원</li>
       })}
     </ul>
         <button onClick={() => {fullpage_api.moveSlideLeft()}}>이전 화면으로 돌아가기 </button>
