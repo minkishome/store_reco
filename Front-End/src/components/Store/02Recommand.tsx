@@ -16,6 +16,9 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     modal: {
@@ -45,7 +48,7 @@ const Recommand: FunctionComponent<any> = ({}) => {
         url: `${_url}/stores/store_list/${_id}/`, // 알고리즘 url
         responseType: "json",
       }).then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         // setStoreList(res.data);
         // console.log(storeList);
       });
@@ -127,9 +130,11 @@ const Recommand: FunctionComponent<any> = ({}) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
+
   const handleOpen = () => {
     setOpen(true);
     console.log("열려라");
+    // console.log(storeList);
   };
 
   const handleClose = () => {
@@ -142,6 +147,9 @@ const Recommand: FunctionComponent<any> = ({}) => {
     );
   };
 
+
+  
+
   return (
     <>
       <StyledText>
@@ -153,7 +161,9 @@ const Recommand: FunctionComponent<any> = ({}) => {
             ? "먹을 수 있는 곳이에요"
             : "저렴하게 먹을 수 있는 곳이에요"}
         </h3> */} 
+        
 
+        
         <br />
         <img
           src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxNzAxMDhfMSAg%2FMDAxNDgzODAyNDIwNzg4.5sRLucgny06iqQ_RBdwnaVtWIVnBvc-Lxsa__Lfc2aMg.-gHlR0au-otgL13tqbKoRoeYvcDl7i_9zp3JslOw_nsg.JPEG.39274520%2FDSC03488.JPG&type=b400"
@@ -162,7 +172,7 @@ const Recommand: FunctionComponent<any> = ({}) => {
         />
         <h4>고갯마루</h4>
         <StyledBtn onClick={handleOpen}>자세히보기</StyledBtn>
-
+        
         <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"

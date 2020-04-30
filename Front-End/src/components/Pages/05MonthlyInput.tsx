@@ -7,7 +7,7 @@ import React, {
 import { StyledText, StyledInput } from "../style";
 import axios from "axios";
 import { url as _url } from "../../url";
-
+import {Typography, Box} from '@material-ui/core';
 // 프로필 메뉴
 // import ProfileMenu from "../UserPage/00ProfileMenu";
 
@@ -84,14 +84,25 @@ const MonthlyInput = ({}) => {
   return (
     <>
       <StyledText>
-        <h3>
+        {/* <h3>
           나는 한달 평균 식비를 <br />
           <StyledInput
             onChange={onChangeInput}
             onKeyDown={Enter_Check}
           ></StyledInput>
           원 써요
-        </h3>
+        </h3> */}
+        <Typography component = 'div'>
+          <Box fontSize='3vw'>
+          나는 한달 평균 식비를 <br />
+          <StyledInput
+            onChange={onChangeInput}
+            onKeyDown={Enter_Check}
+          ></StyledInput>
+          원 써요
+          </Box>
+
+        </Typography>
         <button onClick={onSubmit}>추가</button>
       </StyledText>
     </>

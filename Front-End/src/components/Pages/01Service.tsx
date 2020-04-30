@@ -9,7 +9,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { url as _url } from "../../url";
 import axios from "axios";
-import KaKaoLogin from "react-kakao-login";
+import KaKaoLogin from "react-kakao-login"; 
+import {Grid, Typography, Box} from '@material-ui/core';
 
 declare const window: any;
 interface State {
@@ -96,17 +97,25 @@ class Service extends Component<any, State> {
     return (
       <>
         <StyledText id="myMenu">
-          <h2>
-            42000건의 빅데이터를 활용해
-            <br />
+          <Typography component='div'>
+            <Box fontSize='3vw'>
+             42000건의 빅데이터를 활용해
+            </Box>
+            <Box fontSize='3vw'>
             여러분의 소비를 비교/분석 해드려요.
-            <br />
+            </Box>
+            <Box fontSize='3vw'>
             식비 맞춤형 맛집도 추천해드립니다.
-            <br />
+            </Box>
+            <Box fontSize='3vw'>
             회원가입을 하면 더 많은 서비스를
-            <br />
+            </Box>
+            <Box fontSize='3vw'>
             이용하실 수 있어요
-          </h2>
+            </Box>
+
+
+          </Typography>
           <KaKaoBtn
             jsKey={"2b67838751764359be17923f29aa820e"}
             buttonText="KaKao"
@@ -124,14 +133,14 @@ class Service extends Component<any, State> {
 
 const KaKaoBtn = styled(KaKaoLogin)`
   padding: 0;
-  width: 190px;
+  width: 25%;
   height: 44px;
   line-height: 44px;
   color: #783c00;
   background-color: #ffeb00;
   border: 1px solid transparent;
   border-radius: 3px;
-  font-size: 16px;
+  font-size: 2vw;
   font-weight: bold;
   text-align: center;
   cursor: pointer;

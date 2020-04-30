@@ -2,6 +2,7 @@ import React, { FunctionComponent, useState, useEffect, Component } from 'react'
 import { StyledText, StyledInput } from '../style';
 import axios from "axios";
 import { url as _url } from '../../url';
+import {Typography, Box} from '@material-ui/core';
 
 const DailyInput: FunctionComponent<any> = ({ }) => {
   var date = new Date(); 
@@ -116,13 +117,33 @@ const DailyInput: FunctionComponent<any> = ({ }) => {
   return (
     <>
       <StyledText>
-        <h3>나는 오늘 아침에 <StyledInput onChange={changeBreakfast} />
+        {/* <h3>나는 오늘 아침에 <StyledInput onChange={changeBreakfast} />
         점심에 <StyledInput onChange={changeLunch} />
         저녁에 <StyledInput onChange={changeDinner} />
           원 썼어요</h3>
           <button onClick={onSubmit}>추가</button>
-        <h2>총 합: {breakfast+lunch+dinner}</h2>
-      </StyledText>
+        <h2>총 합: {breakfast+lunch+dinner}</h2> */}
+      
+          <Typography component = 'div'>
+              <Box fontSize='3vw'>
+                나는 오늘 아침에 <StyledInput onChange={changeBreakfast}/>
+              </Box>
+              <Box fontSize='3vw'>
+                점심에 <StyledInput onChange={changeLunch} />
+              </Box>
+              <Box fontSize='3vw'>
+                저녁에 <StyledInput onChange={changeDinner} />
+                  원 썼어요 
+              </Box>
+              <Box fontSize='3vw'>
+                  <button onClick={onSubmit}>추가</button>
+              </Box>
+              <Box fontSize='3vw'>
+                  총 합: {breakfast+lunch+dinner}
+
+              </Box>
+          </Typography>
+        </StyledText>
     </>
   )
 }
