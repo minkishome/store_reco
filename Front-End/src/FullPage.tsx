@@ -38,7 +38,7 @@ const Fullpage = () => (
             <Greeting />
           </div>
           <div className="section">
-            <Service />
+            <Service fullpage_api={fullpageApi}/>
           </div>
           <div className="section">
             <Survey />
