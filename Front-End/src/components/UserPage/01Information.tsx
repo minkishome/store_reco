@@ -4,15 +4,9 @@ import React, {
   useEffect,
   Component,
 } from "react";
-<<<<<<< HEAD
 import { StyledText, StyledInput, StyledBtn } from '../style';
 import axios from 'axios';
 import { url as _url } from '../../url';
-=======
-import { StyledText, StyledInput } from "../style";
-import axios from "axios";
-import { url as _url } from "../../url";
->>>>>>> features/css_SK
 import Imgur from "./Imgur";
 
 import styled from "styled-components";
@@ -34,7 +28,6 @@ const Information: FunctionComponent<any> = ({ setUserImage }: any) => {
   useEffect(() => getUserInfo(), [toggle]);
 
   const getUserInfo = () => {
-<<<<<<< HEAD
     const _id = window.sessionStorage.getItem('id');
     // const _id = "3";
     axios.get(`${_url}/api/user_detail/${_id}/`)
@@ -47,19 +40,6 @@ const Information: FunctionComponent<any> = ({ setUserImage }: any) => {
   const EditUserInfo = async () => {
     const _id = window.sessionStorage.getItem('id')
     // const _id = "3"
-=======
-    // const _id = window.sessionStorage.getItem('id');
-    const _id = "3";
-    axios.get(`${_url}/api/user_detail/${_id}/`).then((response) => {
-      setUserInfo(response.data);
-      // setUserImage(response.data.profile_image)
-    });
-  };
-
-  const EditUserInfo = async () => {
-    // const _id = window.sessionStorage.getItem('id')
-    const _id = "3";
->>>>>>> features/css_SK
     try {
       const res = await axios({
         method: "put",
