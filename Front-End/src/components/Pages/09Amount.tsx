@@ -7,6 +7,8 @@ import { Typography, Box, Container,} from '@material-ui/core';
 const Amount: FunctionComponent<any> = ({ }) => {
   const [saveList, setSaveList] = useState([] as any)
   const [itemPrice, setItemPrice] = useState([] as any)
+  const [itemName, setItemName] = useState('')
+  const [itemImage, setItemImage] = useState('')
   const _id = window.sessionStorage.getItem('id')
 
   useEffect(() => onAmount(), [])
@@ -16,7 +18,11 @@ const Amount: FunctionComponent<any> = ({ }) => {
     .then(response => {
       var temp1 = [] as any
       var temp2: any = response.data.price
+      var temp3 = response.data.item
+      var temp4 = response.data.itme_image
       setItemPrice(temp2)
+      setItemName(temp3)
+      setItemImage(temp4)
       response.data.history.map((e:any) => {
         temp1.push(e.today_saving)
         setSaveList(temp1)
@@ -35,24 +41,18 @@ const Amount: FunctionComponent<any> = ({ }) => {
     <>
       <StyledText>
         <Container style={{ width:'100%', height:'100%'}}>
-        <img src='https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/269056d2-2466-4aff-bd5f-f6c6f908bbe6.jpeg'
-        width='30%'
-        height='30%'
+        <img src= {itemImage}
+          width='30%'
+          height='30%'
          />
-        <h3>에어팟까지 남은 금액<br />
-        {itemPrice-getArraySum(saveList)}원<br />
+        <h3>
+        {itemPrice-getArraySum(saveList) > 0 ? 
+        `${itemName} 사기까지 ${itemPrice-getArraySum(saveList)}원 남았습니다.` : 
+        `축하합니다!`}
         </h3>
-        <StyledTextBtn>다른 사람은 무엇을 사고 싶어할까요?</StyledTextBtn>
-        
+        <StyledTextBtn><Box fontSize='2vw'>다른 사람은 무엇을 사고 싶어할까요?</Box></StyledTextBtn>
         <Typography component = 'div'>
-          <Box fontSize='2vw'>
-          에어팟까지 남은 금액<br />
-          {money}원<br />
-          <hr />
-                현재 속도로 에어팟까지 걸리는<br />
-                시간은 {date}일 입니다<br />
-                <StyledTextBtn><Box fontSize='2vw'>다른 사람은 무엇을 사고 싶어할까요?</Box></StyledTextBtn>
-          </Box>
+         
 
         </Typography>
         

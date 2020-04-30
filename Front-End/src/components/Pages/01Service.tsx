@@ -24,7 +24,7 @@ class Service extends Component<any, State> {
       data: "kakao",
     };
   }
-
+  
   responseKaKao = async (res: any) => {
     this.setState({
       data: res,
@@ -40,6 +40,7 @@ class Service extends Component<any, State> {
 
     try {
       alert("요청보낸당");
+      console.log(this.props.fullpage_api)
       const response = await axios({
         method: "get",
         // url: `${_url}/api/user_exist/`,
@@ -62,7 +63,8 @@ class Service extends Component<any, State> {
         );
         sessionStorage.setItem("password", "1234");
         alert("로그인되었습니다");
-        window.location.href = "http://13.125.68.151:8081/#fifthPage";
+        this.props.fullpage_api.moveTo(5);
+        // window.location.href = "http://13.125.68.151:8081/#fifthPage";
       } else {
         try {
           const signup_response = await axios({
@@ -84,6 +86,7 @@ class Service extends Component<any, State> {
           });
           // 회원가입 -> Survey 연결 부분
           alert("회원가입 되었습니다.");
+          this.props.fullpage_api.moveTo(3);
           // window.location.href='http://13.125.68.151:8081/#thirdPage';
         } catch (err) {
           sessionStorage.clear();

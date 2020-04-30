@@ -60,13 +60,14 @@ const Fullpage = () => (
             
             <Container style={{height: '100%', width:'100%', display:'flex',  flexDirection:'row'}}>
               <Grid item style={{width:'90%',position:'relative',  top:'20%', textAlign:'center'}} >
-              <Service />
+              <Service fullpage_api={fullpageApi}/>
               </Grid>
               
               <Grid item style={{width:'10%', position:'sticky'}} >
                 <Profile />
               </Grid>
               </Container>
+            
           </div>
           
           <div className="section">
