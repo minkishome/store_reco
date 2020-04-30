@@ -63,12 +63,14 @@ const UserRank: FunctionComponent<any> = ({fullpage_api}: any) => {
     .then(response => {
       temp2.push(response.data.nickname)
       setUserList(temp2)
-      temp3.push(response.data.profile_image)
+      const _image = response.data.profile_image
+        ? response.data.profile_image.replace(/^"+|"+$/g, "")
+        : response.data.profile_image
+      temp3.push(_image)
       setImageList(temp3)
     });
   };
-  
-
+  console.log(imageList, 111111111111)
 
   return (
     <>
@@ -80,7 +82,7 @@ const UserRank: FunctionComponent<any> = ({fullpage_api}: any) => {
         </h3>
         <ul style={{ listStyleType: "none", padding: 0}}>
       {priceList.map((value, index) => {
-        return <li key={index}>{index+1}위 <img src={imageList[index]} width="50px" height="50px"/> {userList[index]} {value}원</li>
+        return <li key={index}>{index+1}위 <img src={imageList[index]} width="30px" height="30px" style={{borderRadius:"50px"}}/> {userList[index]} {value}원</li>
         // return <li key={index}>{index+1}위 {userList[index]} {value}원</li>
       })}
     </ul>

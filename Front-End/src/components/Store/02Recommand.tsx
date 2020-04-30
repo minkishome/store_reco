@@ -35,39 +35,99 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const checkDayli = 0;
-const _id = window.sessionStorage.getItem("id");
-// const [storeList, setStoreList] = useState([]);
+// const checkDayli = 0;
+
+// const storeList = [] as any;
 
 const Recommand: FunctionComponent<any> = ({}) => {
   // 알고리즘 음식점 axios
-  const getRecommandStore = () => {
+  const _id = window.sessionStorage.getItem("id");
+  const [storeIdList, setStoreIdList] = useState([] as any);
+  const [storeNameList, setStoreNameList] = useState([] as any);
+  const [storeImageList, setStoreImageList] = useState([] as any);
+
+  const [storeDetail, setStoreDetail] = useState([] as any);
+
+  useEffect(() => getRecommandStore(), []);
+  // useEffect(() => getStoreDetail(), []);
+
+  // 모달부분 - 음식점 데이터 불러오기
+  const getStoreDetail = (storeId, temp4) => {
     try {
-      console.log(_id);
-      const response = axios({
+      console.log("음식점 데이터 불러오기 ING");
+      const res = axios({
         method: "get",
-        url: `${_url}/stores/store_list/${_id}/`, // 알고리즘 url
+        url: `${_url}/stores/store_detail/${storeId}/`, // 알고리즘 url
         responseType: "json",
       }).then((res) => {
-        // console.log(res.data);
-        // setStoreList(res.data);
-        // console.log(storeList);
+        console.log("음식점 데이터", res.data);
+        setStoreDetail(res.data);
+        // temp4.push(res.data);
+        // setStoreDetail(temp4);
       });
-      alert("연결성공");
+
+      // temp.push(response.data);
+      // console.log("temp", temp);
+      // setStoreDetail(temp);
     } catch (err) {
       alert(err);
     }
   };
 
+  // handleOpen();
+
+  const getRecommandStore = () => {
+    // 알고리즘 url 수정!!!!
+    try {
+      console.log(_id);
+      const response = axios({
+        method: "get",
+        url: `${_url}/stores/store_list/12341234/`,
+        responseType: "json",
+      }).then((res) => {
+        console.log(res.data);
+        // var temp1 = [] as any;
+        var temp2 = [] as any;
+        var temp3 = [] as any;
+        var temp4 = [] as any;
+        console.log(res.data, "res.data");
+        res.data.map((e: any, idx: any) => {
+          console.log(e, "e");
+          // temp1.push(e.store_id);
+          temp2.push(e.store_name);
+          temp3.push(e.store_image);
+          console.log(temp2, temp3, "temp");
+          const storeId = e.store_id;
+          getStoreDetail(storeId, temp4);
+        });
+        // setStoreIdList(temp1);
+        setStoreNameList(temp2);
+        setStoreImageList(temp3);
+        // console.log("storeIDList", storeIdList); // 안 담김
+        // console.log("storeImageList", storeImageList);
+        // console.log("storeNameList", storeNameList);
+        // 음식점 정보 가져오는 부분
+        // console.log("디테일 뽑거랑");
+        // getStoreDetail();
+      });
+
+      // alert("알고리즘 연결성공");
+    } catch (err) {
+      alert(err);
+    }
+  };
+
+  const [open, setOpen] = React.useState(false as boolean);
+
+  // console.log("2", storeList);
   // 모달 부분
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
 
 
   const handleOpen = () => {
     setOpen(true);
     console.log("열려라");
-    // console.log(storeList);
+    // getStoreDetail(store_id);
   };
 
   const handleClose = () => {
@@ -80,21 +140,36 @@ const Recommand: FunctionComponent<any> = ({}) => {
     );
   };
 
+  // console.log("storeIDList", storeIdList); // 담김
+  // console.log("storeImageList", storeImageList);
+  // console.log("storeNameList", storeNameList);
+  console.log("storedetail", storeDetail);
 
-  
-
+  // const stores = for (var idx = 0; i < storeList)
+  // console.log(storeNameList, "storeNameList");
+  // getRecommandStore();
   return (
     <>
       <StyledText>
-        <br />
-        <img
-          src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxNzAxMDhfMSAg%2FMDAxNDgzODAyNDIwNzg4.5sRLucgny06iqQ_RBdwnaVtWIVnBvc-Lxsa__Lfc2aMg.-gHlR0au-otgL13tqbKoRoeYvcDl7i_9zp3JslOw_nsg.JPEG.39274520%2FDSC03488.JPG&type=b400"
-          alt=""
-          width="200px"
-        />
-        <h4>고갯마루</h4>
-        <StyledBtn onClick={handleOpen}>자세히보기</StyledBtn>
-        
+        {/* <button onClick={getStoreDetail}>추천</button> */}
+        {storeNameList.map((value, index) => {
+          return (
+            <>
+              <div onClick={handleOpen}>
+                <h4>{value}</h4>
+
+                <img
+                  src={storeImageList[index]}
+                  alt=""
+                  width="200px"
+                  // onClick={() => getStoreDetail(storeIdList[index])}
+                  // onClick={getStoreDetail(storeIdList[index])}
+                />
+              </div>
+            </>
+          );
+        })}
+
         <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
@@ -109,14 +184,10 @@ const Recommand: FunctionComponent<any> = ({}) => {
         >
           <Fade in={open}>
             <div className={classes.paper}>
-              <h2 id="transition-modal-title">store_name</h2>
+              {/* <h2 id="transition-modal-title">{storeDetail}</h2> */}
               {/* <p id="transition-modal-description"> */}
               <div>
-                <img
-                  src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxNzAxMDhfMSAg%2FMDAxNDgzODAyNDIwNzg4.5sRLucgny06iqQ_RBdwnaVtWIVnBvc-Lxsa__Lfc2aMg.-gHlR0au-otgL13tqbKoRoeYvcDl7i_9zp3JslOw_nsg.JPEG.39274520%2FDSC03488.JPG&type=b400"
-                  alt="고갯마루"
-                  width="200"
-                />
+                <img src="" alt="고갯마루" width="200" />
                 <br />
                 tel
                 <br />

@@ -70,6 +70,8 @@ class KakaoSignUp extends Component<any, State> {
       const msg: string = JSON.stringify(response.data.message);
 
       if (msg == "true") {
+        console.log("여기들어오나");
+        console.log(msg);
         sessionStorage.setItem(
           "id",
           JSON.stringify(this.state.data.profile.id)
@@ -182,8 +184,7 @@ class KakaoSignUp extends Component<any, State> {
   //         }
   //     });
   // }
-  render(
-  ) {
+  render() {
     return (
       <>
         <StyledText>

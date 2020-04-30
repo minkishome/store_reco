@@ -19,7 +19,7 @@ const Amount: FunctionComponent<any> = ({ }) => {
       var temp1 = [] as any
       var temp2: any = response.data.price
       var temp3 = response.data.item
-      var temp4 = response.data.itme_image
+      var temp4 = response.data.item_image
       setItemPrice(temp2)
       setItemName(temp3)
       setItemImage(temp4)

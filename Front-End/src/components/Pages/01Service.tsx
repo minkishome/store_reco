@@ -43,12 +43,10 @@ class Service extends Component<any, State> {
       console.log(this.props.fullpage_api)
       const response = await axios({
         method: "get",
-        // url: `${_url}/api/user_exist/`,
-        // url: `${_url}/api/user_exist/${_email}/`,
-        url: `${_url}/api/user_exist/3/`,
         // url: `${_url}/api/user_exist/${JSON.stringify(
         //   this.state.data.profile.id
         // )}/`,
+        url: `${_url}/api/user_exist/4/`,
         responseType: "json",
       });
       alert("요청보냈당");
@@ -74,10 +72,11 @@ class Service extends Component<any, State> {
             data: {
               password: 1234,
               // email: _email,
-              email: 'rlarkqtn@naver.com',
-              kakao_id: "3",
+              kakao_id: "4",
+              nickname: "사보텐",
+              // password: 1234,
+              // email: _email,
               // kakao_id: JSON.stringify(this.state.data.profile.id),
-              nickname: '요리사',
               // nickname: JSON.stringify(
               //   this.state.data.profile.properties.nickname
               // ),

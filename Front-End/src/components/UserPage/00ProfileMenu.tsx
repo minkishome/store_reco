@@ -87,6 +87,9 @@ const ProfileMenu: FunctionComponent<any> = ({ }) => {
             <Link to="/history">히스토리</Link>
           </ListItem>
           <ListItem button>
+            <Link to="/priceresult">달성율</Link>
+          </ListItem>
+          <ListItem button>
             <Link to="/logout">로그아웃</Link>
           </ListItem>
         </List>

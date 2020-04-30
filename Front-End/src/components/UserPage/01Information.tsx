@@ -4,7 +4,7 @@ import React, {
   useEffect,
   Component,
 } from "react";
-import { StyledText, StyledInput } from '../style';
+import { StyledText, StyledInput, StyledBtn } from '../style';
 import axios from 'axios';
 import { url as _url } from '../../url';
 import Imgur from "./Imgur";
@@ -24,8 +24,8 @@ const Information: FunctionComponent<any> = ({ setUserImage }: any) => {
   useEffect(() => getUserInfo(), [toggle])
 
   const getUserInfo = () => {
-    // const _id = window.sessionStorage.getItem('id');
-    const _id = "3";
+    const _id = window.sessionStorage.getItem('id');
+    // const _id = "3";
     axios.get(`${_url}/api/user_detail/${_id}/`)
       .then(response => {
         setUserInfo(response.data)
@@ -34,8 +34,8 @@ const Information: FunctionComponent<any> = ({ setUserImage }: any) => {
   };
 
   const EditUserInfo = async () => {
-    // const _id = window.sessionStorage.getItem('id')
-    const _id = "3"
+    const _id = window.sessionStorage.getItem('id')
+    // const _id = "3"
     try {
       const res = await axios({
         method: "put",
@@ -91,6 +91,7 @@ const Information: FunctionComponent<any> = ({ setUserImage }: any) => {
         ?
         <StyledText>
           <h1>회원정보 수정</h1>
+          <StyledBtn onClick={() => {window.history.back()}}>돌아가기</StyledBtn>
           <button onClick={() => isEditHandler()}>수정완료</button>
           <hr />
           <h3>E-mail</h3>
@@ -111,6 +112,7 @@ const Information: FunctionComponent<any> = ({ setUserImage }: any) => {
         :
         <StyledText>
           <h1>회원정보 조회</h1>
+          <StyledBtn onClick={() => {window.history.back()}}>돌아가기</StyledBtn>
           <button onClick={() => isEditHandler()}>수정하기</button>
           <hr />
           <h3>E-mail</h3>
