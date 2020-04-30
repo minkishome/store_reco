@@ -7,7 +7,7 @@ import React, {
 import { StyledText, StyledInput } from "../style";
 import axios from "axios";
 import { url as _url } from "../../url";
-import {Typography, Box} from '@material-ui/core';
+import {Typography, Box, TextField} from '@material-ui/core';
 // 프로필 메뉴
 // import ProfileMenu from "../UserPage/00ProfileMenu";
 
@@ -51,19 +51,32 @@ const MonthlyInput = ({fullpage_api}) => {
   };
   return (
     <>
-      <StyledText>
-
-        <Typography component = 'div'>
-          <Box fontSize='3vw'>
-          나는 한달 평균 식비를 <br />
-          <StyledInput
+      <StyledText
+      
+      style={{
+        position:'relative',
+        top:'30%',
+        width:'100%'
+      }}>
+    <h2>나는 한달 평균 식비를 <br/>
+          {/* <StyledInput
+            // onChange={onChangeInput}
+            // onKeyDown={Enter_Check}
+          ></StyledInput><br/> */}
+          <TextField id="standard-basic"
+          inputProps={{min: 0, style: { textAlign: 'center' }}}
+          style = {{
+            width:'10rem',
+          
+            
+        }}
             onChange={onChangeInput}
             onKeyDown={Enter_Check}
-          ></StyledInput>
-          원 써요
-          </Box>
+          >
 
-        </Typography>
+          </TextField>
+           원 써요    
+    <br/> </h2>
         <button onClick={onSubmit}>추가</button>
       </StyledText>
     </>

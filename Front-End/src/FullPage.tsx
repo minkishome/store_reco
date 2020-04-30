@@ -15,7 +15,7 @@ import Recommand from "./components/Store/02Recommand";
 // import KaKaoLogin from "./components/Accounts/KaKaoLogin";
 import KakaoSignUp from "./components/Accounts/KaKaoSignUp";
 // import StoreDetail from "./components/Store/03StoreDetail";
-import { makeStyles, Container, Grid} from '@material-ui/core';
+import { makeStyles, Container, Grid } from "@material-ui/core";
 import Survey from "./components/Accounts/Survey";
 import Success from "./components/UserPage/04Success";
 
@@ -27,10 +27,9 @@ import Profile from "./components/UserPage/00ProfileMenu";
 //   center :{
 //     float:'center',
 //   },
-// })) 
+// }))
 
 const Fullpage = () => (
-  
   <ReactFullpage
     //fullpage options
     licenseKey={"YOUR_KEY_HERE"}
@@ -38,45 +37,79 @@ const Fullpage = () => (
     navigation={true} // 오른쪽 네비게이션바 활성화
     verticalCentered={false} // css 풀린건가..?
     controlArrows={false}
-    menu={'#menu'}
-    anchors={['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'fifthPage', 'sixthPage']}
+    menu={"#menu"}
+    anchors={[
+      "firstPage",
+      "secondPage",
+      "thirdPage",
+      "fourthPage",
+      "fifthPage",
+      "sixthPage",
+    ]}
     render={({ state, fullpageApi }) => {
-      
       return (
-        <ReactFullpage.Wrapper  >
+        <ReactFullpage.Wrapper>
           <div className="section">
-            <Container style={{height: '100%', width:'100%', display:'flex',  flexDirection:'row'}}>
-              <Grid item style={{width:'90%',position:'relative',  top:'30%', textAlign:'center'}} >
-              <Greeting />
+            <Container
+              style={{
+                height: "100%",
+                width: "100%",
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <Grid
+                item
+                style={{
+                  width: "90%",
+                  position: "relative",
+                  top: "30%",
+                  textAlign: "center",
+                }}
+              >
+                <Greeting />
               </Grid>
-              
-              <Grid item style={{width:'10%', display:'fixed'}} >
+
+              <Grid item style={{ width: "10%", display: "fixed" }}>
                 <Profile />
               </Grid>
-              </Container>
+            </Container>
           </div>
           <div className="section">
-            
-            <Container style={{height: '100%', width:'100%', display:'flex',  flexDirection:'row'}}>
-              <Grid item style={{width:'90%',position:'relative',  top:'20%', textAlign:'center'}} >
+            <Container
+              style={{
+                height: "100%",
+                width: "100%",
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <Grid
+                item
+                style={{
+                  width: "90%",
+                  position: "relative",
+                  top: "10%",
+                  textAlign: "center",
+                }}
+              >
                 <div className="slide">
-                  <Service fullpage_api={fullpageApi}/>
+                  <Service fullpage_api={fullpageApi} />
                 </div>
                 <div className="slide">
-                  <Survey fullpage_api={fullpageApi}/>
+                  <Survey fullpage_api={fullpageApi} />
                 </div>
                 <div className="slide">
-                  <MonthlyInput fullpage_api={fullpageApi}/>
+                  <MonthlyInput fullpage_api={fullpageApi} />
                 </div>
               </Grid>
-              
-              <Grid item style={{width:'10%', position:'sticky'}} >
+
+              <Grid item style={{ width: "10%", position: "sticky" }}>
                 <Profile />
               </Grid>
-              </Container>
-            
+            </Container>
           </div>
-          
+
           {/* <div className="section">
               <Container style={{height: '100%', width:'100%', display:'flex',  flexDirection:'row'}}>
                   <Grid item style={{width:'90%',height:'100%', textAlign:'center'}} >
@@ -102,70 +135,141 @@ const Fullpage = () => (
           
           </div> */}
           <div className="section">
-            
-            <Container style={{height: '100%', width:'100%', display:'flex',  flexDirection:'row'}}>
-                  <Grid item style={{width:'90%',position:'relative',  top:'20%', textAlign:'center'}} >
-                  <DailyInput fullpage_api={fullpageApi}/>
-                  </Grid>
-              
-                  <Grid item style={{width:'10%', position:'sticky'}} >
-                    <Profile />
-                  </Grid>
-              </Container>   
+            <Container
+              style={{
+                height: "100%",
+                width: "100%",
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <Grid
+                item
+                style={{
+                  width: "90%",
+                  position: "relative",
+                  top: "20%",
+                  textAlign: "center",
+                }}
+              >
+                <DailyInput fullpage_api={fullpageApi} />
+              </Grid>
+
+              <Grid item style={{ width: "10%", position: "sticky" }}>
+                <Profile />
+              </Grid>
+            </Container>
           </div>
           <div className="section">
-            
-            <Container style={{height: '100%', width:'100%', display:'flex',  flexDirection:'row'}}>
-                  <Grid item style={{width:'90%',height:'100%', position:'relative',  top:'20%',textAlign:'center'}} >
-                  <div className="slide">
-                    <ResultPage fullpage_api={fullpageApi} />
-                  </div>
-                  <div className="slide">
-                     <UserRank fullpage_api={fullpageApi} />
-                  </div>
-                  </Grid>
-              
-                  <Grid item style={{width:'10%', position:'sticky'}} >
-                    <Profile />
-                  </Grid>
-              </Container>  
+            <Container
+              style={{
+                height: "100%",
+                width: "100%",
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <Grid
+                item
+                style={{
+                  width: "90%",
+                  height: "100%",
+                  position: "relative",
+                  top: "20%",
+                  textAlign: "center",
+                }}
+              >
+                <div className="slide">
+                  <ResultPage fullpage_api={fullpageApi} />
+                </div>
+                <div className="slide">
+                  <UserRank fullpage_api={fullpageApi} />
+                </div>
+              </Grid>
+
+              <Grid item style={{ width: "10%", position: "sticky" }}>
+                <Profile />
+              </Grid>
+            </Container>
           </div>
 
           <div className="section">
-           
-            <Container style={{height: '100%', width:'100%', display:'flex',  flexDirection:'row'}}>
-                  <Grid item style={{width:'90%', position:'relative',  top:'15%',textAlign:'center'}} >
-                  <Amount />
-                  </Grid>
-              
-                  <Grid item style={{width:'10%', position:'sticky'}} >
-                    <Profile />
-                  </Grid>
-              </Container>  
+            <Container
+              style={{
+                height: "100%",
+                width: "100%",
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <Grid
+                item
+                style={{
+                  width: "90%",
+                  position: "relative",
+                  top: "15%",
+                  textAlign: "center",
+                }}
+              >
+                <Amount />
+              </Grid>
+
+              <Grid item style={{ width: "10%", position: "sticky" }}>
+                <Profile />
+              </Grid>
+            </Container>
           </div>
           <div className="section">
-           
-            <Container style={{height: '100%', width:'100%', display:'flex',  flexDirection:'row'}}>
-                  <Grid item style={{width:'90%',position:'relative',  top:'30%', textAlign:'center'}} >
-                  <SelectStore />
-                  </Grid>
-              
-                  <Grid item style={{width:'10%', position:'sticky'}} >
-                    <Profile />
-                  </Grid>
-              </Container>
+            <Container
+              style={{
+                height: "100%",
+                width: "100%",
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <Grid
+                item
+                style={{
+                  width: "90%",
+                  position: "relative",
+                  top: "30%",
+                  textAlign: "center",
+                }}
+              >
+                <SelectStore />
+              </Grid>
+
+              <Grid item style={{ width: "10%", position: "sticky" }}>
+                <Profile />
+              </Grid>
+            </Container>
           </div>
           <div className="section">
-            
-            <Container style={{height: '100%', width:'100%', display:'flex',  flexDirection:'row'}}>
-                  <Grid item style={{width:'90%', position:'relative',  top:'30%',textAlign:'center'}} >
-                  <Recommand />
-                  </Grid>
-              
-                  <Grid item style={{width:'10%', position:'sticky'}} >
-                    <Profile />
-                  </Grid>
-              </Container>
+            <Container
+              style={{
+                height: "100%",
+                width: "100%",
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <Grid
+                item
+                style={{
+                  width: "90%",
+                  position: "relative",
+                  top: "30%",
+                  textAlign: "center",
+                }}
+              >
+                <Recommand />
+              </Grid>
+
+              <Grid item style={{ width: "10%", position: "sticky" }}>
+                <Profile />
+              </Grid>
+            </Container>
           </div>
         </ReactFullpage.Wrapper>
       );
