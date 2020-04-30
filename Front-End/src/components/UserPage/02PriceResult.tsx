@@ -10,54 +10,80 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { url as _url } from "../../url";
 
+import { Typography, Container, Grid, Box } from "@material-ui/core";
+
 const PriceResult: FunctionComponent<any> = ({}) => {
-  const [saveList, setSaveList] = useState([] as any)
-  const [itemPrice, setItemPrice] = useState([] as any)
-  const [itemName, setItemName] = useState('')
-  const [itemImage, setItemImage] = useState('')
-  const _id = window.sessionStorage.getItem('id')
-  useEffect(() => onAmount(), [])
+  const [saveList, setSaveList] = useState([] as any);
+  const [itemPrice, setItemPrice] = useState([] as any);
+  const [itemName, setItemName] = useState("");
+  const [itemImage, setItemImage] = useState("");
+  const _id = window.sessionStorage.getItem("id");
+  useEffect(() => onAmount(), []);
   const onAmount = () => {
-    axios.get(`${_url}/api/user_detail/${_id}/`)
-    // axios.get(`${_url}/api/user_detail/2`)
-    .then(response => {
-      var temp1 = [] as any
-      var temp2: any = response.data.price
-      var temp3 = response.data.item
-      var temp4 = response.data.item_image
-      setItemPrice(temp2)
-      setItemName(temp3)
-      setItemImage(temp4)
-      response.data.history.map((e:any) => {
-        temp1.push(e.today_saving)
-        setSaveList(temp1)
-      })
-      }
-    )}
-    function getArraySum(a){
-      var total=0;
-      for(var i in a) { 
-          total += a[i];
-      }
-      return total;
+    axios
+      .get(`${_url}/api/user_detail/${_id}/`)
+      // axios.get(`${_url}/api/user_detail/2`)
+      .then((response) => {
+        var temp1 = [] as any;
+        var temp2: any = response.data.price;
+        var temp3 = response.data.item;
+        var temp4 = response.data.item_image;
+        setItemPrice(temp2);
+        setItemName(temp3);
+        setItemImage(temp4);
+        response.data.history.map((e: any) => {
+          temp1.push(e.today_saving);
+          setSaveList(temp1);
+        });
+      });
+  };
+  function getArraySum(a) {
+    var total = 0;
+    for (var i in a) {
+      total += a[i];
+    }
+    return total;
   }
   // console.log(itemImage, 111111111)
   return (
     <>
-      <StyledText>
-      <StyledBtn onClick={() => {window.history.back()}}>돌아가기</StyledBtn>
-        <h1>{itemName}사기까지</h1>
-        <img
-          src={itemImage}
-          width="150"
-        />
-        <h1>{itemPrice-getArraySum(saveList)} 원</h1>
-        <h1>남았습니다.</h1>
+      <Grid
+        container
+        style={{
+          textAlign: "center",
+          // , width:"80%"
+        }}
+      >
+        <Grid
+          item
+          style={{
+            width: "54%",
+            position: "relative",
+            display: "inline-block",
+            textAlign: "center",
+            marginLeft: "23%",
+            marginRight: "23%",
+          }}
+        >
+          <StyledText>
+            <StyledBtn
+              onClick={() => {
+                window.history.back();
+              }}
+            >
+              돌아가기
+            </StyledBtn>
+            <h1>{itemName}사기까지</h1>
+            <img src={itemImage} width="150" />
+            <h1>{itemPrice - getArraySum(saveList)} 원</h1>
+            <h1>남았습니다.</h1>
 
-        {/* <h3>히스토리 보기</h3>
+            {/* <h3>히스토리 보기</h3>
         <button onClick={() => setToggle(!toggle)}>▼</button>
         {toggle ? <History /> : <div></div>} */}
-      </StyledText>
+          </StyledText>
+        </Grid>
+      </Grid>
     </>
   );
 };
