@@ -5,12 +5,20 @@ import React, {
   Component,
 } from "react";
 import { StyledText, StyledBtn } from "../style";
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import { makeStyles } from '@material-ui/core/styles';
 
 // axios import
 import { url as _url } from "../../url";
 import axios from "axios";
 import Modal from "./Modal";
-import { Grid } from "@material-ui/core"
+import { Grid } from "@material-ui/core";
+import Typography from '@material-ui/core/Typography';
+
 // materia-ui 모달 import
 // import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 // import Modal from "@material-ui/core/Modal";
@@ -49,8 +57,20 @@ const Recommand: FunctionComponent<any> = ({ }) => {
         tmp.push([_name, _id, _img])
       });
       setStoreList(tmp)
+      console.log('됨')
     })
   }
+
+  const useStyles = makeStyles({
+    root: {
+      maxWidth: 345,
+    },
+    media: {
+      height: 140,
+    },
+  });
+
+  const classes = useStyles();
 
 
   return (
@@ -61,15 +81,32 @@ const Recommand: FunctionComponent<any> = ({ }) => {
         {storeList.map((e: any, idx: number) => {
           return (
             <>
-              <div className="box">
-                {e[0]}
-                <img
+              <Card className={classes.root} style={{float: "left", width: "33%"}}>
+                <CardActionArea>
+                  <CardMedia
+                    // @ts-ignore
+                    className={classes.media}
+                    image={e[2]}
+                    title={e[0]}
+                  >
+                  </CardMedia>
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                    {e[0]}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+              {/* <img
                   src={e[2]}
                   alt=""
                   width="200px"
                   onClick={() => openModalHandler(e[1])}
                 />
-              </div>
+                <div className="card-body">
+                  <h2 className="card-title text-center">{e[0]}</h2>
+                </div>
+              </div> */}
             </>
           )
         })}
