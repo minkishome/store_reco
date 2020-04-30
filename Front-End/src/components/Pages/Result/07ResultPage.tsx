@@ -128,42 +128,32 @@ const ResultPage: FunctionComponent<any> = ({ fullpage_api }: any) => {
   return (
     <>
       <StyledText>
-            <Typography component = 'div'>
-              <Box fontSize='2vw'>
-                Result Page
-              </Box>
-            </Typography>
-        <Typography component = 'div'>
-          <Box fontSize='3vw'>
+          
+                <h1>Result Page</h1>
+         <h2>
           {checkResult === monthlyCost / monthDay >= dailyCost
             ? "성공"
             : "실패"}
-            </Box>
-
-        </Typography>
-        <Typography component = 'div'>
-          <Box fontSize='3vw'>
-          오늘 하루 식비를
+          </h2>
+         <h2> 오늘 하루 식비를
           <br />
           {money}원<br />
           
             {checkResult === monthlyCost / monthDay >= dailyCost
               ? "아끼셨네요"
               : "더 쓰셨다는 사실"}
-          
+          </h2>
           <br />
-      
+              <h2>
           {checkResult === monthlyCost / monthDay >= dailyCost
             ? " 먹어서 뭐해요!! 남는건 에어팟인데!"
             : " 먹어서 뭐해요.... 에어팟 안 살꺼에요?"}
-          </Box>
-
-        </Typography>
+         </h2>
 
         <StyledTextBtn onClick={() => fullpage_api.moveSlideRight()}>
-            <Box fontSize='2vw'>
+            <h2>
               다른사람과 비교하러 가기>>
-            </Box>
+            </h2>
         </StyledTextBtn>
         <br></br>
       </StyledText>
