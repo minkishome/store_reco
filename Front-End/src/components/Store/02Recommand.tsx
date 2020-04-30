@@ -25,26 +25,14 @@ const Recommand: FunctionComponent<any> = ({ }) => {
   useEffect(() => getRecommandStore(), [isModalOpen]);
 
   const openModalHandler = (data: any) => {
-    alert('모달열려랑')
     setModalData(data);
     var t: any = true 
     setIsModalOpen(t);
-    console.log(isModalOpen)
   };
 
   const closeModalHandler = () => setIsModalOpen(false);
 
-  const getStoreDetail = (store_id: any, temp: any) => {
-    const response = axios({
-      method: 'get',
-      url: `${_url}/stores/store_detail/${store_id}/`,
-      responseType: "json",
-    }).then((response) => {
-      temp.push(response.data)
-    }
-    )
-  }
-
+  
   const getRecommandStore = () => {
     const res = axios({
       method: 'get',
@@ -73,7 +61,7 @@ const Recommand: FunctionComponent<any> = ({ }) => {
               src={e[2]}
               alt=""
               width="200px"
-              onClick={() => openModalHandler(e[0])}
+              onClick={() => openModalHandler(e[1])}
             />
             <br></br>
           </>
@@ -81,16 +69,11 @@ const Recommand: FunctionComponent<any> = ({ }) => {
       })}
       {isModalOpen ? (
         <Modal
-          // @ts-ignore
-          style={{
-            width : "300px",
-            height:"300px"
-          }}
           close={closeModalHandler}
           data={modalData}
           openModal={openModalHandler}
         />
-      ) : console.log('안오픈')}
+      ) : null}
     </>
   )
 }
