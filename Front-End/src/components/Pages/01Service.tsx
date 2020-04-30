@@ -43,10 +43,10 @@ class Service extends Component<any, State> {
       // console.log(this.props.fullpage_api)
       const response = await axios({
         method: "get",
-        // url: `${_url}/api/user_exist/${JSON.stringify(
-        //   this.state.data.profile.id
-        // )}/`,
-        url: `${_url}/api/user_exist/4/`,
+        url: `${_url}/api/user_exist/${JSON.stringify(
+          this.state.data.profile.id
+        )}/`,
+        // url: `${_url}/api/user_exist/4/`,
         responseType: "json",
       });
       alert("이미 회원가입 된 유저입니다.");
@@ -113,7 +113,6 @@ class Service extends Component<any, State> {
             position:'relative',
             top:'10%'
           }}
-        
         >
         <h2>42000건의 빅데이터를 활용해<br/>
         여러분의 소비를 비교/분석 해드려요.<br/>
