@@ -110,14 +110,10 @@ WSGI_APPLICATION = 'whyEat.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mydb',
+        'NAME': 'prim',
         'USER': 'root',
         'PASSWORD': '1234',
-<<<<<<< HEAD
-        'HOST': '127.0.0.1',
-=======
         'HOST': 'localhost',
->>>>>>> 2713284b739a469e2f06f083d39329c9f92d202c
         'PORT': '3306',
         'OPTIONS': {
             'init_command': 'SET sql_mode="STRICT_TRANS_TABLES"',
