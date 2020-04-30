@@ -41,7 +41,7 @@ const PriceResult: FunctionComponent<any> = ({}) => {
       }
       return total;
   }
-  console.log(itemImage, 111111111)
+  // console.log(itemImage, 111111111)
   return (
     <>
       <StyledText>

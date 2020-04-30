@@ -18,7 +18,7 @@ const Greeting: FunctionComponent<any> = ({}) => {
         url: `http://13.125.68.151:8000/stores/store_list/`, // 알고리즘 url
         responseType: "json",
       });
-      console.log(response);
+      // console.log(response);
       alert("연결성공");
     } catch (err) {
       alert(err);

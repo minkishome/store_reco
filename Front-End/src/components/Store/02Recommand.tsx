@@ -54,13 +54,13 @@ const Recommand: FunctionComponent<any> = ({}) => {
   // 모달부분 - 음식점 데이터 불러오기
   const getStoreDetail = (storeId, temp4) => {
     try {
-      console.log("음식점 데이터 불러오기 ING");
+      // console.log("음식점 데이터 불러오기 ING");
       const res = axios({
         method: "get",
         url: `${_url}/stores/store_detail/${storeId}/`, // 알고리즘 url
         responseType: "json",
       }).then((res) => {
-        console.log("음식점 데이터", res.data);
+        // console.log("음식점 데이터", res.data);
         setStoreDetail(res.data);
         // temp4.push(res.data);
         // setStoreDetail(temp4);
@@ -79,24 +79,24 @@ const Recommand: FunctionComponent<any> = ({}) => {
   const getRecommandStore = () => {
     // 알고리즘 url 수정!!!!
     try {
-      console.log(_id);
+      // console.log(_id);
       const response = axios({
         method: "get",
         url: `${_url}/stores/store_list/12341234/`,
         responseType: "json",
       }).then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         // var temp1 = [] as any;
         var temp2 = [] as any;
         var temp3 = [] as any;
         var temp4 = [] as any;
-        console.log(res.data, "res.data");
+        // console.log(res.data, "res.data");
         res.data.map((e: any, idx: any) => {
-          console.log(e, "e");
+          // console.log(e, "e");
           // temp1.push(e.store_id);
           temp2.push(e.store_name);
           temp3.push(e.store_image);
-          console.log(temp2, temp3, "temp");
+          // console.log(temp2, temp3, "temp");
           const storeId = e.store_id;
           getStoreDetail(storeId, temp4);
         });
@@ -126,7 +126,7 @@ const Recommand: FunctionComponent<any> = ({}) => {
 
   const handleOpen = () => {
     setOpen(true);
-    console.log("열려라");
+    // console.log("열려라");
     // getStoreDetail(store_id);
   };
 
@@ -143,7 +143,7 @@ const Recommand: FunctionComponent<any> = ({}) => {
   // console.log("storeIDList", storeIdList); // 담김
   // console.log("storeImageList", storeImageList);
   // console.log("storeNameList", storeNameList);
-  console.log("storedetail", storeDetail);
+  // console.log("storedetail", storeDetail);
 
   // const stores = for (var idx = 0; i < storeList)
   // console.log(storeNameList, "storeNameList");

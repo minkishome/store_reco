@@ -70,7 +70,7 @@ const UserRank: FunctionComponent<any> = ({fullpage_api}: any) => {
       setImageList(temp3)
     });
   };
-  console.log(imageList, 111111111111)
+  // console.log(imageList, 111111111111)
 
   return (
     <>

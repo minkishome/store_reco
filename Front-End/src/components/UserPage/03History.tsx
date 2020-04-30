@@ -48,9 +48,9 @@ const History: FunctionComponent<any> = ({}) => {
 
   const getUserHistory = () => {
     const _id = window.sessionStorage.getItem("id");
-    console.log(_id);
+    // console.log(_id);
     axios.get(`${_url}/api/user_detail/${_id}/`).then((response) => {
-      console.log(response.data.history);
+      // console.log(response.data.history);
       setUserHistory(response.data.history);
     });
   };

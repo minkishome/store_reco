@@ -22,12 +22,12 @@ const MonthlyInput = ({fullpage_api}) => {
   const _password = window.sessionStorage.getItem("password");
   const onSubmit = async () => {
     try {
-      console.log("여기확인");
-      console.log(_id);
+      // console.log("여기확인");
+      // console.log(_id);
       const _nickname = semi_nickname
         ? semi_nickname.replace(/^"+|"+$/g, "")
         : semi_nickname;
-      console.log(data);
+      // console.log(data);
       const res = await axios({
         method: "put",
         url: `${_url}/api/user_detail/${_id}/`,

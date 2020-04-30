@@ -9,17 +9,17 @@ const Imgur: FunctionComponent<any> = () => {
     const e = document.getElementsByClassName("input-image")[0].files[0];
     var u;
     d.append("image", e);
-    console.log(e);
-    console.log(d);
+    // console.log(e);
+    // console.log(d);
     r.open("POST", "https://api.imgur.com/3/image/");
     r.setRequestHeader("Authorization", `Client-ID 1001abddfee2596`);
     
     r.onreadystatechange = function () {
       if (r.status === 200 && r.readyState === 4) {
-        console.log(r);
+        // console.log(r);
         let res = JSON.parse(r.responseText);
         u = `https://i.imgur.com/${res.data.id}.png`;
-        console.log(u);
+        // console.log(u);
       }
     };
     r.send(d);

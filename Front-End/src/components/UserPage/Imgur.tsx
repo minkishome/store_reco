@@ -53,7 +53,7 @@ class Imgur extends Component<any> {
     r.setRequestHeader("Authorization", `Client-ID 1001abddfee2596`);
     r.onreadystatechange = function () {
       if (r.status === 200 && r.readyState === 4) {
-        console.log('r', r);
+        // console.log('r', r);
         let res = JSON.parse(r.responseText);
         u = `https://i.imgur.com/${res.data.id}.png`;
         // @ts-ignore
