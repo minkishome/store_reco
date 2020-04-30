@@ -4,26 +4,37 @@ import React, {
   useEffect,
   Component,
 } from "react";
+<<<<<<< HEAD
 import { StyledText, StyledInput, StyledBtn } from '../style';
 import axios from 'axios';
 import { url as _url } from '../../url';
+=======
+import { StyledText, StyledInput } from "../style";
+import axios from "axios";
+import { url as _url } from "../../url";
+>>>>>>> features/css_SK
 import Imgur from "./Imgur";
+
+import styled from "styled-components";
+
+import { Typography, Container, Grid, Box } from "@material-ui/core";
 
 const Information: FunctionComponent<any> = ({ setUserImage }: any) => {
   const [userInfo, setUserInfo] = useState([] as any);
   const [isEdit, setIsEdit] = useState(false as boolean);
 
-  const [monthlyInput, setMonthlyInput] = useState(userInfo.monthly_cost as any);
+  const [monthlyInput, setMonthlyInput] = useState(
+    userInfo.monthly_cost as any
+  );
   const [item, setItem] = useState(userInfo.item as any);
   const [price, setPrice] = useState(userInfo.price as any);
 
   const [toggle, setToggle] = useState(true as any);
 
-
-
-  useEffect(() => getUserInfo(), [toggle])
+  useEffect(() => getUserInfo(), [toggle]);
 
   const getUserInfo = () => {
+<<<<<<< HEAD
     const _id = window.sessionStorage.getItem('id');
     // const _id = "3";
     axios.get(`${_url}/api/user_detail/${_id}/`)
@@ -36,37 +47,45 @@ const Information: FunctionComponent<any> = ({ setUserImage }: any) => {
   const EditUserInfo = async () => {
     const _id = window.sessionStorage.getItem('id')
     // const _id = "3"
+=======
+    // const _id = window.sessionStorage.getItem('id');
+    const _id = "3";
+    axios.get(`${_url}/api/user_detail/${_id}/`).then((response) => {
+      setUserInfo(response.data);
+      // setUserImage(response.data.profile_image)
+    });
+  };
+
+  const EditUserInfo = async () => {
+    // const _id = window.sessionStorage.getItem('id')
+    const _id = "3";
+>>>>>>> features/css_SK
     try {
       const res = await axios({
         method: "put",
         url: `${_url}/api/user_detail/${_id}/`,
         data: {
-          password: '1234',
+          password: "1234",
           nickname: userInfo.nickname,
           kakao_id: _id,
           monthly_cost: monthlyInput,
           item: item,
-          price: price
+          price: price,
         },
         responseType: "json",
       });
-      alert('회원 정보가 수정되었습니다')
+      alert("회원 정보가 수정되었습니다");
       setToggle(!toggle);
-    }
-    catch (err) {
-      alert(err)
+    } catch (err) {
+      alert(err);
       setToggle(!toggle);
     }
     // reload();
-  }
+  };
 
   const isEditHandler = () => {
     {
-      isEdit
-        ?
-        EditUserInfo()
-        :
-        console.log('회원정보 수정')
+      isEdit ? EditUserInfo() : console.log("회원정보 수정");
     }
 
     setIsEdit(!isEdit);
@@ -74,16 +93,16 @@ const Information: FunctionComponent<any> = ({ setUserImage }: any) => {
   };
 
   const monthlyCostHandler = (e: any) => {
-    setMonthlyInput(e.target.value)
-  }
+    setMonthlyInput(e.target.value);
+  };
 
   const itemHandler = (e: any) => {
-    setItem(e.target.value)
-  }
+    setItem(e.target.value);
+  };
 
   const priceHandler = (e: any) => {
-    setPrice(e.target.value)
-  }
+    setPrice(e.target.value);
+  };
 
   return (
     <>
@@ -135,5 +154,10 @@ const Information: FunctionComponent<any> = ({ setUserImage }: any) => {
     </>
   );
 };
+
+const Text = styled.h3`
+  color: red;
+  display: inline;
+`;
 
 export default Information;

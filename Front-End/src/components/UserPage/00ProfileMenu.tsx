@@ -20,19 +20,16 @@ import List from "@material-ui/core/List";
 const useStyles = makeStyles({
   list: {
     width: 250,
-    
   },
   fullList: {
     width: "auto",
   },
-  buttons:{
-
-  }
+  buttons: {},
 });
 
 type Anchor = "right";
 
-const ProfileMenu: FunctionComponent<any> = ({ }) => {
+const ProfileMenu: FunctionComponent<any> = ({}) => {
   // 프로필 메뉴
   const classes = useStyles();
   const [state, setState] = React.useState({
@@ -53,12 +50,12 @@ const ProfileMenu: FunctionComponent<any> = ({ }) => {
     setState({ ...state, [anchor]: open });
   };
 
-  const _id = window.sessionStorage.getItem('id');
+  const _id = window.sessionStorage.getItem("id");
 
   // const [isLogin, setIsLogin] = useState(false)
 
   // const is_id = () => {
-  //   if ( _id == "" || _id == null || _id == undefined) { 
+  //   if ( _id == "" || _id == null || _id == undefined) {
   //     setIsLogin(false)
   //   } else {
   //     setIsLogin(true)
@@ -66,7 +63,7 @@ const ProfileMenu: FunctionComponent<any> = ({ }) => {
   // }
 
   // is_id()
-  const [userImage, setUserImage] = useState('' as any);
+  const [userImage, setUserImage] = useState("" as any);
 
   const list = (anchor: Anchor) => (
     <div
@@ -75,13 +72,14 @@ const ProfileMenu: FunctionComponent<any> = ({ }) => {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      {(_id == "" || _id == null || _id == undefined)
-        ?
+      {_id == "" || _id == null || _id == undefined ? (
         <p>먼저 로그인 해주세요</p>
-        :
+      ) : (
         <List>
           <ListItem button>
-            <Link to="/information" props={setUserImage}>회원정보</Link>
+            <Link to="/information" props={setUserImage}>
+              회원정보
+            </Link>
           </ListItem>
           <ListItem button>
             <Link to="/history">히스토리</Link>
@@ -93,36 +91,37 @@ const ProfileMenu: FunctionComponent<any> = ({ }) => {
             <Link to="/logout">로그아웃</Link>
           </ListItem>
         </List>
-      }
+      )}
     </div>
   );
 
-
   return (
     <>
-      <div>
-        {(["right"] as Anchor[]).map((anchor) => (
-          <React.Fragment key={anchor}>
-            {/* <Box display="flex" justifyContent="flex-end" m={1} p={1}> */}
-            <Button onClick={toggleDrawer(anchor, true)}>
-              {/* {userImage
+      <StyledText>
+        <div>
+          {(["right"] as Anchor[]).map((anchor) => (
+            <React.Fragment key={anchor}>
+              {/* <Box display="flex" justifyContent="flex-end" m={1} p={1}> */}
+              <Button onClick={toggleDrawer(anchor, true)}>
+                {/* {userImage
                 ?
                 <Avatar alt="Cindy Baker" src={userImage} />
                 : */}
                 <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-              {/* } */}
-            </Button>
-            <Drawer
-              anchor={anchor}
-              open={state[anchor]}
-              onClose={toggleDrawer(anchor, false)}
-            >
-              {list(anchor)}
-            </Drawer>
-            {/* </Box> */}
-          </React.Fragment>
-        ))}
-      </div>
+                {/* } */}
+              </Button>
+              <Drawer
+                anchor={anchor}
+                open={state[anchor]}
+                onClose={toggleDrawer(anchor, false)}
+              >
+                {list(anchor)}
+              </Drawer>
+              {/* </Box> */}
+            </React.Fragment>
+          ))}
+        </div>
+      </StyledText>
     </>
   );
 };
