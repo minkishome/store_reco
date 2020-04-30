@@ -33,11 +33,12 @@ const Fullpage = () => (
   <ReactFullpage
     //fullpage options
     licenseKey={"YOUR_KEY_HERE"}
-    scrollingSpeed={700} /* Options here */
+    // css3={false}
+    // scrollingSpeed={700} /* Options here */
+    scrollingSpeed={1000} /* Options here */
     navigation={true} // 오른쪽 네비게이션바 활성화
     verticalCentered={false} // css 풀린건가..?
     controlArrows={false}
-    css3={false}
     menu={"#menu"}
     anchors={[
       "firstPage",
