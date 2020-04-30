@@ -89,7 +89,7 @@ const Fullpage = () => (
                 style={{
                   width: "90%",
                   position: "relative",
-                  top: "10%",
+                  // top: "10%",
                   textAlign: "center",
                 }}
               >

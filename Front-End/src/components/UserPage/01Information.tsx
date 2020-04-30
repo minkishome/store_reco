@@ -91,7 +91,12 @@ const Information: FunctionComponent<any> = ({ setUserImage }: any) => {
         <StyledText>
           <h1>회원정보 수정</h1>
           <StyledBtn onClick={() => {window.history.back()}}>돌아가기</StyledBtn>
-          <button onClick={() => isEditHandler()}>수정완료</button>
+          <StyledBtn onClick={() => isEditHandler()}>수정완료</StyledBtn>
+          <hr />
+          <Grid style ={{textAlign:'center'}} >
+          <Imgur isEdit={isEdit} monthlyInput={monthlyInput} item={item} price={price} />
+          <img src={`${userInfo.item_image}`} alt="item_Img"></img>
+          </Grid>
           <hr />
           <h3>E-mail</h3>
           {userInfo.email}
@@ -112,22 +117,49 @@ const Information: FunctionComponent<any> = ({ setUserImage }: any) => {
         <StyledText>
           <h1>회원정보 조회</h1>
           <StyledBtn onClick={() => {window.history.back()}}>돌아가기</StyledBtn>
-          <button onClick={() => isEditHandler()}>수정하기</button>
+          <StyledBtn onClick={() => isEditHandler()}>수정하기</StyledBtn>
           <hr />
-          <h3>E-mail</h3>
-          {userInfo.email}
-          <h3>닉네임</h3>
-          {userInfo.nickname}
-          {/* <h1>목표상품</h1> */}
-          <hr />
-          <h3>한달 식비</h3>
-          {userInfo.monthly_cost}
-          <h3>목표 상품</h3>
-          {userInfo.item}
-          <h3>가격</h3>
-          {userInfo.price}
+          <Grid style ={{textAlign:'center'}} >
           <Imgur isEdit={isEdit} monthlyInput={monthlyInput} item={item} price={price} />
           <img src={`${userInfo.item_image}`} alt="item_Img"></img>
+          </Grid>
+          <hr />
+          <Grid
+            container
+            style={{flexDirection:'row'}}
+          >
+          <h3>E-mail :  </h3>   
+          <h3>&nbsp;&nbsp;&nbsp;{userInfo.email}</h3>
+          </Grid>
+          <Grid
+            container
+            style={{flexDirection:'row'}}
+          >
+          <h3>닉네임 : &nbsp;&nbsp;&nbsp;
+          {userInfo.nickname} </h3>
+          </Grid>
+          {/* <h1>목표상품</h1> */}
+          <hr />
+          <Grid
+            container
+            style={{flexDirection:'row'}}
+          >
+          <h3>한달 식비 : &nbsp;&nbsp;&nbsp;
+          {userInfo.monthly_cost} </h3> </Grid>
+          <Grid
+            container
+            style={{flexDirection:'row'}}
+          >
+          <h3>목표 상품 : &nbsp;&nbsp;&nbsp;
+          {userInfo.item} </h3>
+          </Grid>
+          <Grid
+            container
+            style={{flexDirection:'row'}}
+          >
+          <h3>가격 : &nbsp;&nbsp;&nbsp;
+          {userInfo.price}</h3>
+          </Grid>
           <br></br>
         </StyledText>
       }

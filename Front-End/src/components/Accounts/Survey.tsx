@@ -178,8 +178,8 @@ const Survey: FunctionComponent<any> = ({fullpage_api}) => {
     }}>
       {/* <StyledText> */}
       {/* <Container style={{height:'25%'}}> */}
-        <Typography style={{fontSize:'3vw'}}>Survey</Typography>
-        <Typography style={{fontSize:'2vw'}}>좋아하는 음식을 선택해주세요.</Typography>
+       <h1>Survey</h1>
+       <h2>좋아하는 음식을 선택해주세요.</h2>
       {/* </Container> */}
         {/* <Container  
         style={{  height: '100%', display: 'inline-block' }}

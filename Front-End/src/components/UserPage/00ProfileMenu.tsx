@@ -76,19 +76,28 @@ const ProfileMenu: FunctionComponent<any> = ({}) => {
         <p>먼저 로그인 해주세요</p>
       ) : (
         <List>
-          <ListItem button>
-            <Link to="/information" props={setUserImage}>
+          <ListItem button
+            style = {{textAlign:"center"}}
+          >
+
+            <Link to="/information" props={setUserImage} style={{textAlign:"center", textDecoration:"none"}}>
+              <Button>
               회원정보
+              </Button>
             </Link>
           </ListItem>
           <ListItem button>
-            <Link to="/history">히스토리</Link>
+            <Link to="/history" style={{textAlign:"center", textDecoration:"none"}}>
+              <Button>
+              히스토리
+              </Button>
+              </Link>
           </ListItem>
           <ListItem button>
-            <Link to="/priceresult">달성율</Link>
+            <Link to="/priceresult" style={{textAlign:"center", textDecoration:"none"}}><Button>달성율</Button></Link>
           </ListItem>
           <ListItem button>
-            <Link to="/logout">로그아웃</Link>
+            <Link to="/logout" style={{textAlign:"center", textDecoration:"none"}}><Button>로그아웃</Button></Link>
           </ListItem>
         </List>
       )}
@@ -114,6 +123,7 @@ const ProfileMenu: FunctionComponent<any> = ({}) => {
                 anchor={anchor}
                 open={state[anchor]}
                 onClose={toggleDrawer(anchor, false)}
+                style = {{ flexShrink: 0,}}
               >
                 {list(anchor)}
               </Drawer>
