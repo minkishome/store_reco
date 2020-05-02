@@ -22,7 +22,7 @@ def store_list(request, kakao_id):
     user_kakao = kakao_id
     if request.method == 'GET':
         engine = create_engine(
-            'mysql+pymysql://root:1234@localhost/mydb', convert_unicode=True)
+            'mysql+pymysql://root:1234@localhost/prim', convert_unicode=True)
         conn = engine.connect()
         final_df = pd.read_sql_table('stores_store_score', conn)
         # final_df.rename(columns={'user_id': 'user'}, axis='columns')

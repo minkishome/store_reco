@@ -166,17 +166,20 @@ const DailyInput: FunctionComponent<any> = ({ }) => {
                   </TextField>
                   </h2>
              
-               <h2> 저녁에  <TextField id="standard-basic"
-                            inputProps={{min: 0, style: { textAlign: 'center' }}}
-                            style = {{
-                              width:'10rem',
+               <h2> 저녁에  
+                 <input onChange={changeDinner} 
+                    style={{
+                      outline:'0',
+                      borderWidth:'0 0 2px',
+                      borderColor:'gray',
+                      fontSize:'2rem',
+                      textAlign :'center'
+
+                    }}
+                  >  
+                        
                             
-                              
-                          }}
-                          onChange={changeDinner}
-                            >
-                 
-                  </TextField></h2>
+                  </input> </h2>
              
                   <Button
                     onClick={toggleCheck}

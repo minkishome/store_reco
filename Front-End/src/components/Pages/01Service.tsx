@@ -9,8 +9,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { url as _url } from "../../url";
 import axios from "axios";
-import KaKaoLogin from "react-kakao-login"; 
-import {Grid, Typography, Box} from '@material-ui/core';
+import KaKaoLogin from "react-kakao-login";
+import { Grid, Typography, Box } from '@material-ui/core';
 
 declare const window: any;
 interface State {
@@ -24,7 +24,7 @@ class Service extends Component<any, State> {
       data: "kakao",
     };
   }
-  
+
   responseKaKao = async (res: any) => {
     this.setState({
       data: res,
@@ -49,7 +49,7 @@ class Service extends Component<any, State> {
         // url: `${_url}/api/user_exist/4/`,
         responseType: "json",
       });
-      alert("이미 회원가입 된 유저입니다.");
+      alert("회원가입이 정상적으로 처리 되었습니다.");
       const msg: string = JSON.stringify(response.data.message);
       if (msg == "true") {
         window.sessionStorage.setItem(
@@ -71,10 +71,6 @@ class Service extends Component<any, State> {
             url: `${_url}/api/user_list/`,
             data: {
               password: 1234,
-              // email: _email,
-              // kakao_id: "4",
-              // nickname: "사보텐",
-              // password: 1234,
               email: _email,
               kakao_id: JSON.stringify(this.state.data.profile.id),
               nickname: JSON.stringify(
@@ -83,6 +79,8 @@ class Service extends Component<any, State> {
               profile_image: JSON.stringify(
                 this.state.data.profile.properties.profile_image
               ),
+              item: "에어팟",
+              item_image: "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/269056d2-2466-4aff-bd5f-f6c6f908bbe6.jpeg",
               // ages: _age,
             },
             responseType: "json",
@@ -91,6 +89,15 @@ class Service extends Component<any, State> {
           alert("회원가입 되었습니다.");
           this.props.fullpage_api.moveSlideRight();
           // window.location.href='http://13.125.68.151:8081/#thirdPage';
+          window.sessionStorage.setItem(
+            "id",
+            JSON.stringify(this.state.data.profile.id)
+          );
+          sessionStorage.setItem(
+            "nickname",
+            JSON.stringify(this.state.data.profile.properties.nickname)
+          );
+          sessionStorage.setItem("password", "1234");
         } catch (err) {
           sessionStorage.clear();
           alert(err);
@@ -110,17 +117,17 @@ class Service extends Component<any, State> {
       <>
         <StyledText id="myMenu"
           style={{
-            position:'relative',
-            top:'10%'
+            position: 'relative',
+            top: '10%'
           }}
-        
+
         >
-        <h2>42000건의 빅데이터를 활용해<br/>
-        여러분의 소비를 비교/분석 해드려요.<br/>
-        식비 맞춤형 맛집도 추천해드립니다.<br/>
-        회원가입을 하면 더 많은 서비스를<br/>
-        이용하실 수 있어요<br/>
-        </h2>
+          <h2>42000건의 빅데이터를 활용해<br />
+            여러분의 소비를 비교/분석 해드려요.<br />
+            식비 맞춤형 맛집도 추천해드립니다.<br />
+            회원가입을 하면 더 많은 서비스를<br />
+            이용하실 수 있어요<br />
+          </h2>
 
           <KaKaoBtn
             jsKey={"2b67838751764359be17923f29aa820e"}

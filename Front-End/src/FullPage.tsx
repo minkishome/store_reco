@@ -102,6 +102,7 @@ const Fullpage = () => (
                   <Survey fullpage_api={fullpageApi} />
                 </div>
                 <div className="slide">
+                  
                   <MonthlyInput fullpage_api={fullpageApi} />
                 </div>
               </Grid>
@@ -261,7 +262,7 @@ const Fullpage = () => (
                 style={{
                   width: "90%",
                   position: "relative",
-                  top: "30%",
+                  top: "15%",
                   textAlign: "center",
                 }}
               >

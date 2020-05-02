@@ -94,7 +94,7 @@ const ProfileMenu: FunctionComponent<any> = ({}) => {
               </Link>
           </ListItem>
           <ListItem button>
-            <Link to="/priceresult" style={{textAlign:"center", textDecoration:"none"}}><Button>달성율</Button></Link>
+            <Link to="/priceresult" style={{textAlign:"center", textDecoration:"none"}}><Button>달성률</Button></Link>
           </ListItem>
           <ListItem button>
             <Link to="/logout" style={{textAlign:"center", textDecoration:"none"}}><Button>로그아웃</Button></Link>

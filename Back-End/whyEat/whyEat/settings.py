@@ -110,7 +110,7 @@ WSGI_APPLICATION = 'whyEat.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mydb',
+        'NAME': 'prim',
         'USER': 'root',
         'PASSWORD': '1234',
         'HOST': 'localhost',
