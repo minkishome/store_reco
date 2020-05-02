@@ -102,7 +102,7 @@ const DailyInput: FunctionComponent<any> = ({ }) => {
   const onSubmit = () => {
     try {
       if (flag === true) {
-        console.log(money, 'money')
+        // console.log(money, 'money')
         axios({
          method: "put",
          url: `${_url}/api/history_detail/${historyId}/`,
