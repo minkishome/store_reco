@@ -15,6 +15,7 @@ const ResultPage: FunctionComponent<any> = ({ fullpage_api }: any) => {
   // 성공실패여부 계산
   const _id = window.sessionStorage.getItem("id");
   const [monthlyCost, setMonthlyCost] = useState(0 as number);
+  const save_money = window.sessionStorage.getItem("money")
 
   const [dailyCost, setDailyCost] = useState(0 as number);
 
@@ -44,6 +45,8 @@ const ResultPage: FunctionComponent<any> = ({ fullpage_api }: any) => {
         url: `${_url}/api/user_detail/${_id}/`,
         responseType: "json",
       }).then((res) => {
+        var temp1 = [] as any
+        var temp2 = [] as any
         setMonthlyCost(res.data.monthly_cost);
         setItemName(res.data.item);
         res.data.history.forEach(element => {
@@ -97,15 +100,15 @@ const ResultPage: FunctionComponent<any> = ({ fullpage_api }: any) => {
           
                 <h1>Result Page</h1>
          <h2>
-          {money > 0
+          {(save_money ? save_money : 0)> 0
             ? "성공"
             : "실패"}
           </h2>
          <h2> 오늘 하루 식비를
           <br />
-          {money}원<br />
+          {save_money}원<br />
           
-            {money > 0
+            {(save_money ? save_money : 0) > 0
               ? "아끼셨네요"
               : "더 쓰셨다는 사실"}
           </h2>

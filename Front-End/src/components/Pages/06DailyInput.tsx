@@ -64,8 +64,11 @@ const DailyInput: FunctionComponent<any> = ({ }) => {
 
   const calMoney = (d: any, m: any) => {
     const monthDay: any = 30
-    const temp = (Number(m) / monthDay) - Number(d);
     setMoney(Math.round(Number(m) / monthDay - Number(d)))
+    sessionStorage.setItem(
+      "money",
+      money
+    );
     // if (temp <= 0) {
     //   setMoney(Math.round(Number(d) - Number(m) / monthDay))
       
