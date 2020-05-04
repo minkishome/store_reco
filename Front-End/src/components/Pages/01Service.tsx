@@ -29,10 +29,17 @@ class Service extends Component<any, State> {
     this.setState({
       data: res,
     });
-    const semi_email = JSON.stringify(
-      this.state.data.profile.kakao_account.email
-    );
-    const _email = semi_email.replace(/^"+|"+$/g, "");
+    const __email = this.state.data.profile.kakaka_account.email
+    if (__email == "" || __email == null || __email == undefined) {
+      const semi_email = JSON.stringify(
+        this.state.data.profile.kakao_account.email
+      );
+      var _email = semi_email.replace(/^"+|"+$/g, "");
+    } else {
+      var _email = '이메일이없습니다';
+    }
+
+
 
     // const semi_age = JSON.stringify(this.state.data.profile.kakao_account.age_range[0])
     // const s_age = semi_age.replace(/^"+|"+$/g, '')
@@ -49,7 +56,6 @@ class Service extends Component<any, State> {
         // url: `${_url}/api/user_exist/4/`,
         responseType: "json",
       });
-      alert("회원가입이 정상적으로 처리 되었습니다.");
       const msg: string = JSON.stringify(response.data.message);
       if (msg == "true") {
         window.sessionStorage.setItem(
