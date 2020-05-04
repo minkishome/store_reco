@@ -10,7 +10,7 @@ import styled from "styled-components";
 import { url as _url } from "../../url";
 import axios from "axios";
 import KaKaoLogin from "react-kakao-login";
-import { Grid, Typography, Box } from '@material-ui/core';
+import { Grid, Typography, Box } from "@material-ui/core";
 
 declare const window: any;
 interface State {
@@ -29,17 +29,15 @@ class Service extends Component<any, State> {
     this.setState({
       data: res,
     });
-    const __email = this.state.data.profile.kakaka_account.email
+    const __email = this.state.data.profile.kakao_account.email;
     if (__email == "" || __email == null || __email == undefined) {
       const semi_email = JSON.stringify(
         this.state.data.profile.kakao_account.email
       );
       var _email = semi_email.replace(/^"+|"+$/g, "");
     } else {
-      var _email = '이메일이없습니다';
+      var _email = "이메일이없습니다";
     }
-
-
 
     // const semi_age = JSON.stringify(this.state.data.profile.kakao_account.age_range[0])
     // const s_age = semi_age.replace(/^"+|"+$/g, '')
@@ -86,7 +84,8 @@ class Service extends Component<any, State> {
                 this.state.data.profile.properties.profile_image
               ),
               item: "에어팟",
-              item_image: "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/269056d2-2466-4aff-bd5f-f6c6f908bbe6.jpeg",
+              item_image:
+                "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/269056d2-2466-4aff-bd5f-f6c6f908bbe6.jpeg",
               // ages: _age,
             },
             responseType: "json",
@@ -121,18 +120,24 @@ class Service extends Component<any, State> {
   render() {
     return (
       <>
-        <StyledText id="myMenu"
+        <StyledText
+          id="myMenu"
           style={{
-            position: 'relative',
-            top: '10%'
+            position: "relative",
+            top: "10%",
           }}
-
         >
-          <h2>42000건의 빅데이터를 활용해<br />
-            여러분의 소비를 비교/분석 해드려요.<br />
-            식비 맞춤형 맛집도 추천해드립니다.<br />
-            회원가입을 하면 더 많은 서비스를<br />
-            이용하실 수 있어요<br />
+          <h2>
+            42000건의 빅데이터를 활용해
+            <br />
+            여러분의 소비를 비교/분석 해드려요.
+            <br />
+            식비 맞춤형 맛집도 추천해드립니다.
+            <br />
+            회원가입을 하면 더 많은 서비스를
+            <br />
+            이용하실 수 있어요
+            <br />
           </h2>
 
           <KaKaoBtn
